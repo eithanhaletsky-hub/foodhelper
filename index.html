@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>מטבח·לאב — מתכונים וקורסי אפייה</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <div class="logo">🍳 מטבח·לאב <small>מאות מתכונים וקורסי אפייה מותאמים אישית</small></div>
+      <nav>
+        <button class="nav-btn active" data-view="recipes">📖 מתכונים</button>
+        <button class="nav-btn" data-view="courses">🎓 קורסי אפייה</button>
+        <button class="nav-btn" data-view="restaurants">🍴 מסעדות</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===== מתכונים ===== -->
+    <section id="view-recipes" class="view active">
+      <h1 class="view-title">ספר המתכונים</h1>
+      <p class="view-sub">חפשו, סננו לפי קטגוריה, ולחצו על מתכון לפרטים המלאים.</p>
+
+      <input type="text" id="search" class="search-box" placeholder="🔍 חיפוש מתכון או מרכיב...">
+      <div id="category-filters"></div>
+      <div id="recipe-count"></div>
+      <div id="recipe-grid" class="grid"></div>
+    </section>
+
+    <!-- ===== קורסים ===== -->
+    <section id="view-courses" class="view">
+      <h1 class="view-title">קורסי אפייה מותאמים אישית</h1>
+      <p class="view-sub">בחרו את הרמה שלכם, ענו על 5 שאלות — ותקבלו תוכנית אימון בת 4 שבועות בדיוק בשבילכם.</p>
+
+      <!-- שלב 1: בחירת רמה -->
+      <div id="course-intro">
+        <p>מה סוג האופה שאתם?</p>
+        <div id="levels"></div>
+      </div>
+
+      <!-- שלב 2: חידון -->
+      <div id="course-quiz" class="hidden">
+        <div class="quiz-bar"><div id="quiz-progress"></div></div>
+        <p id="quiz-step"></p>
+        <h2 id="quiz-question"></h2>
+        <div id="quiz-answers"></div>
+      </div>
+
+      <!-- שלב 3: תוצאה -->
+      <div id="course-result" class="hidden"></div>
+    </section>
+
+    <!-- ===== מסעדות ===== -->
+    <section id="view-restaurants" class="view">
+      <h1 class="view-title">מסעדות בגוש דן וירושלים</h1>
+      <p class="view-sub">בחרו עיר וגלו מסעדות מומלצות. אפשר לסנן לפי כשרות.</p>
+
+      <div id="city-select"></div>
+
+      <div id="restaurants-controls" class="hidden">
+        <label class="kosher-toggle">
+          <input type="checkbox" id="kosher-only"> הצג רק כשר ✡️
+        </label>
+        <span id="restaurant-count"></span>
+      </div>
+
+      <div id="restaurant-list" class="grid"></div>
+
+      <p class="disclaimer">ℹ️ הרשימה נאספה ממקורות ציבוריים. פרטים כמו כתובת, שעות פתיחה וסטטוס עשויים להשתנות — כדאי לוודא לפני ביקור.</p>
+    </section>
+
+  </main>
+
+  <footer>נבנה באהבה 🧡 — ללא AI, ללא API. כל המתכונים והתוכניות מובנים באתר.</footer>
+
+  <!-- מודאל מתכון -->
+  <div id="recipe-modal" class="modal">
+    <div class="modal-inner" id="modal-content"></div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="recipes.js"></script>
+  <script src="restaurants.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
