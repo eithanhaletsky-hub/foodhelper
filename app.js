@@ -187,7 +187,7 @@ function closeRecipe() {
 /* ========================================================
    קורסים / חידון
    ======================================================== */
-const course = { level: null, current: 0, scores: { practice: 0, technique: 0, creative: 0, speed: 0 } };
+const course = { level: null, current: 0, history: [], scores: { practice: 0, technique: 0, creative: 0, speed: 0 } };
 
 function buildLevels() {
   const wrap = document.getElementById("levels");
@@ -206,6 +206,7 @@ function buildLevels() {
 function selectLevel(id) {
   course.level = id;
   course.current = 0;
+  course.history = [];
   course.scores = { practice: 0, technique: 0, creative: 0, speed: 0 };
   document.getElementById("course-intro").classList.add("hidden");
   document.getElementById("course-quiz").classList.remove("hidden");
@@ -230,16 +231,28 @@ function renderQuestion() {
     b.onclick = () => answer(a);
     box.appendChild(b);
   });
+
+  // כפתור חזרה — מוצג רק אחרי השאלה הראשונה
+  document.getElementById("quiz-back").classList.toggle("hidden", course.current === 0);
 }
 
 function answer(a) {
   for (const key in a.scores) course.scores[key] += a.scores[key];
+  course.history.push(a);
   course.current++;
   if (course.current < QUESTIONS.length) {
     renderQuestion();
   } else {
     showResult();
   }
+}
+
+function goBack() {
+  if (course.current === 0) return;
+  const prev = course.history.pop();
+  for (const key in prev.scores) course.scores[key] -= prev.scores[key];
+  course.current--;
+  renderQuestion();
 }
 
 const DIM_LABELS = {
@@ -302,6 +315,7 @@ function showResult() {
       <p class="week-explain">${w.explain}</p>
       <p class="week-mistake">⚠️ טעות נפוצה: ${w.mistake}</p>
       <p class="week-practice">👩‍🍳 מתרגלים: <span>${w.practice}</span></p>
+      <p class="week-challenge">🏆 אתגר בונוס: ${plan.challenges[i]}</p>
     </div>`).join("");
 
   const conceptsHtml = plan.concepts.map(c => `
@@ -317,6 +331,9 @@ function showResult() {
   const res = document.getElementById("course-result");
   res.classList.remove("hidden");
 
+  // שומרים את התוצאה כדי לאפשר "המשך מאיפה שהפסקת"
+  localStorage.setItem("foodhelper_course_last", JSON.stringify({ level: course.level, scores: course.scores }));
+
   res.innerHTML = `
     <div class="result-card">
       <div class="result-badge">${plan.emoji}</div>
@@ -330,12 +347,19 @@ function showResult() {
         <p class="runner-up">התאמה משנית: ${runnerPlan.emoji} ${runnerPlan.title}</p>
       </div>
 
+      <p class="level-note">💬 ${LEVEL_NOTES[course.level]}</p>
+
       <p class="result-intro">${plan.intro}</p>
 
       <h4>🏁 בסוף התוכנית תוכלו…</h4>
       <ul class="outcomes">${outcomesHtml}</ul>
 
       <h4>📅 תוכנית 4 שבועות</h4>
+      <div class="course-progress">
+        <div class="course-progress-track"><div id="course-progress-fill"></div></div>
+        <span id="course-progress-text"></span>
+      </div>
+      <div id="course-complete" class="complete-banner hidden">🎓 כל הכבוד! סיימתם את כל התוכנית! אתם מוכנים לשלב הבא 🎉</div>
       <div class="weeks-grid">${weeksHtml}</div>
 
       <h4>📚 מושגי מפתח שתלמדו</h4>
@@ -354,10 +378,60 @@ function showResult() {
       const i = parseInt(cb.dataset.week, 10);
       setWeekDone(planKey, i, cb.checked);
       cb.closest(".week-card").classList.toggle("done", cb.checked);
+      updateCourseProgress(planKey);
     });
   });
 
+  updateCourseProgress(planKey);
   window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+/* עדכון פס ההתקדמות הכללי + חגיגת סיום */
+function updateCourseProgress(planKey) {
+  const total = PLANS[planKey].weeks.length;
+  const done = getProgress(planKey).filter(Boolean).length;
+  const fill = document.getElementById("course-progress-fill");
+  const text = document.getElementById("course-progress-text");
+  const banner = document.getElementById("course-complete");
+  if (!fill) return;
+  fill.style.width = `${(done / total) * 100}%`;
+  text.textContent = `${done} מתוך ${total} שבועות הושלמו`;
+  banner.classList.toggle("hidden", done < total);
+}
+
+/* באנר "המשך מאיפה שהפסקת" במסך הפתיחה של הקורסים */
+function renderSavedCourse() {
+  const box = document.getElementById("saved-course");
+  let saved = null;
+  try { saved = JSON.parse(localStorage.getItem("foodhelper_course_last")); } catch (e) {}
+  if (!saved || !saved.level || !saved.scores) { box.classList.add("hidden"); return; }
+
+  const ranked = Object.keys(saved.scores).sort((a, b) => saved.scores[b] - saved.scores[a]);
+  const plan = PLANS[ranked[0]];
+  const lv = LEVELS.find(l => l.id === saved.level);
+  if (!plan || !lv) { box.classList.add("hidden"); return; }
+
+  const done = getProgress(ranked[0]).filter(Boolean).length;
+  box.classList.remove("hidden");
+  box.innerHTML = `
+    <div class="saved-inner">
+      <span class="saved-text">${plan.emoji} יש לך תוכנית פעילה: <strong>${plan.title}</strong> (${lv.emoji} ${lv.title}) — הושלמו ${done}/4 שבועות</span>
+      <div class="saved-actions">
+        <button class="btn-primary btn-sm" id="resume-course">⏩ המשך לתוכנית שלי</button>
+        <button class="saved-clear" id="clear-course">התחל מחדש</button>
+      </div>
+    </div>`;
+
+  document.getElementById("resume-course").onclick = () => {
+    course.level = saved.level;
+    course.scores = saved.scores;
+    document.getElementById("course-intro").classList.add("hidden");
+    showResult();
+  };
+  document.getElementById("clear-course").onclick = () => {
+    localStorage.removeItem("foodhelper_course_last");
+    box.classList.add("hidden");
+  };
 }
 
 function restartCourse() {
@@ -365,6 +439,7 @@ function restartCourse() {
   document.getElementById("course-result").innerHTML = "";
   document.getElementById("course-intro").classList.remove("hidden");
   course.level = null;
+  renderSavedCourse();
 }
 
 /* ========================================================
@@ -441,6 +516,9 @@ document.addEventListener("DOMContentLoaded", () => {
   renderRecipes();
   buildLevels();
   buildCitySelect();
+  renderSavedCourse();
+
+  document.getElementById("quiz-back").addEventListener("click", goBack);
 
   document.getElementById("search").addEventListener("input", e => {
     searchTerm = e.target.value.trim();

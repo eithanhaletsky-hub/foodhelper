@@ -322,6 +322,47 @@ main { max-width: 1120px; margin: 0 auto; padding: 32px 20px 70px; }
 }
 .answer-btn:hover { border-color: var(--primary); background: var(--soft); transform: translateX(-4px); }
 
+.quiz-back {
+  margin-top: 20px;
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: .92rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 8px 4px;
+  transition: color .2s;
+}
+.quiz-back:hover { color: var(--primary); }
+
+/* באנר "המשך מאיפה שהפסקת" */
+#saved-course { margin-bottom: 24px; }
+.saved-inner {
+  background: var(--soft);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.saved-text { line-height: 1.6; }
+.saved-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.btn-sm { margin-top: 0 !important; padding: 10px 20px !important; font-size: .92rem !important; }
+.saved-clear {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: .85rem;
+  cursor: pointer;
+  text-decoration: underline;
+  font-family: inherit;
+}
+.saved-clear:hover { color: var(--red); }
+
 /* Result */
 .result-card {
   background: var(--surface);
@@ -421,6 +462,66 @@ main { max-width: 1120px; margin: 0 auto; padding: 32px 20px 70px; }
 }
 .week-practice { font-size: .93rem; }
 .week-practice span { color: var(--primary-d); font-weight: 600; }
+.week-challenge {
+  margin-top: 12px;
+  background: var(--soft);
+  border: 1px dashed var(--accent);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  font-size: .9rem;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* הערת רמה */
+.level-note {
+  text-align: right;
+  background: var(--amber-bg);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  margin-bottom: 14px;
+  color: var(--text);
+  line-height: 1.7;
+  font-size: .95rem;
+}
+
+/* פס התקדמות כללי בקורס */
+.course-progress {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+.course-progress-track {
+  flex: 1;
+  height: 14px;
+  background: var(--border);
+  border-radius: 999px;
+  overflow: hidden;
+}
+#course-progress-fill {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--green), var(--accent));
+  border-radius: 999px;
+  transition: width .5s ease;
+}
+#course-progress-text { font-size: .88rem; color: var(--muted); font-weight: 600; white-space: nowrap; }
+
+/* חגיגת סיום */
+.complete-banner {
+  background: var(--green-bg);
+  border: 2px solid var(--green);
+  color: var(--text);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  margin-bottom: 16px;
+  font-weight: 700;
+  font-size: 1.05rem;
+  text-align: center;
+  animation: pop .4s ease;
+}
 
 /* Concepts */
 .concepts { display: grid; gap: 10px; }
