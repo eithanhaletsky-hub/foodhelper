@@ -75,6 +75,56 @@ function difficultyClass(d) {
   return "diff-hard";
 }
 
+/* ---- "תמונות" למתכונים: אמוג'י ספציפי לפי שם המתכון ---- */
+const EMOJI_RULES = [
+  ["עוגת גבינה", "🍰"], ["טירמיסו", "☕"], ["קפה", "☕"],
+  ["שוקולד", "🍫"], ["בראוניז", "🍫"], ["טראפלס", "🍫"],
+  ["לימון", "🍋"], ["תפוז", "🍊"], ["מנגו", "🥭"], ["בננה", "🍌"],
+  ["תות", "🍓"], ["אוכמניות", "🫐"], ["פירות יער", "🫐"], ["אבטיח", "🍉"],
+  ["תפוח", "🍎"], ["אגס", "🍐"], ["תמרים", "🍯"], ["דבש", "🍯"], ["בקלווה", "🍯"],
+  ["קוקוסיות", "🥥"], ["קוקוס", "🥥"], ["פבלובה", "🍨"], ["גלידת", "🍨"], ["גלידה", "🍨"],
+  ["מלבי", "🍮"], ["פודינג", "🍮"], ["קרם קרמל", "🍮"], ["ברולה", "🍮"], ["פאנה קוטה", "🍮"],
+  ["פיצה", "🍕"], ["קלצונה", "🍕"],
+  ["המבורגר", "🍔"], ["שווארמה", "🌯"], ["בקר", "🥩"], ["סטייק", "🥩"], ["גולש", "🥩"],
+  ["עוף", "🍗"], ["פרגיות", "🍗"], ["שניצל", "🍗"],
+  ["סלמון", "🐟"], ["טונה", "🐟"], ["דג", "🐟"], ["דגים", "🐟"],
+  ["גזר", "🥕"], ["דלעת", "🎃"], ["בטטה", "🍠"], ["תירס", "🌽"], ["פטריות", "🍄"],
+  ["חציל", "🍆"], ["אבוקדו", "🥑"], ["עגבני", "🍅"], ["שרי", "🍅"], ["פומודורו", "🍅"],
+  ["תרד", "🥬"], ["ברוקולי", "🥦"], ["כרוב", "🥬"], ["קישוא", "🥒"], ["זית", "🫒"],
+  ["חומוס", "🧆"], ["סביח", "🧆"], ["עדשים", "🫘"], ["שעועית", "🫘"], ["אפונה", "🫘"],
+  ["באגט", "🥖"], ["גריסיני", "🥖"], ["לחמניות", "🥖"],
+  ["פיתות", "🫓"], ["לאפה", "🫓"], ["נאן", "🫓"], ["מלאווח", "🫓"], ["מנקושה", "🫓"], ["לחמעג'ון", "🫓"],
+  ["בייגל", "🥯"], ["קרואסון", "🥐"], ["בריוש", "🥐"], ["שנקן", "🥐"], ["קינמון", "🥐"], ["פרצל", "🥨"],
+  ["פנקייק", "🥞"], ["קרפ", "🥞"], ["וופל", "🧇"], ["לביבות", "🥞"], ["סירניקי", "🥞"],
+  ["ביצים", "🍳"], ["חביתה", "🍳"], ["שקשוקה", "🍳"], ["פריטטה", "🍳"],
+  ["טוסט", "🥪"], ["כריך", "🥪"],
+  ["אורז", "🍚"], ["קוסקוס", "🍚"], ["מג'דרה", "🍚"],
+  ["אטריות", "🍜"], ["פאד תאי", "🍜"], ["מוקפץ", "🥡"], ["קארי", "🍛"],
+  ["שייק", "🥤"], ["סמות'י", "🥤"], ["יוגורט", "🥛"], ["צ'יה", "🥛"],
+  ["קיש", "🥧"], ["טארט", "🥧"], ["פשטיד", "🥧"], ["קראמבל", "🥧"],
+  ["בורקס", "🥟"], ["סמבוסק", "🥟"], ["אמפנדס", "🥟"], ["מגולגלים", "🥟"], ["נקניקיות", "🌭"],
+  ["גבינה", "🧀"], ["גרנולה", "🥣"], ["שיבולת שועל", "🥣"], ["קורנפלקס", "🥣"],
+  ["מקרונים", "🌈"], ["קאפקייקס", "🧁"], ["פחזניות", "🧁"], ["יום הולדת", "🎂"]
+];
+
+const CAT_HUES = {
+  desserts: 330, cakes: 25, cookies: 42, breads: 35, savory: 15,
+  mains: 5, pasta: 48, salads: 125, soups: 18, breakfast: 52
+};
+
+function recipeEmoji(r) {
+  for (const [kw, emoji] of EMOJI_RULES) {
+    if (r.name.includes(kw)) return emoji;
+  }
+  const cat = CATEGORIES.find(c => c.id === r.category);
+  return cat ? cat.emoji : "🍽️";
+}
+
+function headerStyle(r) {
+  const h = CAT_HUES[r.category] || 30;
+  return `background:linear-gradient(135deg, hsla(${h},85%,62%,.16), hsla(${h},85%,48%,.32))`;
+}
+
 function renderRecipes() {
   const grid = document.getElementById("recipe-grid");
   grid.innerHTML = "";
@@ -106,8 +156,8 @@ function renderRecipes() {
     card.className = "recipe-card";
     card.onclick = () => openRecipe(r.id);
     card.innerHTML = `
-      <div class="recipe-emoji">
-        ${cat ? cat.emoji : "🍽️"}
+      <div class="recipe-emoji" style="${headerStyle(r)}">
+        <span class="dish">${recipeEmoji(r)}</span>
         <button class="fav-btn ${fav ? "on" : ""}" title="הוסף למועדפים" data-id="${r.id}">${fav ? "❤️" : "🤍"}</button>
       </div>
       <div class="recipe-body">
@@ -137,7 +187,7 @@ function openRecipe(id) {
   document.getElementById("modal-content").innerHTML = `
     <button class="modal-close" onclick="closeRecipe()">✕</button>
     <div class="modal-header">
-      <span class="modal-emoji">${cat ? cat.emoji : "🍽️"}</span>
+      <div class="modal-hero" style="${headerStyle(r)}"><span class="dish dish-lg">${recipeEmoji(r)}</span></div>
       <h2>${r.name}</h2>
       <div class="recipe-meta">
         <span class="tag ${difficultyClass(r.difficulty)}">${r.difficulty}</span>

@@ -178,11 +178,31 @@ main { max-width: 1120px; margin: 0 auto; padding: 32px 20px 70px; }
 }
 .recipe-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
 .recipe-emoji {
-  font-size: 3.4rem;
   text-align: center;
-  padding: 24px 0 12px;
+  padding: 20px 0 16px;
   background: var(--emoji-grad);
   position: relative;
+}
+.dish {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  background: var(--surface);
+  box-shadow: var(--shadow), inset 0 0 0 6px var(--soft);
+  font-size: 2.9rem;
+  transition: transform .25s ease;
+}
+.recipe-card:hover .dish { transform: scale(1.08) rotate(-4deg); }
+.dish-lg { width: 116px; height: 116px; font-size: 3.7rem; }
+.modal-hero {
+  display: flex;
+  justify-content: center;
+  padding: 22px 0;
+  border-radius: var(--radius);
+  margin-bottom: 14px;
 }
 .fav-btn {
   position: absolute;
