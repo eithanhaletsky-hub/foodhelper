@@ -237,3 +237,393 @@ L.fr = {
     "breakfast-syrniki": "Syrniki (galettes au fromage blanc)", "breakfast-fruit-shake": "Milk-shake aux fruits du matin"
   }
 };
+
+L.fr.plans = {
+  practice: {
+    title: "Le plan des bases sûres",
+    tagline: "Prenez confiance pas à pas, avec des réussites garanties.",
+    intro: "Ce plan a un seul but : que vous finissiez chaque semaine avec le sentiment « j'ai réussi ! ». Pas de techniques intimidantes — on se concentre sur des recettes presque impossibles à rater, et dans chacune vous apprenez une compétence de base qui vous suivra toute la vie. Après 4 semaines, vous serez à l'aise près du four et pourrez aborder la plupart des recettes du site sans stress.",
+    meta: "4 semaines · env. 2 h/semaine · niveau : débutant",
+    tools: ["Bols de mélange", "Cuillère en bois et fouet", "Balance de cuisine ou verres doseurs", "Moule à pâtisserie"],
+    weeks: [
+      { title: "Semaine 1 — Découvrir sa cuisine", goal: "Apprendre à mesurer correctement et connaître ses outils et son four.", skill: "Mesure et pesée précises", explain: "Avant de pâtisser, comprenez que la pâtisserie, c'est comme la chimie — des quantités précises = un résultat précis. On apprend à utiliser une balance (bien plus précise que les verres doseurs), ce que signifie « préchauffer le four » et pourquoi c'est crucial, et où se trouve la grille du milieu. On commence par deux recettes très indulgentes.", mistake: "Ne pas préchauffer le four — un gâteau enfourné à froid ne lèvera pas correctement.", practice: "Gâteau au chocolat facile, Cookies aux pépites de chocolat" },
+      { title: "Semaine 2 — Le monde des œufs", goal: "Maîtriser le fouettage, le montage de base et la cuisson douce.", skill: "Travailler les œufs", explain: "Les œufs sont l'ingrédient le plus polyvalent — ils font lever, épaississent, lient et montent. On apprend la différence entre « battre » et « monter », comment savoir qu'une omelette est prête, et pourquoi on mélange une pâte à pancakes juste jusqu'à l'homogénéité (trop mélanger = pancakes caoutchouteux).", mistake: "Trop mélanger la pâte — cela développe le gluten et rend pancakes et gâteaux caoutchouteux.", practice: "Omelette, Pancakes américains, Gâteau citron-yaourt" },
+      { title: "Semaine 3 — Votre première pâte", goal: "Comprendre le pétrissage de base et la pousse.", skill: "Pétrir et laisser pousser", explain: "La pâte n'est effrayante que la première fois. On apprend ce qui se passe quand on mélange farine et eau (le gluten se forme — le réseau qui donne l'élasticité), comment savoir qu'une pâte est « prête », et ce que signifie « laisser pousser ». On travaille une pâte simple et indulgente avant de passer aux pains.", mistake: "Faire pousser dans un endroit froid — la levure aime la chaleur ; au froid, la pâte ne lève presque pas.", practice: "Biscuits au beurre, Pizza maison" },
+      { title: "Semaine 4 — Un repas complet !", goal: "Tout rassembler en un repas complet, en confiance.", skill: "Organisation et gestion du temps", explain: "On combine maintenant tout ce qu'on a appris. On prépare un repas complet — un plat chaud, une salade fraîche et du pain — et on s'entraîne au timing : comment ordonner la préparation pour que tout soit prêt en même temps. C'est le moment de célébrer le chemin parcouru.", mistake: "Tout commencer en même temps — débutez par ce qui prend le plus de temps.", practice: "Chakchouka, Salade israélienne, Pain à l'ail" }
+    ],
+    outcomes: ["Réussir un gâteau et des cookies en toute confiance", "Travailler les œufs sans crainte", "Préparer une pâte de base et la faire pousser", "Chronométrer un repas complet prêt en même temps"],
+    challenges: ["Cuisez le gâteau sans ouvrir le four une seule fois — faites confiance au minuteur.", "Faites des pancakes sans recette sous les yeux.", "Préparez la pâte deux fois dans la semaine et notez ce qui s'est amélioré.", "Recevez un proche pour un repas préparé de A à Z."],
+    concepts: [
+      { term: "Préchauffer le four", explain: "Allumez le four 10 à 15 min avant d'enfourner. Un four froid cuit de façon inégale et les gâteaux ne lèvent pas." },
+      { term: "Poids vs verres", explain: "Un verre de farine peut peser de 120 à 160 g selon le tassement. Une balance est toujours précise." },
+      { term: "Cure-dent propre", explain: "Piquez un cure-dent au centre — s'il ressort propre, c'est cuit. S'il y a de la pâte, poursuivez la cuisson." }
+    ],
+    tips: ["Lisez toujours la recette jusqu'au bout avant de commencer.", "La pesée vaut mieux que les verres doseurs.", "N'ouvrez pas le four pendant la cuisson — il perd sa chaleur et le gâteau retombe.", "L'erreur fait partie de l'apprentissage — chaque pâtissier a brûlé un biscuit au début."],
+    next: "Prêt à progresser ? Passez au plan « Maîtrise de la technique » pour comprendre le « pourquoi » derrière tout."
+  },
+  technique: {
+    title: "Le plan de maîtrise de la technique",
+    tagline: "Comprenez en profondeur pourquoi tout fonctionne — et gagnez en précision.",
+    intro: "Ce plan est pour vous si vous êtes déjà à l'aise en cuisine et voulez comprendre la science derrière la magie. Au lieu de suivre une recette, vous comprendrez pourquoi on ajoute chaque ingrédient, le rôle de la température, et comment corriger quand ça tourne mal. À la fin, vous lirez n'importe quelle recette et saurez d'avance comment elle va se comporter.",
+    meta: "4 semaines · env. 3–4 h/semaine · niveau : moyen-élevé",
+    tools: ["Thermomètre de cuisine", "Robot ou fouet électrique", "Poêle et plaque de cuisson", "Bol pour bain-marie"],
+    weeks: [
+      { title: "Semaine 1 — Le monde de la levure", goal: "Comprendre la fermentation, le gluten et la température de l'eau.", skill: "Maîtriser la pâte levée", explain: "La levure est un être vivant qui mange le sucre et libère du gaz — ce gaz gonfle la pâte. On apprend pourquoi une eau trop chaude tue la levure (au-dessus de 45 °C), ce qu'est le « développement du gluten » et comment il donne sa structure au pain, et pourquoi une pousse lente au frais donne plus de goût.", mistake: "Utiliser de l'eau bouillante — au-dessus de 45 °C, elle tue la levure et la pâte ne lève pas.", practice: "Pain blanc maison, Focaccia" },
+      { title: "Semaine 2 — Chocolat et crèmes", goal: "Maîtriser la fonte du chocolat et le travail de la crème.", skill: "Tempérer le chocolat et incorporer", explain: "Le chocolat est très sensible à la chaleur — on apprend le bain-marie (fonte douce sur la vapeur) et pourquoi une goutte d'eau peut « saisir » le chocolat et le ruiner. On comprend ce que signifie « incorporer » (mélange délicat qui garde l'air) par rapport à touiller, et comment monter la crème sans la transformer en beurre.", mistake: "Laisser l'eau toucher le chocolat fondu — même une goutte le « saisit » en une masse granuleuse.", practice: "Mousse au chocolat classique, Fondant au chocolat" },
+      { title: "Semaine 3 — Pâtes délicates", goal: "Maîtriser la pâte sablée et la cuisson à blanc.", skill: "Pâte sablée et cuisson à blanc", explain: "La pâte sablée est l'inverse de la pâte à pain — ici, on ne veut surtout pas développer le gluten, pour qu'elle reste friable et non élastique. On apprend pourquoi on travaille avec du beurre froid, ce qu'est la « cuisson à blanc » (cuire le fond seul avant la garniture) et pourquoi elle évite un fond détrempé.", mistake: "Trop pétrir la pâte sablée — cela développe le gluten et la rend dure au lieu de friable.", practice: "Quiche lorraine, Crumble aux pommes" },
+      { title: "Semaine 4 — Le défi de la crème brûlée", goal: "Travailler les jaunes, le bain-marie et le caramel.", skill: "Tempérage et caramel", explain: "Ce dessert réunit tout ce qu'on a appris. On apprend le « tempérage » — chauffer progressivement les jaunes pour qu'ils ne coagulent pas, cuire au bain-marie pour une prise douce, et enfin caraméliser le sucre au chalumeau. Réussissez-le et vous êtes un pâtissier précis.", mistake: "Verser le liquide chaud sur les jaunes d'un coup — ils coagulent en morceaux d'omelette.", practice: "Crème brûlée, Caramel" }
+    ],
+    outcomes: ["Cuire pain et focaccia à la levure en confiance", "Fondre et travailler le chocolat sans le saisir", "Réaliser une pâte sablée et une quiche pro", "Comprendre la science derrière chaque recette"],
+    challenges: ["Faites pousser la moitié de la pâte au frigo une nuit et comparez goût et texture à une pousse normale.", "Montez la crème à la main au fouet — sentez les étapes dans vos mains.", "Cuisez la quiche une fois à blanc et une fois sans — comparez les fonds.", "Mesurez la température à chaque étape et tenez un vrai journal de cuisson toute une semaine."],
+    concepts: [
+      { term: "Bain-marie", explain: "Fondre/cuire doucement dans un bol au-dessus d'une casserole d'eau bouillante. La chaleur indirecte évite de brûler — crucial pour le chocolat et les jaunes." },
+      { term: "Développement du gluten", explain: "Le pétrissage forme un réseau de protéines élastique. Beaucoup de gluten = pain aéré ; peu de gluten = pâte friable." },
+      { term: "Tempérage", explain: "Ajouter du liquide chaud aux œufs en filet, en remuant, pour les chauffer progressivement sans les coaguler." },
+      { term: "Incorporer", explain: "Mélanger délicatement en mouvement de vague pour garder l'air d'une préparation montée. On ne touille pas vigoureusement !" }
+    ],
+    tips: ["Le thermomètre de cuisine est votre meilleur ami — surtout avec la levure et le chocolat.", "Prenez des notes après chaque cuisson : ce qui a marché ou non.", "Comprenez le rôle de chaque ingrédient avant de le modifier.", "La météo compte — un jour humide, la pâte absorbe moins d'eau."],
+    next: "Envie de vous exprimer ? Passez au plan « Créativité et style » et développez votre signature."
+  },
+  creative: {
+    title: "Le plan créativité et style",
+    tagline: "Développez une signature, le dressage et des plats « waouh ».",
+    intro: "Si la technique est déjà entre vos mains, il est temps de développer un style. Ce plan porte sur le côté artistique de la cuisine — couleur, texture, couches et dressage. On apprend qu'on mange d'abord avec les yeux, et à la fin vous créerez même un plat original. Le but : qu'on reconnaisse votre plat avant même de le goûter.",
+    meta: "4 semaines · env. 3 h/semaine · niveau : moyen",
+    tools: ["Poches et douilles", "Plat de service", "Assiettes blanches pour le dressage", "Pinceau et spatule"],
+    weeks: [
+      { title: "Semaine 1 — Couleur et saveur", goal: "Jouer avec les couches de couleur et les contrastes de saveur.", skill: "Créer contraste de couleur et de saveur", explain: "La couleur crée l'appétit. On apprend à créer des contrastes visuels (clair/foncé) et à équilibrer les saveurs — sucré/acide, riche/frais. On travaille le gâteau marbré (un contraste visuel classique) et des macarons colorés pour allier précision et esthétique.", mistake: "Abuser du colorant — une couleur trop forte paraît artificielle et coupe l'appétit.", practice: "Gâteau marbré, Macarons" },
+      { title: "Semaine 2 — Monter des couches", goal: "Construire des plats en couches aux textures variées.", skill: "Couches et textures", explain: "Un plat en couches raconte une histoire à chaque cuillère. On apprend le principe des textures contrastées — croquant/crémeux, aérien/dense — et comment les monter dans un verre transparent pour que l'œil voie chaque couche. Un simple dessert devient impressionnant.", mistake: "Monter des couches chaudes — elles fondent et se mélangent ; refroidissez chaque couche d'abord.", practice: "Tiramisu, Panna cotta à la vanille" },
+      { title: "Semaine 3 — Le dressage", goal: "Apprendre à dresser l'assiette comme au restaurant.", skill: "Dressage de l'assiette", explain: "Le même plat paraît totalement différent avec un bon dressage. On apprend les bases : l'espace blanc laisse respirer l'assiette, la hauteur crée du drame, et les points de sauce et herbes sont votre pinceau. On s'entraîne sur un plat principal entier.", mistake: "Remplir toute l'assiette — une assiette surchargée paraît brouillonne ; l'espace vide fait partie du dressage.", practice: "Saumon teriyaki, Salade caprese" },
+      { title: "Semaine 4 — Votre propre recette !", goal: "Créer un plat signature original.", skill: "Développer une recette originale", explain: "À vous de jouer. Combinez techniques et saveurs que vous avez aimées pour créer un plat qui n'existait pas. Il n'y a ni bien ni mal — juste expérimenter, goûter et ajuster. C'est votre signature.", mistake: "Changer trop de choses d'un coup — modifiez une variable à la fois pour comprendre ce qui a marché.", practice: "Votre recette originale — combinez ce que vous avez appris !" }
+    ],
+    outcomes: ["Créer des contrastes de couleur et de saveur bluffants", "Monter des desserts en couches et textures", "Dresser au niveau d'un restaurant", "Développer votre propre plat signature"],
+    challenges: ["Créez un effet marbré en trois couleurs au lieu de deux.", "Montez le tiramisu en verrines et ajoutez une couche surprise.", "Photographiez le même plat dans deux dressages et décidez lequel marche et pourquoi.", "Donnez un nom à votre plat et écrivez-lui une courte description — comme sur une carte."],
+    concepts: [
+      { term: "Contraste de texture", explain: "Associer croquant/moelleux ou crémeux/ferme rend le repas bien plus intéressant qu'une texture uniforme." },
+      { term: "Dressage", explain: "L'art d'agencer l'assiette. Principes : laisser du vide, créer de la hauteur, utiliser couleur et points de sauce en décor." },
+      { term: "Équilibre des saveurs", explain: "Un bon plat équilibre cinq goûts : sucré, acide, salé, amer et umami. On sent le déséquilibre tout de suite." }
+    ],
+    tips: ["Photographiez chaque plat — cela entraîne l'œil à l'esthétique.", "Osez des saveurs inhabituelles (chocolat-piment, fraise-basilic).", "Moins, c'est mieux — une assiette surchargée trouble l'œil.", "Tenez un carnet d'idées pour vos futurs plats."],
+    next: "Envie de rapidité aussi ? Jetez un œil au plan « Rapidité et efficacité » pour intégrer la créativité au quotidien."
+  },
+  speed: {
+    title: "Le plan rapidité et efficacité",
+    tagline: "Des plats savoureux et rapides pour une vie chargée — sans sacrifier le goût.",
+    intro: "Pas d'heures de libre ? Tant mieux — la meilleure cuisine est souvent la plus simple. Ce plan vous apprend à cuisiner malin : des plats gagnants en 20–30 minutes, une organisation qui fait gagner du temps, et des astuces de chef pour travailler efficacement. À la fin, vous saurez préparer un bon repas même un soir très chargé.",
+    meta: "4 semaines · env. 1,5 h/semaine · niveau : facile",
+    tools: ["Grande poêle ou wok", "Couteau de chef bien aiguisé", "Planche à découper", "Boîtes de conservation pour congeler"],
+    weeks: [
+      { title: "Semaine 1 — 20 minutes dans l'assiette", goal: "Faire un plat complet en peu de temps.", skill: "Planifier l'ordre des opérations", explain: "Les plats rapides demandent de planifier l'ordre des opérations. On apprend à profiter du temps où l'eau bout pour d'autres tâches, et à choisir des recettes dont les ingrédients cuisent en parallèle. Pâtes et chakchouka sont des exemples parfaits de repas complet et rapide.", mistake: "Attendre que l'eau bout sans rien faire — utilisez ce temps pour préparer la sauce.", practice: "Aglio e olio, Chakchouka" },
+      { title: "Semaine 2 — Sautés et assemblages", goal: "Maîtriser la cuisson vive et rapide.", skill: "Sauté à feu vif", explain: "Le sauté à feu vif cuit vite et garde texture et couleur croquantes. On apprend la règle « poêle chaude, mouvement constant » et pourquoi couper tout à la même taille avant de commencer. On combine avec des assemblages froids rapides comme la salade de quinoa.", mistake: "Surcharger la poêle — trop de légumes font chuter la chaleur et ça cuit à la vapeur au lieu de dorer.", practice: "Sauté de poulet et légumes, Salade de quinoa" },
+      { title: "Semaine 3 — Repas éclairs", goal: "Varier petits-déjeuners et dîners rapides.", skill: "Un répertoire de plats rapides", explain: "Un bon petit-déjeuner ne prend pas forcément du temps. On apprend un répertoire de plats en 10 minutes à varier à l'infini — avec les mêmes ingrédients de base qu'on a presque toujours. Le but : ne jamais être à court d'idée.", mistake: "Cuire les œufs à feu vif — ils deviennent caoutchouteux ; le feu doux donne une texture crémeuse.", practice: "Pain perdu, Omelette, Porridge d'avoine" },
+      { title: "Semaine 4 — Mise en place", goal: "Adopter une méthode de cuisine professionnelle.", skill: "Organisation et batch cooking", explain: "La « mise en place » (tout à sa place) est le grand secret des chefs : préparer et couper tous les ingrédients avant d'allumer le feu. On apprend aussi le « batch cooking » — cuire une grande quantité en une fois et congeler des portions pour les jours chargés.", mistake: "Commencer à cuire avant que tout soit coupé et prêt — c'est ainsi que ça brûle pendant qu'on découpe.", practice: "Planification et cuisine de la semaine — préparez 3 plats à l'avance" }
+    ],
+    outcomes: ["Faire un plat complet en 20 minutes", "Maîtriser le sauté à feu vif", "Un répertoire de repas éclairs pour chaque jour", "Organiser sa cuisine et cuisiner en lots comme un chef"],
+    challenges: ["Faites les pâtes du début à l'assiette en moins de 20 minutes — au chrono !", "Faites un sauté avec seulement ce qu'il y a déjà dans le frigo, sans rien acheter.", "Faites 3 petits-déjeuners différents en 30 minutes au total.", "Planifiez et pré-cuisinez tous les déjeuners de la semaine prochaine."],
+    concepts: [
+      { term: "Mise en place", explain: "« Tout à sa place ». Coupez et mesurez tous les ingrédients avant de commencer — pour ne pas rester coincé en route ni rien brûler." },
+      { term: "Batch cooking", explain: "Cuire une grande quantité d'un plat et le portionner au congélateur. Cela fait gagner des heures dans la semaine." },
+      { term: "Sauté", explain: "Cuisson rapide à feu vif avec un peu d'huile et un mouvement constant. Garde les légumes croquants et colorés." }
+    ],
+    tips: ["Coupez et préparez tous les ingrédients avant d'allumer le feu (mise en place).", "Une seule poêle = moins de vaisselle.", "Cuisinez en grandes quantités et congelez des portions individuelles.", "Gardez une base au placard : pâtes, œufs, huile d'olive, ail, tomates en conserve."],
+    next: "Envie d'approfondir ? Combinez avec le plan « Maîtrise de la technique » pour sublimer vos plats rapides."
+  },
+  world: {
+    title: "Voyage du monde — cuisines internationales",
+    tagline: "Voyagez entre continents par l'assiette — Italie, Asie, Moyen-Orient et Amérique.",
+    intro: "Vous aimez découvrir de nouvelles saveurs ? Ce plan vous emmène en voyage culinaire autour du monde. Chaque semaine, on s'arrête sur un continent, on apprend les ingrédients et techniques qui le définissent, et on cuisine un plat authentique. À la fin, vous aurez un vrai répertoire international — et saurez composer un repas de n'importe quel pays.",
+    meta: "4 semaines · env. 2–3 h/semaine · niveau : moyen",
+    tools: ["Wok ou grande poêle", "Râpe et couteau aiguisé", "Mortier ou moulin à épices", "Grande casserole"],
+    weeks: [
+      { title: "Semaine 1 — Italie", goal: "Maîtriser les sauces italiennes classiques et les pâtes.", skill: "Sauces et pâtes al dente", explain: "La cuisine italienne repose sur la simplicité et de bons produits. On apprend à cuire les pâtes « al dente » (fermes sous la dent), à faire une vraie sauce tomate maison, et pourquoi on garde toujours un verre d'eau de cuisson — son amidon rend toute sauce onctueuse.", mistake: "Rincer les pâtes après cuisson — cela enlève l'amidon qui aide la sauce à accrocher.", practice: "Pâtes pomodoro, Pizza maison" },
+      { title: "Semaine 2 — Asie", goal: "Maîtriser le sauté et l'équilibre des saveurs asiatiques.", skill: "Wok et équilibre sucré-acide-salé-piquant", explain: "La cuisine asiatique célèbre les contrastes : sucré/acide, salé/piquant. On apprend à sauter au wok à feu vif (tout coupé et prêt d'abord !), et à composer une sauce équilibrée à base de soja, sucre, citron vert et gingembre.", mistake: "Surcharger le wok — ça fait chuter la chaleur et les légumes cuisent à la vapeur au lieu de saisir.", practice: "Pad thaï, Sauté de poulet et légumes" },
+      { title: "Semaine 3 — Le Moyen-Orient", goal: "Maîtriser les épices et les pains de la région.", skill: "Bon assaisonnement et pain plat", explain: "La cuisine du Moyen-Orient est celle des épices, des herbes et des pains sur le feu. On apprend à torréfier les épices pour libérer leur arôme, et à cuire un pain plat à haute température. La règle : goûter et rectifier l'assaisonnement au fur et à mesure.", mistake: "Ajouter toutes les épices à la fin — torréfiez-les dans l'huile au début pour développer la profondeur.", practice: "Chakchouka, Manakish au zaatar, Mujaddara (riz et lentilles)" },
+      { title: "Semaine 4 — Choisissez une destination et recevez", goal: "Composer un repas complet d'un seul pays.", skill: "Composer un menu international", explain: "Maintenant, c'est vous le guide du voyage. Choisissez un pays que vous avez aimé, composez un menu de 2–3 plats (entrée, plat, dessert) et servez-le comme un restaurant ethnique. C'est l'apogée de tout ce que vous avez appris.", mistake: "Choisir 3 plats complexes pour un même repas — prenez un plat difficile et deux simples.", practice: "Curry de poulet au lait de coco, Couscous aux légumes, Lahmajun" }
+    ],
+    outcomes: ["Cuisiner des plats italiens authentiques", "Maîtriser le sauté et les saveurs asiatiques", "Assaisonner et cuire comme au Moyen-Orient", "Composer un repas complet de n'importe quel pays"],
+    challenges: ["Faites une sauce tomate italienne uniquement à partir de tomates fraîches, sans conserve.", "Créez votre propre sauce de sauté asiatique et équilibrez-la à la perfection.", "Torréfiez votre mélange d'épices et moulez-le frais.", "Organisez une « soirée pays » avec menu, musique et décor de table assortis."],
+    concepts: [
+      { term: "Al dente", explain: "Des pâtes cuites « sous la dent » — tendres dehors avec une légère fermeté dedans. Elles cuisent encore un peu dans la sauce, alors sortez-les une minute avant." },
+      { term: "Umami", explain: "Le « cinquième goût » — une profondeur savoureuse venant du soja, du parmesan, des champignons et des tomates. Le secret d'un plat addictif." },
+      { term: "Mise en place pour épices", explain: "En cuisine asiatique, tout va très vite — tous les ingrédients doivent être coupés et prêts près du feu avant d'allumer." }
+    ],
+    tips: ["De bons produits comptent plus qu'une technique parfaite — surtout en italien.", "Goûtez sans arrêt et rectifiez l'assaisonnement en cuisinant.", "Achetez des épices entières et moulez-les fraîches — l'arôme est bien plus fort.", "Ne craignez pas les nouvelles saveurs — c'est ainsi qu'on découvre de nouveaux coups de cœur."],
+    next: "Envie de cuisiner plus sain ? Essayez le plan « Cuisine saine et équilibrée »."
+  },
+  healthy: {
+    title: "Cuisine saine et équilibrée",
+    tagline: "Une nourriture nutritive et savoureuse pour une vie saine — sans régimes extrêmes.",
+    intro: "Sain ne veut pas dire fade ou moins bon. Ce plan vous apprend à composer des plats équilibrés et nourrissants qui rassasient et font du bien. On apprend à monter une « assiette équilibrée », à cuire les protéines sans les dessécher, et à préparer les repas à l'avance pour toujours avoir du sain à portée de main. Le but : de bonnes habitudes qui durent.",
+    meta: "4 semaines · env. 2 h/semaine · niveau : facile-moyen",
+    tools: ["Poêle antiadhésive", "Râpe et économe", "Boîtes de conservation", "Blender ou mixeur plongeant"],
+    weeks: [
+      { title: "Semaine 1 — La base équilibrée", goal: "Composer salades et bols nourrissants et rassasiants.", skill: "Composer un bol équilibré", explain: "Un bon bol est un repas complet en un plat : une base de légumes/verdure, une protéine (poulet, tofu, légumineuses), un féculent complet (quinoa, riz complet) et une bonne sauce. On apprend la formule, et comment une sauce maison évite bien des calories inutiles par rapport aux sauces du commerce.", mistake: "Noyer une salade saine sous une sauce grasse — une vinaigrette maison légère suffit largement.", practice: "Salade de quinoa, Salade de poulet chaude" },
+      { title: "Semaine 2 — Protéine maligne", goal: "Cuire poisson et poulet maigre bien moelleux.", skill: "Cuire la protéine sans la dessécher", explain: "La protéine maigre se dessèche vite — le secret est de ne pas trop cuire. On apprend à repérer quand poisson et poulet sont cuits (ils continuent de cuire par la chaleur résiduelle même hors du feu), et à préférer la cuisson au four et à la poêle à la friture.", mistake: "Cuire le poisson jusqu'à ce qu'il soit sec et effiloché — retirez-le dès qu'il s'effeuille doucement.", practice: "Saumon teriyaki, Hauts de cuisse au four" },
+      { title: "Semaine 3 — Petits-déjeuners nourrissants", goal: "Commencer la journée avec une énergie équilibrée.", skill: "Petits-déjeuners riches en fibres", explain: "Un bon petit-déjeuner vous garde rassasié et énergique jusqu'au déjeuner. On apprend à associer un féculent complet, une protéine et des fibres — comme des flocons d'avoine aux fruits, ou un pudding de chia. Ce sont aussi des plats à préparer la veille.", mistake: "Un petit-déjeuner très sucré seul — il donne un pic puis une chute ; ajoutez protéine et fibres.", practice: "Porridge d'avoine, Pudding de chia, Chakchouka" },
+      { title: "Semaine 4 — Préparation à l'avance (Meal Prep)", goal: "Cuisiner sain pour toute une semaine à l'avance.", skill: "Cuisine saine hebdomadaire", explain: "Le secret pour manger sain avec constance, c'est que ce soit prêt. On apprend à cuire une grande quantité de plats de base sains en une fois, à les portionner et les conserver — pour qu'un soir chargé, il y ait du bon qui attend au lieu de commander à emporter.", mistake: "Tout préparer frais chaque jour — on s'épuise et on abandonne ; pré-cuisinez 2–3 plats de base.", practice: "Soupe de lentilles, Boulettes de poulet sauce citron, Salade de quinoa" }
+    ],
+    outcomes: ["Composer un bol équilibré et rassasiant", "Cuire poisson et poulet moelleux et sains", "Préparer des petits-déjeuners nourrissants et énergisants", "Cuisiner sain pour toute une semaine à l'avance"],
+    challenges: ["Faites votre propre vinaigrette maison et comparez-la à celle du commerce.", "Cuisez un filet de poisson parfait — moelleux, pas sec.", "Faites 3 petits-déjeuners sains différents et préparez-les la veille.", "Pré-cuisinez tous les déjeuners de la semaine prochaine et conservez-les en portions."],
+    concepts: [
+      { term: "L'assiette équilibrée", explain: "La moitié de légumes, un quart de protéine (poulet/poisson/légumineuses) et un quart de céréales complètes. Une formule simple pour un repas nourrissant." },
+      { term: "Cuisson résiduelle", explain: "Les aliments continuent de cuire grâce à la chaleur emmagasinée, même hors du feu — retirez donc poisson et poulet juste avant qu'ils soient « cuits »." },
+      { term: "Fibres alimentaires", explain: "Présentes dans légumes, fruits et céréales complètes ; elles rassasient et facilitent la digestion. La base d'un repas qui ne laisse pas vite affamé." }
+    ],
+    tips: ["Buvez beaucoup d'eau — la soif se confond parfois avec la faim.", "Sain n'est pas « sans gras » — les bonnes graisses (huile d'olive, avocat, noix) comptent.", "Cuisinez à l'avance pour ne pas céder à la livraison un soir chargé.", "De la couleur dans l'assiette = variété de nutriments. Visez une assiette colorée."],
+    next: "Envie de plus de variété ? Combinez avec le plan « Voyage du monde » pour une cuisine saine du monde entier."
+  }
+};
+
+L.fr.rest = {
+  "tel-aviv|R48": { c: "Restaurant de chef", d: "Menu dégustation créatif d'ingrédients rares, au centre-ville." },
+  "tel-aviv|ASA Izakaya": { c: "Japonais", d: "Izakaya japonais du chef Raz Rahav, axé sur le poisson." },
+  "tel-aviv|מלגו ומלבר": { c: "Fruits de mer", d: "Restaurant de chef moderne axé sur les fruits de mer et le poisson." },
+  "tel-aviv|פסאדור": { c: "Viandes / grill", d: "Menu de viandes à prix fixe, morceaux de choix, plusieurs services." },
+  "tel-aviv|GDB": { c: "Burgers", d: "Valeur sûre du burger — bœuf maturé dans un pain brioché moelleux." },
+  "tel-aviv|מון (Moon) סושי בר": { c: "Sushi", d: "Bar à sushi moderne sur Bograshov, ambiance venue d'ailleurs." },
+  "tel-aviv|צ'יינה קלאס": { c: "Asiatique", d: "Cuisine japonaise et asiatique — sushi frais, nouilles et salades." },
+  "tel-aviv|יוליה": { c: "Poisson", d: "Menu méditerranéen créatif au port de Tel Aviv." },
+  "tel-aviv|פיצה לילה": { c: "Pizza napolitaine", d: "L'une des meilleures de la ville — pizza fine à la croûte aérienne." },
+  "tel-aviv|ניניו": { c: "Chef laitier", d: "Restaurant de chef laitier casher, poisson et technique moderne." },
+  "tel-aviv|קפה AT8": { c: "Bistro", d: "Café-bistro casher sur Dizengoff, du matin au soir." },
+
+  "jerusalem|הדקה ה-90": { c: "Restaurant de chef", d: "Cuisine israélienne moderne du chef Yonatan Roshfeld, centre-ville." },
+  "jerusalem|1868": { c: "Chef israélo-français", d: "Restaurant haut de gamme du chef Arnon Dahan." },
+  "jerusalem|צ'אקרה": { c: "Restaurant de chef", d: "Restaurant de chef réputé sur la rue King George." },
+  "jerusalem|אדום": { c: "Français", d: "Restaurant français dans la cour Feingold, élégant." },
+  "jerusalem|גבריאל": { c: "Restaurant de chef", d: "Excellent restaurant de chef près de la rue Shlomtzion." },
+  "jerusalem|עזורא": { c: "Traditionnel", d: "Institution culinaire depuis 1948 — soupes kubbeh et sofrito." },
+  "jerusalem|מורדוך": { c: "Mizrahi", d: "Restaurant historique réputé du marché Mahané Yehouda." },
+  "jerusalem|אריכה": { c: "Sabich / street food", d: "Sabich soigné en couches, au marché Mahané Yehouda." },
+  "jerusalem|חומוס ארבעס": { c: "Houmous", d: "Houmous frais préparé à la main, au marché." },
+  "jerusalem|ג'וזף רימון": { c: "Grill & vin", d: "Grill et vin strictement casher, ambiance jérusalémite, centre-ville." },
+  "jerusalem|DAVID 16": { c: "Viandes / grill", d: "Viandes casher face aux remparts de la Vieille Ville, cave à vin et cigares." },
+
+  "ramat-gan|שיפודי סמי ובניו": { c: "Viandes / grill", d: "Grill familial depuis 1960, un repaire pour les amateurs de viande." },
+  "ramat-gan|קפה MAE": { c: "Sud-américain", d: "Saveurs d'Amérique centrale dans le quartier de la Bourse." },
+  "ramat-gan|בלקסטון": { c: "Bistro franco-israélien", d: "Bistro casher dans le quartier de la Bourse." },
+  "ramat-gan|הארנב הלבן": { c: "Viandes / grill", d: "Grill sud-américain dans le quartier de la Bourse." },
+  "ramat-gan|ריבר": { c: "Asiatique", d: "Cuisine asiatique dans le quartier de la Bourse." },
+
+  "givatayim|חומוס גבעתיים": { c: "Houmous", d: "Houmous réputé avec de généreuses garnitures." },
+  "givatayim|טורי": { c: "Japonais / asiatique", d: "Inspiré d'un temple japonais, carte pan-asiatique et beaux vins." },
+
+  "herzliya|דרבי בר דגים": { c: "Poisson", d: "Restaurant de poisson à la marina de Herzliya." },
+  "herzliya|לולה מרטין": { c: "Poisson", d: "Restaurant de poisson sur le boulevard Abba Eban, Herzliya Pituach." },
+  "herzliya|בני הדייג": { c: "Poisson", d: "Restaurant de poisson casher à la marina." },
+  "herzliya|לה ואקה לוקה": { c: "Viandes / grill", d: "Grill sur Medinat HaYehudim, Herzliya Pituach." },
+  "herzliya|לחם בשר": { c: "Viandes / grill", d: "Grill soigné à la marina — déco élégante et bon service." },
+  "herzliya|נאמוס": { c: "Japonais", d: "Cuisine japonaise moderne — poisson, teppanyaki et sushi à la marina." },
+
+  "petah-tikva|השיפוד והמנגל": { c: "Grill boukharien", d: "Grill boukharien casher, carrefour de Segula." },
+  "petah-tikva|שיפודי ציפורה": { c: "Viandes / grill", d: "Morceaux de choix au cœur des sorties, ambiance chic." },
+  "petah-tikva|ג'ויה": { c: "Italien", d: "Restaurant italien du chef Benny Ashkenazi." },
+  "petah-tikva|מריונלה": { c: "Italien", d: "Italien casher avec une touche moderne." },
+  "petah-tikva|פטריקס": { c: "Bar-restaurant", d: "Carte de chef, 27 bières pression et bons spiritueux." },
+  "petah-tikva|ג'ירף": { c: "Asiatique", d: "Cuisine asiatique et thaïe, dont des plats sans gluten." },
+
+  "rishon|סטלה ביץ'": { c: "Poisson & viande", d: "Restaurant en bord de mer, aussi de bons petits-déjeuners." },
+  "rishon|אמילי גריל בר": { c: "Viandes / grill", d: "Ambiance israélo-orientale moderne, viandes savoureuses, casher." },
+  "rishon|טיטי מרטין בר": { c: "Bar-restaurant", d: "Cocktails, bonne cuisine et musique dans l'ancienne zone industrielle." },
+  "rishon|פטריקס": { c: "Bar-restaurant", d: "Immense bar-restaurant (400 places) donnant sur un lac." },
+  "rishon|לחם בשר": { c: "Viandes / grill", d: "Viandes casher avec pains au four taboun et maturation maison." },
+  "rishon|סוהו": { c: "Restaurant", d: "Adresse mythique et aimée, près de 30 ans dans l'ancienne zone." },
+  "rishon|סלון יווני": { c: "Grec", d: "Restaurant grec axé sur la fête et les concerts live." },
+
+  "holon|בובו": { c: "Italien", d: "Pâtes fraîches, pizzas et classiques italiens, casher." },
+  "holon|דונה (DONNA)": { c: "Italien", d: "Belle cuisine italienne." },
+  "holon|קפה ללוש בראסרי": { c: "Européen", d: "Carte riche à touche européenne, prix justes." },
+
+  "bat-yam|הפטריקס ביץ": { c: "Bar de plage", d: "Bar-restaurant en bord de mer, plats généreux et bar complet." },
+  "bat-yam|גורילה": { c: "Bar-café", d: "Bar-café face à la mer sur la promenade de Bat Yam." },
+
+  "haifa|פטוש": { c: "Arabe / méditerranéen", d: "Dans un bâtiment historique — cuisine et art réunis." },
+  "haifa|רולא": { c: "Arabe galiléen", d: "Cuisine arabe — shishbarak, excellent houmous et boulettes." },
+  "haifa|רפאלו": { c: "Italien-méditerranéen", d: "Carte italo-méditerranéenne avec une touche israélienne." },
+  "haifa|פאפיאנו": { c: "Italien", d: "Italien à clin d'œil méditerranéen — pizzas et pâtes." },
+  "haifa|וניה ביסטרו": { c: "Bistro", d: "Tradition haïfaïte et cuisine moderne — carpaccio, pâtes à l'artichaut." },
+  "haifa|ליבריה": { c: "Pub & brasserie", d: "Restaurant, pub et brasserie au port de Haïfa — bières originales." },
+  "haifa|דולפין": { c: "Méditerranéen / grec", d: "Viandes, poisson et fruits de mer, style balkanique-grec." },
+
+  "eilat|המפלט האחרון": { c: "Poisson", d: "Célèbre restaurant de poisson d'Eilat, une institution." },
+  "eilat|לה סרדין": { c: "Poisson", d: "Un aimant pour les amateurs de poisson et fruits de mer." },
+  "eilat|איל פנטולינו": { c: "Italien / bar à pâtes", d: "Bar à pâtes à l'ambiance paisible et aux plats merveilleux." },
+  "eilat|קפה אופטימי": { c: "Italien / israélien", d: "Pizzas, pâtes, poisson et petits-déjeuners — aussi végan." },
+  "eilat|פאפי": { c: "Grill argentin", d: "Expérience de viandes argentine, grill au charbon et fumée." },
+  "eilat|המחבוא של אדי": { c: "International-français", d: "Institution depuis 1979, cuisine internationale-française." },
+  "eilat|לוויתן": { c: "Burgers", d: "Burgers du chef Lior Rafael — parmi les meilleurs du pays." },
+
+  "beer-sheva|קבב אמונה": { c: "Viandes / grill", d: "Grill familial depuis les années 60, héritage du kebab." },
+  "beer-sheva|קמפאי סטריט ווק": { c: "Asiatique", d: "Cuisine pan-asiatique en version casher." },
+  "beer-sheva|שושנה": { c: "Cuisine familiale", d: "Cuisine familiale israélo-marocaine casher, avec des plats végans." },
+
+  "netanya|משה שגב": { c: "Viandes / chef", d: "Un beau mariage de cuisine de chef et de tradition." },
+  "netanya|אל גאוצ'ו": { c: "Viandes / grill", d: "Bœuf sud-américain de qualité, vue panoramique sur la mer, casher." },
+  "netanya|מסעדת היקב": { c: "Méditerranéen", d: "Sur la promenade de Netanya — excellente cuisine et vue superbe." },
+  "netanya|לאגר אנד אייל": { c: "Bar à bières", d: "Bar à bières à la londonienne, des dizaines de pressions et bouteilles." },
+  "netanya|מרפי'ס": { c: "Pub irlandais", d: "Pub irlandais à l'ambiance et au décor de bois authentiques." },
+
+  "tiberias|לגונה": { c: "Poisson & viande", d: "Poisson et viandes grillées sur la promenade de Tibériade." },
+  "tiberias|טיביס": { c: "Viandes / grill", d: "Viandes soignées par le chef Haim Tibi." },
+  "tiberias|סנט אורבן": { c: "Bar à vin", d: "Bar à vin dans une cave ancienne avec terrasse sur le lac de Tibériade." },
+  "tiberias|סין צ'אן": { c: "Asiatique", d: "Restaurant asiatique casher à Tibériade." },
+
+  "akko|אורי בורי": { c: "Poisson", d: "Considéré comme le meilleur d'Acre — poisson et fruits de mer bluffants." },
+  "akko|אבו כריסטו": { c: "Poisson", d: "Institution culinaire de la vieille ville d'Acre, fondée en 1948." },
+  "akko|רותס (ROOTS)": { c: "Levantin", d: "Cuisine levantine moderne et casher du chef Daral Ben Navat, vieille ville." },
+  "akko|חומוס סעיד": { c: "Houmous", d: "Houmous frais et riche à l'huile d'olive et citron, dans la vieille ville." },
+
+  "nazareth|דיאנא": { c: "Arabe", d: "L'un des plus anciens — célèbre kebab d'agneau sur bâton de cannelle, chef Duhul Safadi." },
+  "nazareth|לוקנדה": { c: "Arabe galiléen / italien", d: "Mêle cuisine arabe-galiléenne et italienne, à l'hôtel Ramada Olivie." },
+  "nazareth|תשרין": { c: "Fusion arabe-bistro", d: "Arabe traditionnel et bistro moderne, dans un bâtiment de pierre du XIXe siècle." },
+  "nazareth|חומוסיית עבדאללה שרביני": { c: "Houmous / falafel", d: "Institution réputée — houmous aérien, falafel croustillant et shawarma." },
+
+  "ashdod|פסקדו": { c: "Poisson", d: "Un des meilleurs casher du pays — classé top 50 MENA (2022)." },
+  "ashdod|פארינו": { c: "Pizza napolitaine", d: "Une des meilleures pizzerias napolitaines du pays." },
+  "ashdod|נמסטה": { c: "Indien", d: "Un endroit parfait pour un repas indien unique et convivial." },
+  "ashdod|עלמא": { c: "Bar à manger israélien", d: "Bar à manger jeune et frais, plats fusion aux saveurs authentiques." },
+  "ashdod|ערמונים": { c: "Concept / gastronomique", d: "Restaurant-concept au bord du lac du resort Dream Island, chic et nature." },
+
+  "ashkelon|סקובר בר": { c: "Poisson / laitier", d: "Sur le ponton de la marina — poisson, pâtes, pizzas et petits-déjeuners." },
+  "ashkelon|ארצ'י": { c: "Bar-restaurant", d: "Sur la plage Delila — plats européens-américains modernes." },
+  "ashkelon|הניצחון של חני": { c: "Cuisine familiale roumaine", d: "Restaurant roumain familial aux racines profondes à Ashkelon." },
+  "ashkelon|אריסטו": { c: "Café", d: "Café jeune et animé, spécialiste du café serré." },
+  "ashkelon|סטיקיית איסטנבול": { c: "Viandes / grill", d: "Steakhouse casher depuis 1962, vrai grill au charbon." },
+
+  "rehovot|פבריקה": { c: "Pizza napolitaine", d: "Une des meilleures pizzerias napolitaines du pays." },
+  "rehovot|מו ומו": { c: "Viandes / grill", d: "L'institution mythique de la viande à Rehovot." },
+  "rehovot|כרמים": { c: "Chef méditerranéen", d: "Ferme-à-table du chef Sahar Rafael, lié au terroir local." },
+  "rehovot|נינה ביאנכה": { c: "Chef méditerranéen", d: "Restaurant de chef méditerranéen établi, chef Yarin Amira." },
+  "rehovot|קפה סזאר": { c: "Restaurant-café", d: "Casher, dans un nouveau lieu superbe à l'ambiance des grandes villes." },
+  "rehovot|ג'וג'ו": { c: "Éthiopien", d: "Restaurant éthiopien de longue date à Rehovot." },
+
+  "modiin|קונמיגו": { c: "Restaurant de chef", d: "Restaurant de chef d'Ido Elkayam, plats variés et accueil." },
+  "modiin|גריל 443": { c: "Viandes / grill", d: "Viandes au grill à charbon, servies avec laffa chaude et salades." },
+  "modiin|מכביס": { c: "Cuisine familiale", d: "30 ans de réputation — produits frais, bon service, cuisine maison." },
+
+  "kfar-saba|סטקיית סבינו": { c: "Viandes / grill", d: "Institution de Kfar Saba — 16 salades maison et viandes réputées." },
+  "kfar-saba|פיאנו פיאנו": { c: "Italien", d: "Pizzas et fournées au four à bois venu d'Italie." },
+  "kfar-saba|קפה המדרחוב": { c: "Café", d: "Café de quartier sur la rue piétonne, convivial et animé." },
+  "kfar-saba|לחם ארז": { c: "Boulangerie-restaurant", d: "Antenne de la chaîne réputée sur Rothschild, concept original." },
+  "kfar-saba|Temple Bar": { c: "Pub irlandais", d: "Reconstitution d'un pub irlandais avec une immense carte de bières." },
+
+  "raanana|חנדל'ה": { c: "Rustique / méditerranéen", d: "Ambiance champêtre verdoyante — pâtes fraîches et côtelettes d'agneau juteuses." },
+  "raanana|בוטגה איטליה": { c: "Italien", d: "Italien familial avec four central et classiques italiens." },
+  "raanana|לה טרטוריה": { c: "Italien (laitier)", d: "Italien laitier familial au centre de Ra'anana." },
+  "raanana|באקארו גריל בר": { c: "Viandes / BBQ", d: "Grill à Ra'anana, aussi pour les événements." },
+
+  "zichron|אדמה": { c: "Israélien", d: "Cabane culinaire dans un bâtiment de pierre restauré, rue des Fondateurs." },
+  "zichron|סומאק": { c: "Bistro galiléen", d: "Bistro galiléen du chef Tarek Habib, près du centre commercial." },
+  "zichron|מנואלה": { c: "Italien", d: "Italien classique avec terrasse surélevée face à la rue piétonne." },
+  "zichron|צ'אנג מאי": { c: "Chinois / asiatique", d: "Restaurant chinois dans les cours de Zichron avec une belle vue." },
+  "zichron|בתיה ונחמן": { c: "Viande fumée / BBQ", d: "Restaurant de viandes fumées casher de Ronen Raviv." },
+  "zichron|יקב תשבי": { c: "Domaine viticole & restaurant", d: "Expérience au domaine — belle boulangerie et dégustations de vin." },
+
+  "hadera|בני הדייג — כפר הים": { c: "Poisson", d: "Restaurant de poisson établi à Kfar HaYam, 14 salades, en bord de plage." },
+  "hadera|בריסקט": { c: "Viande fumée / BBQ", d: "Paradis de la viande fumée — pièces BBQ et sandwichs juteux." },
+  "hadera|יפן יפן": { c: "Japonais / sushi", d: "Sushi aux produits frais et présentation soignée." },
+  "hadera|שואו קפה": { c: "Café", d: "Un second chez-soi pour les locaux — souci du détail et accueil chaleureux." },
+  "hadera|אופרה": { c: "Yéménite traditionnel", d: "Plats yéménites traditionnels, sur la rue Weizmann." },
+
+  "karmiel|ראי יקב ומסעדה": { c: "Balkanique / méditerranéen", d: "Domaine-restaurant à Rameh — cuisine galiléo-balkanique aux touches bulgares." },
+  "karmiel|בית גני": { c: "Végétarien / poisson", d: "Ambiance champêtre romantique face aux collines de Galilée — végé, poisson et vin." },
+  "karmiel|פאט ויני": { c: "Italien", d: "Restaurant italien au BIG Karmiel, large carte." },
+  "karmiel|מג'דלה": { c: "Chef arabe", d: "Restaurant de chef populaire — plats arabes traditionnels du chef Nael Zarkawi." },
+  "karmiel|אל-רוביאן": { c: "Viande & poisson", d: "Viande, poisson et fruits de mer haut de gamme, service attentionné, ouvert le samedi." },
+
+  "paris|Le Train Bleu": { c: "Brasserie française", d: "Brasserie Belle Époque en gare de Lyon — classiques français et salle superbe." },
+  "paris|Café de Flore": { c: "Café", d: "L'un des cafés les plus célèbres au monde, repaire d'écrivains et d'artistes à Saint-Germain." },
+  "paris|L'As du Fallafel": { c: "Falafel", d: "Le célèbre falafel du quartier historique du Marais." },
+  "paris|Tour d'Argent": { c: "Restaurant de chef", d: "Restaurant historique étoilé avec vue sur Notre-Dame." },
+  "paris|Le Fouquet's": { c: "Français classique", d: "Institution légendaire depuis 1899 sur les Champs-Élysées, carte inspirée de Pierre Gagnaire." },
+
+  "london|Rules": { c: "Britannique traditionnel", d: "Le plus ancien restaurant de Londres (1798) — cuisine britannique traditionnelle et gibier." },
+  "london|Dishoom": { c: "Indien de Bombay", d: "Inspiré des anciens cafés iraniens de Bombay — adoré des locaux et visiteurs." },
+  "london|Sketch": { c: "Restaurant de chef", d: "Célèbre espace artistique avec une salle-galerie colorée." },
+  "london|The Wolseley": { c: "Brasserie européenne", d: "Brasserie glamour sur Piccadilly à l'atmosphère grandiose." },
+  "london|St John": { c: "Britannique moderne", d: "Pionnier du « nose-to-tail », cuisine britannique moderne et influente." },
+
+  "rome|Roscioli": { c: "Italien", d: "Mi-épicerie, mi-restaurant — son cacio e pepe est légendaire." },
+  "rome|Alfredo alla Scrofa": { c: "Italien", d: "Berceau des célèbres fettuccine Alfredo." },
+  "rome|La Campana": { c: "Italien", d: "Le plus ancien restaurant de Rome (1518), plats romains traditionnels." },
+  "rome|Flavio al Velavevodetto": { c: "Trattoria", d: "Trattoria mythique de Testaccio, bâtie dans une butte de tessons antiques." },
+  "rome|Aroma": { c: "Restaurant de chef", d: "Restaurant étoilé sur le toit avec vue directe sur le Colisée." },
+
+  "dubai|Orfali Bros Bistro": { c: "Bistro", d: "Classé nº 1 au Moyen-Orient — bistro des frères Orfali." },
+  "dubai|Al Muntaha": { c: "Restaurant de chef", d: "Au 27e étage du Burj Al Arab, étoilé Michelin." },
+  "dubai|Ravi's": { c: "Pakistanais", d: "Légende de Satwa — tout le monde fait la queue, des taxis aux célébrités." },
+  "dubai|Ossiano": { c: "Poisson & fruits de mer", d: "Dîner sous l'eau, face à un aquarium géant." },
+  "dubai|Atmosphere": { c: "Restaurant de chef", d: "Un restaurant au 122e étage du Burj Khalifa — vues à couper le souffle." },
+
+  "newyork|Katz's Delicatessen": { c: "Deli", d: "Pastrami légendaire depuis 1888, de la scène de « Quand Harry rencontre Sally »." },
+  "newyork|Peter Luger": { c: "Steakhouse", d: "Steakhouse mythique de Brooklyn, en espèces uniquement." },
+  "newyork|Russ & Daughters": { c: "Deli", d: "Bagels et poisson fumé depuis 1914, institution du Lower East Side." },
+  "newyork|Minetta Tavern": { c: "Brasserie", d: "Le célèbre burger de la ville à Greenwich Village." },
+  "newyork|Sylvia's": { c: "Soul food", d: "Soul food à Harlem depuis 1962 — pilier communautaire célèbre." },
+
+  "barcelona|Pinotxo Bar": { c: "Tapas", d: "Comptoir à tapas mythique du marché de la Boqueria." },
+  "barcelona|Botafumeiro": { c: "Poisson & fruits de mer", d: "L'un des restaurants de fruits de mer les plus réputés de la ville." },
+  "barcelona|La Plata": { c: "Tapas", d: "Institution du quartier gothique servant les mêmes quatre tapas depuis 1945." },
+  "barcelona|Can Paixano": { c: "Tapas & cava", d: "Surnommé « La Champañería » — cava maison et tapas à prix doux." },
+  "barcelona|Can Solé": { c: "Poisson & riz", d: "Fruits de mer, riz et fideuà parmi les meilleurs de Barcelone." },
+
+  "tokyo|Sukiyabashi Jiro": { c: "Sushi", d: "Peut-être le restaurant de sushi le plus célèbre au monde, du chef Jiro Ono." },
+  "tokyo|Sushi Saito": { c: "Sushi", d: "Un temple du sushi étoilé Michelin, style Edomae." },
+  "tokyo|Narisawa": { c: "Restaurant de chef", d: "Cuisine théâtrale — des plats comme le « pain de la forêt » cuit à table." },
+  "tokyo|Kanda": { c: "Kaiseki", d: "Restaurant kaiseki étoilé — précision et saisonnalité parfaites." },
+  "tokyo|Tsujihan": { c: "Poisson", d: "Célèbres bols de riz aux fruits de mer (kaisen-don) à Nihonbashi." },
+
+  "istanbul|Karaköy Lokantası": { c: "Turc", d: "L'une des institutions — plats traditionnels servis au plateau." },
+  "istanbul|Pandeli": { c: "Turc", d: "Au-dessus du bazar aux épices, plus de 100 ans, Bib Gourmand." },
+  "istanbul|Mikla": { c: "Anatolien moderne", d: "Au sommet du Marmara Pera — cuisine anatolienne moderne et vue sur la ville." },
+  "istanbul|Balıkçı Sabahattin": { c: "Poisson", d: "Fruits de mer dans une maison ottomane en bois de la vieille ville." },
+  "istanbul|Karaköy Güllüoğlu": { c: "Desserts & pâtisseries", d: "Pâtisserie iconique — parmi les meilleurs baklavas d'Istanbul." },
+
+  "bangkok|Jay Fai": { c: "Street food", d: "Légende de la street food étoilée Michelin — célèbre omelette au crabe." },
+  "bangkok|Sorn": { c: "Thaï du Sud", d: "Cuisine thaïe du Sud, plusieurs étoiles Michelin — la réservation la plus convoitée." },
+  "bangkok|Thipsamai": { c: "Pad thaï", d: "L'un des pad thaïs les plus célèbres de Bangkok (« Ghost Gate »)." },
+  "bangkok|Wattana Panich": { c: "Soupe de nouilles au bœuf", d: "Bouillon de bœuf mijoté dans la même marmite depuis plus de 40 ans." },
+  "bangkok|Le Du": { c: "Thaï moderne", d: "Classé nº 1 en Asie — restaurant de chef thaï moderne." },
+
+  "singapore|Tian Tian Hainanese Chicken Rice": { c: "Street food", d: "Riz au poulet hainanais reconnu Michelin, au marché Maxwell." },
+  "singapore|Hawker Chan": { c: "Street food", d: "Le premier hawker étoilé Michelin au monde — poulet au soja, riz ou nouilles." },
+  "singapore|Maxwell Food Centre": { c: "Hawker centre", d: "L'un des hawker centres les plus célèbres — un immense choix de street food." },
+  "singapore|Newton Food Centre": { c: "Hawker centre", d: "Hawker centre célèbre (vu dans « Crazy Rich Asians »)." },
+  "singapore|Lau Pa Sat": { c: "Hawker centre", d: "Hawker centre à l'architecture coloniale, au centre-ville." },
+
+  "lisbon|Cervejaria Ramiro": { c: "Fruits de mer", d: "Adresse iconique de fruits de mer depuis les années 1950, célèbre sandwich prego." },
+  "lisbon|Pastéis de Belém": { c: "Boulangerie", d: "Le légendaire pastel de nata, recette secrète depuis 1837." },
+  "lisbon|Gambrinus": { c: "Portugais traditionnel", d: "Une institution depuis 1936, cuisine portugaise classique et élégante." },
+  "lisbon|Taberna Sal Grosso": { c: "Taverne", d: "Taverne portugaise intime, l'une des tables les plus prisées de Lisbonne." },
+  "lisbon|Galeto": { c: "Comptoir / diner", d: "Un comptoir de 1966 qui n'a pas changé d'un pouce." },
+
+  "berlin|Tim Raue": { c: "Asiatique / chef", d: "Restaurant de chef célèbre (Chef's Table) — canard laqué et cuisine asiatique." },
+  "berlin|Konnopke's Imbiss": { c: "Street food", d: "Stand de currywurst légendaire depuis 1930, sous les voies ferrées." },
+  "berlin|Mustafa's Gemüse Kebap": { c: "Kebab", d: "Célèbre kebab poulet-légumes — attendez-vous à deux heures de queue." },
+  "berlin|Nobelhart & Schmutzig": { c: "Moderne", d: "Menu dégustation d'ingrédients strictement locaux de Berlin-Brandebourg." },
+  "berlin|Schwarzes Café": { c: "Café", d: "Une institution berlinoise, ouverte 24h/24 à l'ouest de la ville." },
+
+  "amsterdam|De Kas": { c: "De la ferme à la table", d: "Une immense serre en verre — légumes frais de son propre jardin." },
+  "amsterdam|Vleminckx": { c: "Frites", d: "Les meilleures frites flamandes d'Amsterdam depuis 1957, 28 sauces." },
+  "amsterdam|Café de Reiger": { c: "Néerlandais", d: "Une institution depuis 1642 — tarte aux pommes néerlandaise légendaire." },
+  "amsterdam|Brouwerij 't IJ": { c: "Brasserie", d: "Une brasserie en activité au pied d'un authentique moulin néerlandais." },
+  "amsterdam|Yamazato": { c: "Japonais", d: "Restaurant japonais traditionnel étoilé Michelin à l'hôtel Okura." },
+
+  "mexicocity|Pujol": { c: "Restaurant de chef", d: "L'un des plus célèbres de la ville (chef Enrique Olvera), mole madre." },
+  "mexicocity|Contramar": { c: "Fruits de mer", d: "Une institution de fruits de mer à Roma — tostada de thon et pescado a la talla." },
+  "mexicocity|Quintonil": { c: "Restaurant de chef", d: "Classé parmi les meilleurs du monde, axé sur les produits locaux." },
+  "mexicocity|El Califa de León": { c: "Tacos", d: "Le premier stand de tacos au monde à décrocher une étoile Michelin." },
+  "mexicocity|Churrería El Moro": { c: "Desserts", d: "Churros légendaires au chocolat chaud depuis 1935." },
+
+  "copenhagen|Noma": { c: "Nouvelle cuisine nordique", d: "L'un des plus célèbres au monde (chef René Redzepi), nouvelle cuisine nordique." },
+  "copenhagen|Geranium": { c: "Restaurant de chef", d: "Trois étoiles Michelin — cuisine nordique de saison raffinée." },
+  "copenhagen|Alchemist": { c: "Expérience culinaire", d: "Plus de 40 services sur 6 heures, entre art et cuisine." },
+  "copenhagen|Hart Bageri": { c: "Boulangerie", d: "Parmi les meilleurs pains au levain et pâtisseries de Copenhague." },
+  "copenhagen|Kadeau": { c: "Nouvelle cuisine nordique", d: "Restaurant de nouvelle cuisine nordique au menu dégustation créatif." },
+
+  "marrakech|Nomad": { c: "Marocain moderne", d: "Marocain moderne avec un toit-terrasse donnant sur la place aux épices." },
+  "marrakech|Dar Yacout": { c: "Marocain", d: "Cuisine marocaine fastueuse dans un riad de luxe — pastilla et tajine." },
+  "marrakech|Le Jardin": { c: "Restaurant-jardin", d: "Le plus célèbre restaurant-jardin de la médina — une cour de bananiers et palmiers." },
+  "marrakech|Café des Épices": { c: "Café", d: "Terrasse colorée surplombant l'animée place Rahba Kedima, dans le souk." },
+  "marrakech|Grand Café de la Poste": { c: "Brasserie", d: "Brasserie iconique des années 1920, style colonial." }
+};
