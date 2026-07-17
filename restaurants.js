@@ -38,7 +38,15 @@ const CITIES = [
   { id: "newyork",   label: "ניו יורק",   emoji: "🇺🇸", abroad: true, airport: "John F. Kennedy International Airport (JFK), New York" },
   { id: "barcelona", label: "ברצלונה",    emoji: "🇪🇸", abroad: true, airport: "Barcelona-El Prat Airport (BCN)" },
   { id: "tokyo",     label: "טוקיו",      emoji: "🇯🇵", abroad: true, airport: "Narita International Airport (NRT), Tokyo" },
-  { id: "istanbul",  label: "איסטנבול",   emoji: "🇹🇷", abroad: true, airport: "Istanbul Airport (IST)" }
+  { id: "istanbul",  label: "איסטנבול",   emoji: "🇹🇷", abroad: true, airport: "Istanbul Airport (IST)" },
+  { id: "bangkok",   label: "בנגקוק",     emoji: "🇹🇭", abroad: true, airport: "Suvarnabhumi Airport (BKK), Bangkok" },
+  { id: "singapore", label: "סינגפור",    emoji: "🇸🇬", abroad: true, airport: "Singapore Changi Airport (SIN)" },
+  { id: "lisbon",    label: "ליסבון",     emoji: "🇵🇹", abroad: true, airport: "Lisbon Airport (LIS)" },
+  { id: "berlin",    label: "ברלין",      emoji: "🇩🇪", abroad: true, airport: "Berlin Brandenburg Airport (BER)" },
+  { id: "amsterdam", label: "אמסטרדם",    emoji: "🇳🇱", abroad: true, airport: "Amsterdam Schiphol Airport (AMS)" },
+  { id: "mexicocity",label: "מקסיקו סיטי", emoji: "🇲🇽", abroad: true, airport: "Mexico City International Airport (MEX)" },
+  { id: "copenhagen",label: "קופנהגן",    emoji: "🇩🇰", abroad: true, airport: "Copenhagen Airport (CPH)" },
+  { id: "marrakech", label: "מרקש",       emoji: "🇲🇦", abroad: true, airport: "Marrakech Menara Airport (RAK)" }
 ];
 
 const RESTAURANTS = {
@@ -280,6 +288,62 @@ const RESTAURANTS = {
     { name: "Mikla", cuisine: "אנטולי מודרני", kosher: false, desc: "על גג המרמרה פרה — מטבח אנטולי מודרני ונוף לעיר." },
     { name: "Balıkçı Sabahattin", cuisine: "דגים", kosher: false, desc: "דגים בבית עות'מאני מעץ בעיר העתיקה." },
     { name: "Karaköy Güllüoğlu", cuisine: "קינוחים ומאפים", kosher: false, desc: "חנות מאפים איקונית — מהבקלווה הטובה באיסטנבול." }
+  ],
+  "bangkok": [
+    { name: "Jay Fai", cuisine: "אוכל רחוב", kosher: false, desc: "אגדת רחוב עם כוכב מישלן — חביתת סרטנים מפורסמת." },
+    { name: "Sorn", cuisine: "תאילנדי דרומי", kosher: false, desc: "מטבח תאילנדי דרומי, כוכבי מישלן — ההזמנה הכי נחשקת בעיר." },
+    { name: "Thipsamai", cuisine: "פאד תאי", kosher: false, desc: "מהפאד תאי המפורסם בבנגקוק ('שער הרוחות')." },
+    { name: "Wattana Panich", cuisine: "מרק בקר", kosher: false, desc: "מרק בקר שרותח באותו סיר כבר מעל 40 שנה." },
+    { name: "Le Du", cuisine: "תאילנדי מודרני", kosher: false, desc: "מסעדת שף שדורגה מספר 1 באסיה, מטבח תאילנדי מודרני." }
+  ],
+  "singapore": [
+    { name: "Tian Tian Hainanese Chicken Rice", cuisine: "אוכל רחוב", kosher: false, desc: "אורז עוף היינאני עטור מישלן בשוק מקסוול." },
+    { name: "Hawker Chan", cuisine: "אוכל רחוב", kosher: false, desc: "ההוקר הראשון בעולם עם כוכב מישלן — עוף סויה עם אורז/אטריות." },
+    { name: "Maxwell Food Centre", cuisine: "מרכז הוקרים", kosher: false, desc: "ממרכזי ההוקרים המפורסמים — מגוון עצום של אוכל רחוב." },
+    { name: "Newton Food Centre", cuisine: "מרכז הוקרים", kosher: false, desc: "מרכז הוקרים מפורסם (מהסרט 'עשירים ומטורפים')." },
+    { name: "Lau Pa Sat", cuisine: "מרכז הוקרים", kosher: false, desc: "מרכז הוקרים בארכיטקטורה קולוניאלית במרכז העיר." }
+  ],
+  "lisbon": [
+    { name: "Cervejaria Ramiro", cuisine: "פירות ים", kosher: false, desc: "מסעדת פירות ים איקונית משנות ה-50, סנדוויץ' פרגו מפורסם." },
+    { name: "Pastéis de Belém", cuisine: "מאפייה", kosher: false, desc: "הפסטל דה נאטה האגדי לפי מתכון סודי מ-1837." },
+    { name: "Gambrinus", cuisine: "פורטוגזי מסורתי", kosher: false, desc: "מוסד מ-1936, מטבח פורטוגזי קלאסי ומהודר." },
+    { name: "Taberna Sal Grosso", cuisine: "טברנה", kosher: false, desc: "טברנה פורטוגזית אינטימית מהמבוקשות בליסבון." },
+    { name: "Galeto", cuisine: "דלפק / דיינר", kosher: false, desc: "מסעדת דלפק מ-1966 שנשארה כמו שהייתה." }
+  ],
+  "berlin": [
+    { name: "Tim Raue", cuisine: "אסייתי / שף", kosher: false, desc: "מסעדת שף מפורסמת (Chef's Table), ברווז פקין ומטבח אסייתי." },
+    { name: "Konnopke's Imbiss", cuisine: "אוכל רחוב", kosher: false, desc: "דוכן קארי-וורסט אגדי מ-1930 מתחת לפסי הרכבת." },
+    { name: "Mustafa's Gemüse Kebap", cuisine: "קבב", kosher: false, desc: "כריך קבב עוף וירקות מפורסם — תור של שעתיים." },
+    { name: "Nobelhart & Schmutzig", cuisine: "מודרני", kosher: false, desc: "תפריט טעימות ממרכיבים מקומיים בלבד (ברלין-ברנדנבורג)." },
+    { name: "Schwarzes Café", cuisine: "בית קפה", kosher: false, desc: "מוסד ברליני הפתוח 24 שעות במערב העיר." }
+  ],
+  "amsterdam": [
+    { name: "De Kas", cuisine: "מהחווה לצלחת", kosher: false, desc: "חממת זכוכית ענקית — ירקות טריים מהגינה שלה." },
+    { name: "Vleminckx", cuisine: "צ'יפס", kosher: false, desc: "הצ'יפס הפלמי הטוב באמסטרדם מ-1957, 28 רטבים." },
+    { name: "Café de Reiger", cuisine: "הולנדי", kosher: false, desc: "מוסד מ-1642 — עוגת תפוחים הולנדית אגדית." },
+    { name: "Brouwerij 't IJ", cuisine: "מבשלת בירה", kosher: false, desc: "מבשלת בירה למרגלות טחנת רוח הולנדית אותנטית." },
+    { name: "Yamazato", cuisine: "יפני", kosher: false, desc: "מסעדה יפנית מסורתית עם כוכב מישלן במלון אוקורה." }
+  ],
+  "mexicocity": [
+    { name: "Pujol", cuisine: "מסעדת שף", kosher: false, desc: "מהמסעדות המפורסמות בעיר (השף אנריקה אולוֶרה), מולה מדרה." },
+    { name: "Contramar", cuisine: "פירות ים", kosher: false, desc: "מוסד פירות ים ברומא — טוסטדת טונה ופסקדו א לה טאליה." },
+    { name: "Quintonil", cuisine: "מסעדת שף", kosher: false, desc: "מדורגת בין הטובות בעולם, דגש על חומרי גלם מקומיים." },
+    { name: "El Califa de León", cuisine: "טאקו", kosher: false, desc: "דוכן הטאקו הראשון בעולם שזכה בכוכב מישלן." },
+    { name: "Churrería El Moro", cuisine: "קינוחים", kosher: false, desc: "צ'ורוס אגדי עם שוקולד חם מאז 1935." }
+  ],
+  "copenhagen": [
+    { name: "Noma", cuisine: "נורדי חדש", kosher: false, desc: "מהמסעדות המפורסמות בעולם (השף רנה רדזפי), נורדי חדש." },
+    { name: "Geranium", cuisine: "מסעדת שף", kosher: false, desc: "שלושה כוכבי מישלן — מטבח נורדי עונתי ומעודן." },
+    { name: "Alchemist", cuisine: "חוויה קולינרית", kosher: false, desc: "40+ מנות בחוויה של 6 שעות בין אמנות לאוכל." },
+    { name: "Hart Bageri", cuisine: "מאפייה", kosher: false, desc: "מהלחם מחמצת והמאפים הטובים בקופנהגן." },
+    { name: "Kadeau", cuisine: "נורדי חדש", kosher: false, desc: "מסעדת נורדי חדש עם תפריט טעימות יצירתי." }
+  ],
+  "marrakech": [
+    { name: "Nomad", cuisine: "מרוקאי מודרני", kosher: false, desc: "מרוקאי מודרני עם גג הצופה לכיכר התבלינים." },
+    { name: "Dar Yacout", cuisine: "מרוקאי", kosher: false, desc: "מטבח מרוקאי מפואר בריאד יוקרתי — פסטייה וטאג'ין." },
+    { name: "Le Jardin", cuisine: "מסעדת גן", kosher: false, desc: "מסעדת הגן המפורסמת במדינה — חצר עם עצי בננה ודקלים." },
+    { name: "Café des Épices", cuisine: "בית קפה", kosher: false, desc: "טרסה צבעונית מעל כיכר רחבה קדימה בשוק." },
+    { name: "Grand Café de la Poste", cuisine: "בראסרי", kosher: false, desc: "בראסרי איקונית משנות ה-20 בסגנון קולוניאלי." }
   ]
 };
 

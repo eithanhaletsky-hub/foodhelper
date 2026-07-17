@@ -168,7 +168,9 @@ const CITY_EN = {
   rehovot: "Rehovot", modiin: "Modi'in", "kfar-saba": "Kfar Saba", raanana: "Ra'anana",
   zichron: "Zichron Yaakov", hadera: "Hadera", karmiel: "Karmiel",
   paris: "Paris", london: "London", rome: "Rome", dubai: "Dubai",
-  newyork: "New York", barcelona: "Barcelona", tokyo: "Tokyo", istanbul: "Istanbul"
+  newyork: "New York", barcelona: "Barcelona", tokyo: "Tokyo", istanbul: "Istanbul",
+  bangkok: "Bangkok", singapore: "Singapore", lisbon: "Lisbon", berlin: "Berlin",
+  amsterdam: "Amsterdam", mexicocity: "Mexico City", copenhagen: "Copenhagen", marrakech: "Marrakech"
 };
 
 /* ---------- שמות מתכונים באנגלית ---------- */
@@ -471,7 +473,55 @@ const REST_EN = {
   "istanbul|Pandeli": { c: "Turkish", d: "Above the Spice Bazaar, over 100 years old, a Bib Gourmand winner." },
   "istanbul|Mikla": { c: "Modern Anatolian", d: "Atop The Marmara Pera — modern Anatolian cooking and a city view." },
   "istanbul|Balıkçı Sabahattin": { c: "Fish", d: "Seafood in an Ottoman-era wooden house in the Old City." },
-  "istanbul|Karaköy Güllüoğlu": { c: "Desserts & pastries", d: "Iconic pastry shop — some of the best baklava in Istanbul." }
+  "istanbul|Karaköy Güllüoğlu": { c: "Desserts & pastries", d: "Iconic pastry shop — some of the best baklava in Istanbul." },
+
+  "bangkok|Jay Fai": { c: "Street food", d: "A street-food legend with a Michelin star — famous crab omelette." },
+  "bangkok|Sorn": { c: "Southern Thai", d: "Southern Thai cuisine, multiple Michelin stars — the city's most coveted reservation." },
+  "bangkok|Thipsamai": { c: "Pad Thai", d: "One of Bangkok's most famous pad Thai spots ('Ghost Gate')." },
+  "bangkok|Wattana Panich": { c: "Beef noodle soup", d: "Beef broth simmering in the same pot for over 40 years." },
+  "bangkok|Le Du": { c: "Modern Thai", d: "Ranked #1 in Asia — modern Thai chef restaurant." },
+
+  "singapore|Tian Tian Hainanese Chicken Rice": { c: "Street food", d: "Michelin-recognized Hainanese chicken rice at Maxwell market." },
+  "singapore|Hawker Chan": { c: "Street food", d: "The world's first Michelin-starred hawker — soy chicken with rice/noodles." },
+  "singapore|Maxwell Food Centre": { c: "Hawker centre", d: "One of the most famous hawker centres — a huge range of street food." },
+  "singapore|Newton Food Centre": { c: "Hawker centre", d: "Famous hawker centre (featured in 'Crazy Rich Asians')." },
+  "singapore|Lau Pa Sat": { c: "Hawker centre", d: "Hawker centre in colonial-era architecture, downtown." },
+
+  "lisbon|Cervejaria Ramiro": { c: "Seafood", d: "Iconic seafood spot since the 1950s, famous prego sandwich." },
+  "lisbon|Pastéis de Belém": { c: "Bakery", d: "The legendary custard tart from a secret recipe since 1837." },
+  "lisbon|Gambrinus": { c: "Traditional Portuguese", d: "An institution since 1936, classic and elegant Portuguese cuisine." },
+  "lisbon|Taberna Sal Grosso": { c: "Tavern", d: "Intimate Portuguese tavern, one of Lisbon's most sought-after tables." },
+  "lisbon|Galeto": { c: "Diner / counter", d: "A counter diner from 1966 that hasn't changed a bit." },
+
+  "berlin|Tim Raue": { c: "Asian / chef", d: "Famous chef restaurant (Chef's Table) — Peking duck and Asian cuisine." },
+  "berlin|Konnopke's Imbiss": { c: "Street food", d: "Legendary currywurst stall since 1930, under the rail tracks." },
+  "berlin|Mustafa's Gemüse Kebap": { c: "Kebab", d: "Famous chicken-and-veg kebab sandwich — expect a two-hour queue." },
+  "berlin|Nobelhart & Schmutzig": { c: "Modern", d: "Tasting menu of strictly local Berlin-Brandenburg ingredients." },
+  "berlin|Schwarzes Café": { c: "Café", d: "A Berlin institution, open 24 hours in the west of the city." },
+
+  "amsterdam|De Kas": { c: "Farm to table", d: "A huge glass greenhouse — fresh vegetables from its own garden." },
+  "amsterdam|Vleminckx": { c: "Fries", d: "The best Flemish fries in Amsterdam since 1957, 28 sauces." },
+  "amsterdam|Café de Reiger": { c: "Dutch", d: "An institution since 1642 — legendary Dutch apple pie." },
+  "amsterdam|Brouwerij 't IJ": { c: "Brewery", d: "A working brewery at the foot of an authentic Dutch windmill." },
+  "amsterdam|Yamazato": { c: "Japanese", d: "Traditional Japanese restaurant with a Michelin star at the Okura hotel." },
+
+  "mexicocity|Pujol": { c: "Chef's restaurant", d: "One of the city's most famous (chef Enrique Olvera), mole madre." },
+  "mexicocity|Contramar": { c: "Seafood", d: "A seafood institution in Roma — tuna tostada and pescado a la talla." },
+  "mexicocity|Quintonil": { c: "Chef's restaurant", d: "Ranked among the world's best, focused on local ingredients." },
+  "mexicocity|El Califa de León": { c: "Tacos", d: "The world's first taco stand to earn a Michelin star." },
+  "mexicocity|Churrería El Moro": { c: "Desserts", d: "Legendary churros with hot chocolate since 1935." },
+
+  "copenhagen|Noma": { c: "New Nordic", d: "One of the world's most famous (chef René Redzepi), New Nordic." },
+  "copenhagen|Geranium": { c: "Chef's restaurant", d: "Three Michelin stars — refined seasonal Nordic cuisine." },
+  "copenhagen|Alchemist": { c: "Culinary experience", d: "40+ courses over a 6-hour experience blending art and food." },
+  "copenhagen|Hart Bageri": { c: "Bakery", d: "Some of the best sourdough and pastries in Copenhagen." },
+  "copenhagen|Kadeau": { c: "New Nordic", d: "New Nordic restaurant with a creative tasting menu." },
+
+  "marrakech|Nomad": { c: "Modern Moroccan", d: "Modern Moroccan with a rooftop overlooking the Spice Square." },
+  "marrakech|Dar Yacout": { c: "Moroccan", d: "Lavish Moroccan cuisine in a luxurious riad — pastilla and tagine." },
+  "marrakech|Le Jardin": { c: "Garden restaurant", d: "The medina's most famous garden restaurant — a courtyard of banana trees and palms." },
+  "marrakech|Café des Épices": { c: "Café", d: "Colorful terrace over the bustling Rahba Kedima square in the souk." },
+  "marrakech|Grand Café de la Poste": { c: "Brasserie", d: "Iconic brasserie from the 1920s in colonial style." }
 };
 
 /* ---------- שאלות החידון באנגלית (לפי סדר QUESTIONS) ---------- */
