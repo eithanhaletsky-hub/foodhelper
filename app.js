@@ -2,35 +2,50 @@
    לוגיקת האפליקציה: ניווט, מתכונים, קורסים
    ========================================================= */
 
-/* ---------- שפה (i18n) ---------- */
+/* ---------- שפה (i18n) — תמיכה ב-5 שפות ----------
+   עברית (he) היא שפת המקור (בקוד/בנתונים). שאר השפות יושבות ב-L[lang]
+   ובחלק UI[lang]. כל מחרוזת שלא תורגמה נופלת חזרה לאנגלית ואז לעברית. */
+const LANGS = ["he", "en", "fr", "ru", "es"];
 let lang = localStorage.getItem("foodhelper_lang") || "he";
-function isEn() { return lang === "en"; }
+if (!LANGS.includes(lang)) lang = "he";
+
+function isRtl() { return lang === "he"; }
 function t(key, ...args) {
-  const v = UI[lang][key];
+  let v = UI[lang] && UI[lang][key];
+  if (v == null) v = UI.en[key];
+  if (v == null) v = UI.he[key];
   return typeof v === "function" ? v(...args) : v;
 }
-function recipeName(r)  { return isEn() ? (RECIPE_NAMES_EN[r.id] || r.name) : r.name; }
-function catLabel(c)    { return isEn() ? (CAT_EN[c.id] || c.label) : c.label; }
-function cityName(city) { return isEn() ? (CITY_EN[city.id] || city.label) : city.label; }
-function diffLabel(d)   { return isEn() ? (UI.en.diff[d] || d) : d; }
-function dimLabel(k)    { return isEn() ? (DIM_EN[k] || k) : DIM_LABELS[k].label; }
-function levelNote(id)  { return isEn() ? (LEVELNOTE_EN[id] || "") : (LEVEL_NOTES[id] || ""); }
-function levelInfo(lv)  { return isEn() ? LEVEL_EN[lv.id] : { title: lv.title, desc: lv.desc }; }
-function planText(key)  { return isEn() ? PLANS_EN[key] : PLANS[key]; }
-function quizData(i)    { return isEn() ? QUIZ_EN[i] : { q: QUESTIONS[i].q, a: QUESTIONS[i].answers.map(x => x.text) }; }
+// שליפת ערך מתורגם מ-L עם נפילה לאנגלית
+function Lget(kind, key) {
+  const cur = window.L && L[lang] && L[lang][kind];
+  if (cur && cur[key] != null) return cur[key];
+  const en = window.L && L.en && L.en[kind];
+  return (en && en[key] != null) ? en[key] : undefined;
+}
+function recipeName(r)  { return lang === "he" ? r.name : (Lget("recipe", r.id) || r.name); }
+function catLabel(c)    { return lang === "he" ? c.label : (Lget("cat", c.id) || c.label); }
+function cityName(city) { return lang === "he" ? city.label : (Lget("city", city.id) || city.label); }
+function diffLabel(d)   { return lang === "he" ? d : ((UI[lang] && UI[lang].diff && UI[lang].diff[d]) || UI.en.diff[d] || d); }
+function dimLabel(k)    { return lang === "he" ? DIM_LABELS[k].label : (Lget("dim", k) || DIM_LABELS[k].label); }
+function levelNote(id)  { return lang === "he" ? (LEVEL_NOTES[id] || "") : (Lget("levelNote", id) || ""); }
+function levelInfo(lv)  { return lang === "he" ? { title: lv.title, desc: lv.desc } : (Lget("level", lv.id) || LEVEL_EN[lv.id]); }
+function planText(key)  { return lang === "he" ? PLANS[key] : (Lget("plans", key) || PLANS_EN[key]); }
+function quizData(i)    { return lang === "he" ? { q: QUESTIONS[i].q, a: QUESTIONS[i].answers.map(x => x.text) } : (Lget("quiz", i) || QUIZ_EN[i]); }
 function restFields(cityId, r) {
-  if (isEn()) { const e = REST_EN[cityId + "|" + r.name]; return { cuisine: e ? e.c : r.cuisine, desc: e ? e.d : r.desc }; }
-  return { cuisine: r.cuisine, desc: r.desc };
+  if (lang === "he") return { cuisine: r.cuisine, desc: r.desc };
+  const e = Lget("rest", cityId + "|" + r.name);
+  return { cuisine: e ? e.c : r.cuisine, desc: e ? e.d : r.desc };
 }
 
 function applyLang() {
   document.documentElement.lang = lang;
-  document.documentElement.dir = isEn() ? "ltr" : "rtl";
-  document.body.dir = isEn() ? "ltr" : "rtl";
+  document.documentElement.dir = isRtl() ? "rtl" : "ltr";
+  document.body.dir = isRtl() ? "rtl" : "ltr";
   document.querySelectorAll("[data-i18n]").forEach(el => { el.textContent = t(el.dataset.i18n); });
   document.querySelectorAll("[data-i18n-ph]").forEach(el => { el.placeholder = t(el.dataset.i18nPh); });
-  const lt = document.getElementById("lang-toggle");
-  if (lt) lt.textContent = isEn() ? "🌐 עברית" : "🌐 English";
+  const sel = document.getElementById("lang-select");
+  if (sel) sel.value = lang;
 
   // בנייה מחדש של תוכן דינמי בשפה הנוכחית
   renderAuthArea();
@@ -50,8 +65,9 @@ function applyLang() {
   if (!document.getElementById("course-result").classList.contains("hidden") && course.level) showResult();
 }
 
-function toggleLang() {
-  lang = isEn() ? "he" : "en";
+function setLang(l) {
+  if (!LANGS.includes(l)) return;
+  lang = l;
   localStorage.setItem("foodhelper_lang", lang);
   applyLang();
 }
@@ -840,7 +856,7 @@ function buyCourseFlow(planKey) {
 document.addEventListener("DOMContentLoaded", () => {
   applyLang();   // בונה את כל התוכן בשפה הנוכחית + מכוון כיווניות
 
-  document.getElementById("lang-toggle").addEventListener("click", toggleLang);
+  document.getElementById("lang-select").addEventListener("change", e => setLang(e.target.value));
   document.getElementById("app-modal").addEventListener("click", e => {
     if (e.target.id === "app-modal") closeAppModal();
   });

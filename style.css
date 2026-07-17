@@ -112,6 +112,20 @@ header {
   white-space: nowrap;
 }
 .lang-toggle:hover { background: rgba(255,255,255,.32); }
+.lang-select {
+  background: rgba(255,255,255,.18);
+  color: #fff;
+  border: 1.5px solid rgba(255,255,255,.5);
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: .9rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background .2s;
+}
+.lang-select:hover { background: rgba(255,255,255,.3); }
+.lang-select option { color: #2b2320; background: #fff; }
 .logo { font-size: 1.9rem; font-weight: 800; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; letter-spacing: -.5px; }
 .logo small { font-weight: 400; font-size: .9rem; opacity: .92; letter-spacing: 0; }
 nav { display: flex; gap: 6px; margin-top: 20px; }

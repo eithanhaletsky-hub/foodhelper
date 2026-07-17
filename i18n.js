@@ -775,7 +775,17 @@ const PLANS_EN = {
   }
 };
 
+/* מרשם תרגומים לפי שפה. אנגלית מלאה כאן; fr/ru/es נוספים
+   בקבצי i18n-*.js ונופלים חזרה לאנגלית כשחסר תרגום. */
+const L = {
+  en: {
+    cat: CAT_EN, level: LEVEL_EN, levelNote: LEVELNOTE_EN, dim: DIM_EN,
+    city: CITY_EN, recipe: RECIPE_NAMES_EN, rest: REST_EN, quiz: QUIZ_EN, plans: PLANS_EN
+  }
+};
+
 window.UI = UI;
+window.L = L;
 window.CAT_EN = CAT_EN;
 window.LEVEL_EN = LEVEL_EN;
 window.LEVELNOTE_EN = LEVELNOTE_EN;

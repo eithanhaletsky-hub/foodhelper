@@ -14,7 +14,13 @@
         <div class="logo">🍳 מטבח·לאב <small data-i18n="logoSub">מאות מתכונים וקורסי אפייה מותאמים אישית</small></div>
         <div class="header-controls">
           <div id="auth-area"></div>
-          <button id="lang-toggle" class="lang-toggle">🌐 English</button>
+          <select id="lang-select" class="lang-select" aria-label="Language">
+            <option value="he">🇮🇱 עברית</option>
+            <option value="en">🇬🇧 English</option>
+            <option value="fr">🇫🇷 Français</option>
+            <option value="ru">🇷🇺 Русский</option>
+            <option value="es">🇪🇸 Español</option>
+          </select>
         </div>
       </div>
       <nav>
@@ -97,6 +103,9 @@
   </div>
 
   <script src="i18n.js"></script>
+  <script src="i18n-fr.js"></script>
+  <script src="i18n-ru.js"></script>
+  <script src="i18n-es.js"></script>
   <script src="auth.js"></script>
   <script src="data.js"></script>
   <script src="recipes.js"></script>
