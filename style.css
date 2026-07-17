@@ -97,6 +97,21 @@ header {
   box-shadow: var(--shadow);
 }
 .header-inner { max-width: 1120px; margin: 0 auto; }
+.header-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.lang-toggle {
+  background: rgba(255,255,255,.18);
+  color: #fff;
+  border: 1.5px solid rgba(255,255,255,.5);
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: .9rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background .2s;
+  white-space: nowrap;
+}
+.lang-toggle:hover { background: rgba(255,255,255,.32); }
 .logo { font-size: 1.9rem; font-weight: 800; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; letter-spacing: -.5px; }
 .logo small { font-weight: 400; font-size: .9rem; opacity: .92; letter-spacing: 0; }
 nav { display: flex; gap: 6px; margin-top: 20px; }
@@ -333,7 +348,7 @@ main { max-width: 1120px; margin: 0 auto; padding: 32px 20px 70px; }
   border: 2px solid var(--border);
   border-radius: var(--radius-sm);
   padding: 17px 22px;
-  text-align: right;
+  text-align: start;
   font-size: 1rem;
   cursor: pointer;
   transition: .18s;
@@ -415,7 +430,7 @@ main { max-width: 1120px; margin: 0 auto; padding: 32px 20px 70px; }
   font-size: .88rem;
   color: var(--text);
 }
-.result-card h4 { text-align: right; margin: 30px 0 14px; color: var(--primary-d); font-size: 1.2rem; }
+.result-card h4 { text-align: start; margin: 30px 0 14px; color: var(--primary-d); font-size: 1.2rem; }
 
 /* Profile chart */
 .profile-box {
@@ -423,9 +438,9 @@ main { max-width: 1120px; margin: 0 auto; padding: 32px 20px 70px; }
   border-radius: var(--radius);
   padding: 22px;
   margin-bottom: 8px;
-  text-align: right;
+  text-align: start;
 }
-.profile-title { text-align: right; margin: 0 0 16px !important; }
+.profile-title { text-align: start; margin: 0 0 16px !important; }
 .profile-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
 .profile-name { flex: 0 0 110px; font-weight: 600; font-size: .95rem; }
 .profile-track { flex: 1; height: 12px; background: var(--border); border-radius: 999px; overflow: hidden; }
@@ -435,7 +450,7 @@ main { max-width: 1120px; margin: 0 auto; padding: 32px 20px 70px; }
 .runner-up { margin-top: 14px; font-size: .9rem; color: var(--muted); font-weight: 600; }
 
 .result-intro {
-  text-align: right;
+  text-align: start;
   background: var(--soft);
   border-radius: var(--radius);
   padding: 18px 20px;
@@ -444,7 +459,7 @@ main { max-width: 1120px; margin: 0 auto; padding: 32px 20px 70px; }
 }
 
 /* Outcomes */
-.outcomes { text-align: right; list-style: none; display: grid; gap: 8px; }
+.outcomes { text-align: start; list-style: none; display: grid; gap: 8px; }
 .outcomes li {
   background: var(--green-bg);
   border-radius: var(--radius-sm);
@@ -461,7 +476,7 @@ main { max-width: 1120px; margin: 0 auto; padding: 32px 20px 70px; }
   border-inline-start: 5px solid var(--primary);
   border-radius: var(--radius);
   padding: 18px 20px;
-  text-align: right;
+  text-align: start;
   transition: .2s;
 }
 .week-card.done { border-inline-start-color: var(--green); background: var(--green-bg); }
@@ -514,7 +529,7 @@ main { max-width: 1120px; margin: 0 auto; padding: 32px 20px 70px; }
 
 /* הערת רמה */
 .level-note {
-  text-align: right;
+  text-align: start;
   background: var(--amber-bg);
   border-radius: var(--radius-sm);
   padding: 14px 16px;
@@ -564,16 +579,16 @@ main { max-width: 1120px; margin: 0 auto; padding: 32px 20px 70px; }
 
 /* Concepts */
 .concepts { display: grid; gap: 10px; }
-.concept { background: var(--soft); border-radius: var(--radius-sm); padding: 15px 17px; text-align: right; }
+.concept { background: var(--soft); border-radius: var(--radius-sm); padding: 15px 17px; text-align: start; }
 .concept-term { display: block; font-weight: 700; color: var(--primary-d); margin-bottom: 4px; }
 .concept-explain { color: var(--muted); line-height: 1.65; font-size: .95rem; }
 
-.plan-tips { text-align: right; list-style: none; }
+.plan-tips { text-align: start; list-style: none; }
 .plan-tips li { padding: 7px 0; }
 .plan-tips li::before { content: "✔ "; color: var(--green); font-weight: bold; }
 
 .result-next {
-  text-align: right;
+  text-align: start;
   background: var(--soft);
   border-radius: var(--radius-sm);
   padding: 15px 17px;
@@ -598,11 +613,19 @@ main { max-width: 1120px; margin: 0 auto; padding: 32px 20px 70px; }
 .btn-primary:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
 
 /* ---------- Restaurants ---------- */
-#city-select {
+#city-select { margin-bottom: 24px; }
+.city-group-head {
+  font-size: 1.1rem;
+  color: var(--primary-d);
+  margin: 4px 2px 12px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid var(--border);
+}
+.city-group-head:not(:first-child) { margin-top: 22px; }
+.city-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 14px;
-  margin-bottom: 24px;
 }
 .city-btn {
   background: var(--surface);
@@ -653,7 +676,16 @@ main { max-width: 1120px; margin: 0 auto; padding: 32px 20px 70px; }
   border-radius: 999px; white-space: nowrap;
 }
 .rest-cuisine { font-size: .85rem; color: var(--primary-d); font-weight: 600; }
-.rest-desc { color: var(--muted); margin: 8px 0 14px; line-height: 1.6; font-size: .95rem; flex: 1; }
+.rest-desc { color: var(--muted); margin: 8px 0 10px; line-height: 1.6; font-size: .95rem; flex: 1; }
+.rest-airport {
+  font-size: .82rem;
+  color: var(--accent);
+  background: var(--soft);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
 .rest-links { display: flex; gap: 10px; }
 .map-link {
   flex: 1;

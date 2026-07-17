@@ -29,7 +29,16 @@ const CITIES = [
   { id: "raanana",    label: "רעננה",       emoji: "🌷" },
   { id: "zichron",    label: "זכרון יעקב",  emoji: "🍷" },
   { id: "hadera",     label: "חדרה",        emoji: "🌾" },
-  { id: "karmiel",    label: "כרמיאל",      emoji: "⛰️" }
+  { id: "karmiel",    label: "כרמיאל",      emoji: "⛰️" },
+  // ערים בחו״ל — ניווט מתבצע משדה התעופה הקרוב
+  { id: "paris",     label: "פריז",       emoji: "🇫🇷", abroad: true, airport: "Paris Charles de Gaulle Airport (CDG)" },
+  { id: "london",    label: "לונדון",     emoji: "🇬🇧", abroad: true, airport: "Heathrow Airport (LHR), London" },
+  { id: "rome",      label: "רומא",       emoji: "🇮🇹", abroad: true, airport: "Rome Fiumicino Airport (FCO)" },
+  { id: "dubai",     label: "דובאי",      emoji: "🇦🇪", abroad: true, airport: "Dubai International Airport (DXB)" },
+  { id: "newyork",   label: "ניו יורק",   emoji: "🇺🇸", abroad: true, airport: "John F. Kennedy International Airport (JFK), New York" },
+  { id: "barcelona", label: "ברצלונה",    emoji: "🇪🇸", abroad: true, airport: "Barcelona-El Prat Airport (BCN)" },
+  { id: "tokyo",     label: "טוקיו",      emoji: "🇯🇵", abroad: true, airport: "Narita International Airport (NRT), Tokyo" },
+  { id: "istanbul",  label: "איסטנבול",   emoji: "🇹🇷", abroad: true, airport: "Istanbul Airport (IST)" }
 ];
 
 const RESTAURANTS = {
@@ -213,6 +222,64 @@ const RESTAURANTS = {
     { name: "פאט ויני", cuisine: "איטלקי", kosher: false, desc: "מסעדה איטלקית בביג כרמיאל עם מגוון רחב." },
     { name: "מג'דלה", cuisine: "שף ערבי", kosher: false, desc: "מסעדת שף עממית — מנות ערביות מסורתיות של השף נאאל זרקאוי." },
     { name: "אל-רוביאן", cuisine: "בשרים ודגים", kosher: false, desc: "בשרים, דגים ופירות ים ברמה גבוהה, יחס אישי, פתוח גם בשבת." }
+  ],
+
+  /* ===================== חו״ל ===================== */
+  "paris": [
+    { name: "Le Train Bleu", cuisine: "בראסרי צרפתית", kosher: false, desc: "בראסרי בסגנון בל אפוק בתחנת גאר דה ליון — קלאסיקות צרפתיות ומבט מרהיב." },
+    { name: "Café de Flore", cuisine: "בית קפה", kosher: false, desc: "מבתי הקפה המפורסמים בעולם, מוקד למשוררים ואמנים בסן-ז'רמן." },
+    { name: "L'As du Fallafel", cuisine: "פלאפל", kosher: false, desc: "הפלאפל המפורסם ברובע היהודי ההיסטורי לה מארה." },
+    { name: "Tour d'Argent", cuisine: "מסעדת שף", kosher: false, desc: "מסעדה היסטורית עם כוכב מישלן ונוף לנוטרדאם." },
+    { name: "Le Fouquet's", cuisine: "צרפתי קלאסי", kosher: false, desc: "מוסד אגדי מ-1899 בשאנז אליזה, תפריט בהשראת פייר גניר." }
+  ],
+  "london": [
+    { name: "Rules", cuisine: "בריטי מסורתי", kosher: false, desc: "המסעדה הוותיקה בלונדון (1798) — מטבח בריטי מסורתי וציד." },
+    { name: "Dishoom", cuisine: "הודי-בומביי", kosher: false, desc: "בהשראת בתי הקפה האיראניים של בומביי — אהובה על מקומיים ותיירים." },
+    { name: "Sketch", cuisine: "מסעדת שף", kosher: false, desc: "חלל אמנותי מפורסם עם חדר גלריה צבעוני." },
+    { name: "The Wolseley", cuisine: "בראסרי אירופאית", kosher: false, desc: "בראסרי זוהרת בפיקדילי, אווירה גרנדיוזית." },
+    { name: "St John", cuisine: "בריטי מודרני", kosher: false, desc: "חלוצת גישת ה'אף-לזנב', מטבח בריטי מודרני ומשפיע." }
+  ],
+  "rome": [
+    { name: "Roscioli", cuisine: "איטלקי", kosher: false, desc: "חצי מעדנייה חצי מסעדה — הקאצ'ו א פפה שלה אגדי." },
+    { name: "Alfredo alla Scrofa", cuisine: "איטלקי", kosher: false, desc: "מקום הולדתו של פטוצ'יני אלפרדו המפורסם בעולם." },
+    { name: "La Campana", cuisine: "איטלקי", kosher: false, desc: "המסעדה הוותיקה ברומא (1518), מנות רומאיות מסורתיות." },
+    { name: "Flavio al Velavevodetto", cuisine: "טרטוריה", kosher: false, desc: "טרטוריה אגדית בטסטאצ'ו הבנויה בתוך גבעת חרסים עתיקה." },
+    { name: "Aroma", cuisine: "מסעדת שף", kosher: false, desc: "מסעדת מישלן על הגג עם נוף ישיר לקולוסיאום." }
+  ],
+  "dubai": [
+    { name: "Orfali Bros Bistro", cuisine: "ביסטרו", kosher: false, desc: "דורגה מספר 1 במזרח התיכון — ביסטרו של האחים אורפלי." },
+    { name: "Al Muntaha", cuisine: "מסעדת שף", kosher: false, desc: "בקומה ה-27 של בורג' אל ערב, זוכת כוכב מישלן." },
+    { name: "Ravi's", cuisine: "פקיסטני", kosher: false, desc: "אגדה מסאטווה — כולם עומדים בתור, מטקסיסטים ועד סלבס." },
+    { name: "Ossiano", cuisine: "דגים ופירות ים", kosher: false, desc: "חוויית אכילה מתחת למים מול אקווריום ענק." },
+    { name: "Atmosphere", cuisine: "מסעדת שף", kosher: false, desc: "מסעדה בקומה 122 של בורג' חליפה — נוף עוצר נשימה." }
+  ],
+  "newyork": [
+    { name: "Katz's Delicatessen", cuisine: "דלי", kosher: false, desc: "פסטרמי אגדי מ-1888, מהסצנה של 'כשהארי פגש את סאלי'." },
+    { name: "Peter Luger", cuisine: "סטייקהאוס", kosher: false, desc: "סטייקהאוס מיתולוגי בברוקלין, מזומן בלבד." },
+    { name: "Russ & Daughters", cuisine: "דלי", kosher: false, desc: "בייגלים ודגים מעושנים מ-1914, מוסד בלואר איסט סייד." },
+    { name: "Minetta Tavern", cuisine: "בראסרי", kosher: false, desc: "הברגר המהולל של העיר בגריניץ' וילג'." },
+    { name: "Sylvia's", cuisine: "סול פוד", kosher: false, desc: "סול פוד בהארלם מאז 1962 — עוגן קהילתי מפורסם." }
+  ],
+  "barcelona": [
+    { name: "Pinotxo Bar", cuisine: "טאפאס", kosher: false, desc: "דוכן טאפאס אגדי בשוק לה בוקריה." },
+    { name: "Botafumeiro", cuisine: "דגים ופירות ים", kosher: false, desc: "מהמסעדות הידועות לפירות ים בעיר." },
+    { name: "La Plata", cuisine: "טאפאס", kosher: false, desc: "מוסד ברובע הגותי המגיש אותן 4 טאפאס מאז 1945." },
+    { name: "Can Paixano", cuisine: "טאפאס וקאווה", kosher: false, desc: "המכונה 'לה שמפניירה' — קאווה ביתי וטאפאס במחיר נוח." },
+    { name: "Can Solé", cuisine: "דגים ואורז", kosher: false, desc: "פירות ים, אורז ופיאייה/פידואה מהטובים בברצלונה." }
+  ],
+  "tokyo": [
+    { name: "Sukiyabashi Jiro", cuisine: "סושי", kosher: false, desc: "אולי מסעדת הסושי המפורסמת בעולם, של השף ג'ירו אונו." },
+    { name: "Sushi Saito", cuisine: "סושי", kosher: false, desc: "מקדש סושי עם כוכבי מישלן בסגנון אדומאה." },
+    { name: "Narisawa", cuisine: "מסעדת שף", kosher: false, desc: "חוויה תיאטרלית — מנות כמו 'לחם היער' שנאפה בשולחן." },
+    { name: "Kanda", cuisine: "קאיסקי", kosher: false, desc: "מסעדת מישלן לקאיסקי — דיוק ועונתיות מושלמים." },
+    { name: "Tsujihan", cuisine: "דגים", kosher: false, desc: "קערות אורז ופירות ים (קייסן דון) מפורסמות בניהונבאשי." }
+  ],
+  "istanbul": [
+    { name: "Karaköy Lokantası", cuisine: "טורקי", kosher: false, desc: "מהמסעדות האיקוניות — מנות מסורתיות המוגשות מהמגש." },
+    { name: "Pandeli", cuisine: "טורקי", kosher: false, desc: "מעל שוק התבלינים, פועלת מעל 100 שנה, זוכת ביב גורמן." },
+    { name: "Mikla", cuisine: "אנטולי מודרני", kosher: false, desc: "על גג המרמרה פרה — מטבח אנטולי מודרני ונוף לעיר." },
+    { name: "Balıkçı Sabahattin", cuisine: "דגים", kosher: false, desc: "דגים בבית עות'מאני מעץ בעיר העתיקה." },
+    { name: "Karaköy Güllüoğlu", cuisine: "קינוחים ומאפים", kosher: false, desc: "חנות מאפים איקונית — מהבקלווה הטובה באיסטנבול." }
   ]
 };
 

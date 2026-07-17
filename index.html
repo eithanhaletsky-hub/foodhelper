@@ -3,18 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>מטבח·לאב — מתכונים וקורסי אפייה</title>
+  <title>מטבח·לאב — מתכונים, קורסים ומסעדות</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <header>
     <div class="header-inner">
-      <div class="logo">🍳 מטבח·לאב <small>מאות מתכונים וקורסי אפייה מותאמים אישית</small></div>
+      <div class="header-top">
+        <div class="logo">🍳 מטבח·לאב <small data-i18n="logoSub">מאות מתכונים וקורסי אפייה מותאמים אישית</small></div>
+        <button id="lang-toggle" class="lang-toggle">🌐 English</button>
+      </div>
       <nav>
-        <button class="nav-btn active" data-view="recipes">📖 מתכונים</button>
-        <button class="nav-btn" data-view="courses">🎓 קורסי אפייה</button>
-        <button class="nav-btn" data-view="restaurants">🍴 מסעדות</button>
+        <button class="nav-btn active" data-view="recipes" data-i18n="navRecipes">📖 מתכונים</button>
+        <button class="nav-btn" data-view="courses" data-i18n="navCourses">🎓 קורסי אפייה</button>
+        <button class="nav-btn" data-view="restaurants" data-i18n="navRestaurants">🍴 מסעדות</button>
       </nav>
     </div>
   </header>
@@ -23,10 +26,10 @@
 
     <!-- ===== מתכונים ===== -->
     <section id="view-recipes" class="view active">
-      <h1 class="view-title">ספר המתכונים</h1>
-      <p class="view-sub">חפשו, סננו לפי קטגוריה, ולחצו על מתכון לפרטים המלאים.</p>
+      <h1 class="view-title" data-i18n="recipesTitle">ספר המתכונים</h1>
+      <p class="view-sub" data-i18n="recipesSub">חפשו, סננו לפי קטגוריה, ולחצו על מתכון לפרטים המלאים.</p>
 
-      <input type="text" id="search" class="search-box" placeholder="🔍 חיפוש מתכון או מרכיב...">
+      <input type="text" id="search" class="search-box" data-i18n-ph="searchPh" placeholder="🔍 חיפוש מתכון או מרכיב...">
       <div id="category-filters"></div>
       <div id="recipe-count"></div>
       <div id="recipe-grid" class="grid"></div>
@@ -34,13 +37,13 @@
 
     <!-- ===== קורסים ===== -->
     <section id="view-courses" class="view">
-      <h1 class="view-title">קורסי אפייה מותאמים אישית</h1>
-      <p class="view-sub">בחרו את הרמה שלכם, ענו על 5 שאלות — ותקבלו תוכנית אימון בת 4 שבועות בדיוק בשבילכם.</p>
+      <h1 class="view-title" data-i18n="coursesTitle">קורסי אפייה מותאמים אישית</h1>
+      <p class="view-sub" data-i18n="coursesSub">בחרו את הרמה שלכם, ענו על השאלות — ותקבלו תוכנית אימון בת 4 שבועות בדיוק בשבילכם.</p>
 
       <!-- שלב 1: בחירת רמה -->
       <div id="course-intro">
         <div id="saved-course" class="hidden"></div>
-        <p>מה סוג האופה שאתם?</p>
+        <p data-i18n="pickLevel">מה סוג האופה שאתם?</p>
         <div id="levels"></div>
       </div>
 
@@ -50,7 +53,7 @@
         <p id="quiz-step"></p>
         <h2 id="quiz-question"></h2>
         <div id="quiz-answers"></div>
-        <button id="quiz-back" class="quiz-back hidden">→ חזרה לשאלה הקודמת</button>
+        <button id="quiz-back" class="quiz-back hidden" data-i18n="quizBack">→ חזרה לשאלה הקודמת</button>
       </div>
 
       <!-- שלב 3: תוצאה -->
@@ -59,32 +62,33 @@
 
     <!-- ===== מסעדות ===== -->
     <section id="view-restaurants" class="view">
-      <h1 class="view-title">מסעדות בגוש דן וירושלים</h1>
-      <p class="view-sub">בחרו עיר וגלו מסעדות מומלצות. אפשר לסנן לפי כשרות.</p>
+      <h1 class="view-title" data-i18n="restaurantsTitle">מדריך המסעדות</h1>
+      <p class="view-sub" data-i18n="restaurantsSub">בחרו עיר וגלו מסעדות מומלצות. אפשר לסנן לפי כשרות.</p>
 
       <div id="city-select"></div>
 
       <div id="restaurants-controls" class="hidden">
         <label class="kosher-toggle">
-          <input type="checkbox" id="kosher-only"> הצג רק כשר ✡️
+          <input type="checkbox" id="kosher-only"> <span data-i18n="kosherOnly">הצג רק כשר ✡️</span>
         </label>
         <span id="restaurant-count"></span>
       </div>
 
       <div id="restaurant-list" class="grid"></div>
 
-      <p class="disclaimer">ℹ️ הרשימה נאספה ממקורות ציבוריים. פרטים כמו כתובת, שעות פתיחה וסטטוס עשויים להשתנות — כדאי לוודא לפני ביקור.</p>
+      <p class="disclaimer" data-i18n="disclaimer">ℹ️ הרשימה נאספה ממקורות ציבוריים. פרטים כמו כתובת, שעות פתיחה וסטטוס עשויים להשתנות — כדאי לוודא לפני ביקור.</p>
     </section>
 
   </main>
 
-  <footer>נבנה באהבה 🧡 — ללא AI, ללא API. כל המתכונים והתוכניות מובנים באתר.</footer>
+  <footer data-i18n="footer">נבנה באהבה 🧡 — ללא AI, ללא API. כל התוכן מובנה באתר.</footer>
 
   <!-- מודאל מתכון -->
   <div id="recipe-modal" class="modal">
     <div class="modal-inner" id="modal-content"></div>
   </div>
 
+  <script src="i18n.js"></script>
   <script src="data.js"></script>
   <script src="recipes.js"></script>
   <script src="restaurants.js"></script>

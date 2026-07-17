@@ -2,6 +2,59 @@
    לוגיקת האפליקציה: ניווט, מתכונים, קורסים
    ========================================================= */
 
+/* ---------- שפה (i18n) ---------- */
+let lang = localStorage.getItem("foodhelper_lang") || "he";
+function isEn() { return lang === "en"; }
+function t(key, ...args) {
+  const v = UI[lang][key];
+  return typeof v === "function" ? v(...args) : v;
+}
+function recipeName(r)  { return isEn() ? (RECIPE_NAMES_EN[r.id] || r.name) : r.name; }
+function catLabel(c)    { return isEn() ? (CAT_EN[c.id] || c.label) : c.label; }
+function cityName(city) { return isEn() ? (CITY_EN[city.id] || city.label) : city.label; }
+function diffLabel(d)   { return isEn() ? (UI.en.diff[d] || d) : d; }
+function dimLabel(k)    { return isEn() ? (DIM_EN[k] || k) : DIM_LABELS[k].label; }
+function levelNote(id)  { return isEn() ? (LEVELNOTE_EN[id] || "") : (LEVEL_NOTES[id] || ""); }
+function levelInfo(lv)  { return isEn() ? LEVEL_EN[lv.id] : { title: lv.title, desc: lv.desc }; }
+function planText(key)  { return isEn() ? PLANS_EN[key] : PLANS[key]; }
+function quizData(i)    { return isEn() ? QUIZ_EN[i] : { q: QUESTIONS[i].q, a: QUESTIONS[i].answers.map(x => x.text) }; }
+function restFields(cityId, r) {
+  if (isEn()) { const e = REST_EN[cityId + "|" + r.name]; return { cuisine: e ? e.c : r.cuisine, desc: e ? e.d : r.desc }; }
+  return { cuisine: r.cuisine, desc: r.desc };
+}
+
+function applyLang() {
+  document.documentElement.lang = lang;
+  document.documentElement.dir = isEn() ? "ltr" : "rtl";
+  document.body.dir = isEn() ? "ltr" : "rtl";
+  document.querySelectorAll("[data-i18n]").forEach(el => { el.textContent = t(el.dataset.i18n); });
+  document.querySelectorAll("[data-i18n-ph]").forEach(el => { el.placeholder = t(el.dataset.i18nPh); });
+  const lt = document.getElementById("lang-toggle");
+  if (lt) lt.textContent = isEn() ? "🌐 עברית" : "🌐 English";
+
+  // בנייה מחדש של תוכן דינמי בשפה הנוכחית
+  buildCategoryFilters();
+  renderRecipes();
+  buildLevels();
+  renderSavedCourse();
+  buildCitySelect();
+  if (activeCity) {
+    const btn = Array.from(document.querySelectorAll("#city-select .city-btn"))
+      .find(b => b.dataset.city === activeCity);
+    if (btn) btn.classList.add("active");
+    document.getElementById("restaurants-controls").classList.remove("hidden");
+    renderRestaurants();
+  }
+  if (!document.getElementById("course-quiz").classList.contains("hidden")) renderQuestion();
+  if (!document.getElementById("course-result").classList.contains("hidden") && course.level) showResult();
+}
+
+function toggleLang() {
+  lang = isEn() ? "he" : "en";
+  localStorage.setItem("foodhelper_lang", lang);
+  applyLang();
+}
+
 /* ---------- ניווט בין עמודים ---------- */
 function showView(name) {
   document.querySelectorAll(".view").forEach(v => v.classList.remove("active"));
@@ -35,28 +88,29 @@ function toggleFavorite(id) {
 }
 function updateFavCount() {
   const btn = document.getElementById("fav-chip");
-  if (btn) btn.textContent = `⭐ מועדפים (${getFavorites().length})`;
+  if (btn) btn.textContent = `${t("favChip")} (${getFavorites().length})`;
 }
 
 function buildCategoryFilters() {
   const wrap = document.getElementById("category-filters");
+  wrap.innerHTML = "";
   const all = document.createElement("button");
-  all.className = "chip active";
-  all.textContent = "🍽️ הכול";
+  all.className = "chip" + (activeCategory === "all" ? " active" : "");
+  all.textContent = t("filterAll");
   all.onclick = () => setCategory("all", all);
   wrap.appendChild(all);
 
   const fav = document.createElement("button");
-  fav.className = "chip chip-fav";
+  fav.className = "chip chip-fav" + (activeCategory === "favorites" ? " active" : "");
   fav.id = "fav-chip";
-  fav.textContent = `⭐ מועדפים (${getFavorites().length})`;
+  fav.textContent = `${t("favChip")} (${getFavorites().length})`;
   fav.onclick = () => setCategory("favorites", fav);
   wrap.appendChild(fav);
 
   CATEGORIES.forEach(cat => {
     const b = document.createElement("button");
-    b.className = "chip";
-    b.textContent = `${cat.emoji} ${cat.label}`;
+    b.className = "chip" + (activeCategory === cat.id ? " active" : "");
+    b.textContent = `${cat.emoji} ${catLabel(cat)}`;
     b.onclick = () => setCategory(cat.id, b);
     wrap.appendChild(b);
   });
@@ -139,12 +193,10 @@ function renderRecipes() {
   });
 
   document.getElementById("recipe-count").textContent =
-    `${filtered.length} מתכונים`;
+    `${filtered.length} ${t("recipesCount")}`;
 
   if (filtered.length === 0) {
-    const msg = activeCategory === "favorites"
-      ? "עדיין לא סימנת מתכונים מועדפים ⭐ לחצו על הלב שבפינת כל מתכון."
-      : "לא נמצאו מתכונים 🙁 נסו חיפוש אחר.";
+    const msg = activeCategory === "favorites" ? t("emptyFav") : t("emptyRecipes");
     grid.innerHTML = `<p class="empty">${msg}</p>`;
     return;
   }
@@ -158,16 +210,16 @@ function renderRecipes() {
     card.innerHTML = `
       <div class="recipe-emoji" style="${headerStyle(r)}">
         <span class="dish">${recipeEmoji(r)}</span>
-        <button class="fav-btn ${fav ? "on" : ""}" title="הוסף למועדפים" data-id="${r.id}">${fav ? "❤️" : "🤍"}</button>
+        <button class="fav-btn ${fav ? "on" : ""}" title="${t("addFav")}" data-id="${r.id}">${fav ? "❤️" : "🤍"}</button>
       </div>
       <div class="recipe-body">
-        <h3>${r.name}</h3>
+        <h3>${recipeName(r)}</h3>
         <div class="recipe-meta">
-          <span class="tag ${difficultyClass(r.difficulty)}">${r.difficulty}</span>
-          <span class="tag">⏱️ ${r.time} דק'</span>
+          <span class="tag ${difficultyClass(r.difficulty)}">${diffLabel(r.difficulty)}</span>
+          <span class="tag">⏱️ ${r.time} ${t("min")}</span>
           <span class="tag">👥 ${r.servings}</span>
         </div>
-        <span class="recipe-cat">${cat ? cat.label : ""}</span>
+        <span class="recipe-cat">${cat ? catLabel(cat) : ""}</span>
       </div>`;
     const favBtn = card.querySelector(".fav-btn");
     favBtn.onclick = (e) => {
@@ -188,32 +240,32 @@ function openRecipe(id) {
     <button class="modal-close" onclick="closeRecipe()">✕</button>
     <div class="modal-header">
       <div class="modal-hero" style="${headerStyle(r)}"><span class="dish dish-lg">${recipeEmoji(r)}</span></div>
-      <h2>${r.name}</h2>
+      <h2>${recipeName(r)}</h2>
       <div class="recipe-meta">
-        <span class="tag ${difficultyClass(r.difficulty)}">${r.difficulty}</span>
-        <span class="tag">⏱️ ${r.time} דק'</span>
-        <span class="tag">👥 ${r.servings} מנות</span>
-        <span class="tag">${cat ? cat.emoji + " " + cat.label : ""}</span>
+        <span class="tag ${difficultyClass(r.difficulty)}">${diffLabel(r.difficulty)}</span>
+        <span class="tag">⏱️ ${r.time} ${t("min")}</span>
+        <span class="tag">👥 ${r.servings} ${t("servings")}</span>
+        <span class="tag">${cat ? cat.emoji + " " + catLabel(cat) : ""}</span>
       </div>
       <div class="modal-actions">
-        <button class="modal-fav" id="modal-fav-btn">${isFavorite(r.id) ? "❤️ במועדפים" : "🤍 הוסף למועדפים"}</button>
-        <button class="modal-print" id="modal-print-btn">🖨️ הדפסת המתכון</button>
+        <button class="modal-fav" id="modal-fav-btn">${isFavorite(r.id) ? t("inFav") : t("addFav")}</button>
+        <button class="modal-print" id="modal-print-btn">${t("print")}</button>
       </div>
     </div>
     <div class="modal-cols">
       <div>
-        <h4>🧺 מרכיבים</h4>
-        <ul class="ingredients">${r.ingredients.map(i => `<li>${i}</li>`).join("")}</ul>
+        <h4>${t("ingredients")}</h4>
+        <ul class="ingredients" dir="rtl">${r.ingredients.map(i => `<li>${i}</li>`).join("")}</ul>
       </div>
       <div>
-        <h4>👩‍🍳 אופן ההכנה</h4>
-        <ol class="steps">${r.steps.map(s => `<li>${s}</li>`).join("")}</ol>
+        <h4>${t("steps")}</h4>
+        <ol class="steps" dir="rtl">${r.steps.map(s => `<li>${s}</li>`).join("")}</ol>
       </div>
     </div>`;
   const mfav = document.getElementById("modal-fav-btn");
   mfav.onclick = () => {
     toggleFavorite(r.id);
-    mfav.textContent = isFavorite(r.id) ? "❤️ במועדפים" : "🤍 הוסף למועדפים";
+    mfav.textContent = isFavorite(r.id) ? t("inFav") : t("addFav");
     mfav.classList.toggle("on", isFavorite(r.id));
     renderRecipes();
   };
@@ -241,13 +293,15 @@ const course = { level: null, current: 0, history: [], scores: { practice: 0, te
 
 function buildLevels() {
   const wrap = document.getElementById("levels");
+  wrap.innerHTML = "";
   LEVELS.forEach(lv => {
+    const info = levelInfo(lv);
     const b = document.createElement("button");
     b.className = "level-card";
     b.innerHTML = `
       <span class="level-emoji">${lv.emoji}</span>
-      <span class="level-title">${lv.title}</span>
-      <span class="level-desc">${lv.desc}</span>`;
+      <span class="level-title">${info.title}</span>
+      <span class="level-desc">${info.desc}</span>`;
     b.onclick = () => selectLevel(lv.id);
     wrap.appendChild(b);
   });
@@ -264,20 +318,19 @@ function selectLevel(id) {
 }
 
 function renderQuestion() {
-  const q = QUESTIONS[course.current];
   const total = QUESTIONS.length;
+  const qd = quizData(course.current);
   document.getElementById("quiz-progress").style.width =
     `${(course.current / total) * 100}%`;
-  document.getElementById("quiz-step").textContent =
-    `שאלה ${course.current + 1} מתוך ${total}`;
-  document.getElementById("quiz-question").textContent = q.q;
+  document.getElementById("quiz-step").textContent = t("quizStep", course.current + 1, total);
+  document.getElementById("quiz-question").textContent = qd.q;
 
   const box = document.getElementById("quiz-answers");
   box.innerHTML = "";
-  q.answers.forEach(a => {
+  QUESTIONS[course.current].answers.forEach((a, idx) => {
     const b = document.createElement("button");
     b.className = "answer-btn";
-    b.textContent = a.text;
+    b.textContent = qd.a[idx];
     b.onclick = () => answer(a);
     box.appendChild(b);
   });
@@ -335,39 +388,39 @@ function showResult() {
   const best = ranked[0];
   const runnerUp = ranked[1];
   const planKey = best;
-  const plan = PLANS[best];
+  const plan = planText(best);          // טקסטים בשפה הנוכחית
+  const emoji = PLANS[best].emoji;      // אימוג'י תמיד מה-DATA
   const lv = LEVELS.find(l => l.id === course.level);
 
   const maxScore = Math.max(...Object.values(course.scores), 1);
 
-  // גרף פרופיל — ארבעה ממדים
   const profileHtml = Object.keys(DIM_LABELS).map(k => {
     const pct = Math.round((course.scores[k] / maxScore) * 100);
-    const d = DIM_LABELS[k];
     return `
       <div class="profile-row ${k === best ? "top" : ""}">
-        <span class="profile-name">${d.emoji} ${d.label}</span>
+        <span class="profile-name">${DIM_LABELS[k].emoji} ${dimLabel(k)}</span>
         <span class="profile-track"><span class="profile-fill" style="width:${pct}%"></span></span>
       </div>`;
   }).join("");
 
   const prog = getProgress(planKey);
+  const stripWeek = s => s.replace(/^(שבוע|Week)\s*\d+\s*—\s*/, "");
 
   const weeksHtml = plan.weeks.map((w, i) => `
     <div class="week-card ${prog[i] ? "done" : ""}" data-week="${i}">
       <div class="week-head">
-        <div class="week-num">שבוע ${i + 1}</div>
+        <div class="week-num">${t("week")} ${i + 1}</div>
         <label class="week-check">
-          <input type="checkbox" data-week="${i}" ${prog[i] ? "checked" : ""}> סיימתי
+          <input type="checkbox" data-week="${i}" ${prog[i] ? "checked" : ""}> ${t("done")}
         </label>
       </div>
-      <h5>${w.title.replace(/^שבוע \d+ — /, "")}</h5>
-      <p class="week-goal">🎯 ${w.goal}</p>
-      <span class="week-skill">מיומנות: ${w.skill}</span>
+      <h5>${stripWeek(w.title)}</h5>
+      <p class="week-goal">${t("goal")} ${w.goal}</p>
+      <span class="week-skill">${t("skill")} ${w.skill}</span>
       <p class="week-explain">${w.explain}</p>
-      <p class="week-mistake">⚠️ טעות נפוצה: ${w.mistake}</p>
-      <p class="week-practice">👩‍🍳 מתרגלים: <span>${w.practice}</span></p>
-      <p class="week-challenge">🏆 אתגר בונוס: ${plan.challenges[i]}</p>
+      <p class="week-mistake">${t("mistake")} ${w.mistake}</p>
+      <p class="week-practice">${t("practice")} <span>${w.practice}</span></p>
+      <p class="week-challenge">${t("challenge")} ${plan.challenges[i]}</p>
     </div>`).join("");
 
   const conceptsHtml = plan.concepts.map(c => `
@@ -377,8 +430,10 @@ function showResult() {
     </div>`).join("");
 
   const outcomesHtml = plan.outcomes.map(o => `<li>${o}</li>`).join("");
-  const toolsHtml = (plan.tools || []).map(t => `<span class="tool-chip">🔧 ${t}</span>`).join("");
-  const runnerPlan = PLANS[runnerUp];
+  const toolsHtml = (plan.tools || []).map(tool => `<span class="tool-chip">🔧 ${tool}</span>`).join("");
+  const tipsHtml = plan.tips.map(tip => `<li>${tip}</li>`).join("");
+  const runnerPlan = planText(runnerUp);
+  const runnerEmoji = PLANS[runnerUp].emoji;
 
   document.getElementById("course-quiz").classList.add("hidden");
   const res = document.getElementById("course-result");
@@ -389,43 +444,43 @@ function showResult() {
 
   res.innerHTML = `
     <div class="result-card">
-      <div class="result-badge">${plan.emoji}</div>
-      <p class="result-level">${lv.emoji} רמה: ${lv.title}</p>
+      <div class="result-badge">${emoji}</div>
+      <p class="result-level">${lv.emoji} ${t("levelLabel")}: ${levelInfo(lv).title}</p>
       <h2>${plan.title}</h2>
       <p class="result-tagline">${plan.tagline}</p>
       ${plan.meta ? `<p class="result-meta">📋 ${plan.meta}</p>` : ""}
 
       <div class="profile-box">
-        <h4 class="profile-title">🧭 הפרופיל שלך</h4>
+        <h4 class="profile-title">${t("profileTitle")}</h4>
         ${profileHtml}
-        <p class="runner-up">התאמה משנית: ${runnerPlan.emoji} ${runnerPlan.title}</p>
+        <p class="runner-up">${t("secondary")}: ${runnerEmoji} ${runnerPlan.title}</p>
       </div>
 
-      <p class="level-note">💬 ${LEVEL_NOTES[course.level]}</p>
+      <p class="level-note">💬 ${levelNote(course.level)}</p>
 
       <p class="result-intro">${plan.intro}</p>
 
-      <h4>🏁 בסוף התוכנית תוכלו…</h4>
+      <h4>${t("outcomesTitle")}</h4>
       <ul class="outcomes">${outcomesHtml}</ul>
 
-      ${toolsHtml ? `<h4>🧰 ציוד שתצטרכו</h4><div class="tools">${toolsHtml}</div>` : ""}
+      ${toolsHtml ? `<h4>${t("toolsTitle")}</h4><div class="tools">${toolsHtml}</div>` : ""}
 
-      <h4>📅 תוכנית 4 שבועות</h4>
+      <h4>${t("weeksTitle")}</h4>
       <div class="course-progress">
         <div class="course-progress-track"><div id="course-progress-fill"></div></div>
         <span id="course-progress-text"></span>
       </div>
-      <div id="course-complete" class="complete-banner hidden">🎓 כל הכבוד! סיימתם את כל התוכנית! אתם מוכנים לשלב הבא 🎉</div>
+      <div id="course-complete" class="complete-banner hidden">${t("complete")}</div>
       <div class="weeks-grid">${weeksHtml}</div>
 
-      <h4>📚 מושגי מפתח שתלמדו</h4>
+      <h4>${t("conceptsTitle")}</h4>
       <div class="concepts">${conceptsHtml}</div>
 
-      <h4>💡 טיפים חשובים</h4>
-      <ul class="plan-tips">${plan.tips.map(t => `<li>${t}</li>`).join("")}</ul>
+      <h4>${t("tipsTitle")}</h4>
+      <ul class="plan-tips">${tipsHtml}</ul>
 
       <p class="result-next">➡️ ${plan.next}</p>
-      <button class="btn-primary" onclick="restartCourse()">🔄 להתחיל מחדש</button>
+      <button class="btn-primary" onclick="restartCourse()">${t("restart")}</button>
     </div>`;
 
   // חיווט צ'קבוקסים של התקדמות
@@ -451,7 +506,7 @@ function updateCourseProgress(planKey) {
   const banner = document.getElementById("course-complete");
   if (!fill) return;
   fill.style.width = `${(done / total) * 100}%`;
-  text.textContent = `${done} מתוך ${total} שבועות הושלמו`;
+  text.textContent = t("weeksProgress", done, total);
   banner.classList.toggle("hidden", done < total);
 }
 
@@ -471,10 +526,10 @@ function renderSavedCourse() {
   box.classList.remove("hidden");
   box.innerHTML = `
     <div class="saved-inner">
-      <span class="saved-text">${plan.emoji} יש לך תוכנית פעילה: <strong>${plan.title}</strong> (${lv.emoji} ${lv.title}) — הושלמו ${done}/4 שבועות</span>
+      <span class="saved-text">${PLANS[ranked[0]].emoji} ${t("savedActive")} <strong>${planText(ranked[0]).title}</strong> (${lv.emoji} ${levelInfo(lv).title}) — ${t("savedDone", done)}</span>
       <div class="saved-actions">
-        <button class="btn-primary btn-sm" id="resume-course">⏩ המשך לתוכנית שלי</button>
-        <button class="saved-clear" id="clear-course">התחל מחדש</button>
+        <button class="btn-primary btn-sm" id="resume-course">${t("resume")}</button>
+        <button class="saved-clear" id="clear-course">${t("startOver")}</button>
       </div>
     </div>`;
 
@@ -505,16 +560,31 @@ let activeCity = null;
 
 function buildCitySelect() {
   const wrap = document.getElementById("city-select");
-  CITIES.forEach(city => {
-    const b = document.createElement("button");
-    b.className = "city-btn";
-    const count = (RESTAURANTS[city.id] || []).length;
-    b.innerHTML = `<span class="city-emoji">${city.emoji}</span>
-      <span class="city-name">${city.label}</span>
-      <span class="city-count">${count} מסעדות</span>`;
-    b.onclick = () => selectCity(city.id, b);
-    wrap.appendChild(b);
-  });
+  wrap.innerHTML = "";
+
+  const addGroup = (labelKey, cities) => {
+    const head = document.createElement("h3");
+    head.className = "city-group-head";
+    head.textContent = t(labelKey);
+    wrap.appendChild(head);
+    const grid = document.createElement("div");
+    grid.className = "city-grid";
+    cities.forEach(city => {
+      const b = document.createElement("button");
+      b.className = "city-btn" + (city.id === activeCity ? " active" : "");
+      b.dataset.city = city.id;
+      const count = (RESTAURANTS[city.id] || []).length;
+      b.innerHTML = `<span class="city-emoji">${city.emoji}</span>
+        <span class="city-name">${cityName(city)}</span>
+        <span class="city-count">${count} ${t("restCount")}</span>`;
+      b.onclick = () => selectCity(city.id, b);
+      grid.appendChild(b);
+    });
+    wrap.appendChild(grid);
+  };
+
+  addGroup("inIsrael", CITIES.filter(c => !c.abroad));
+  addGroup("abroadHead", CITIES.filter(c => c.abroad));
 }
 
 function selectCity(id, btn) {
@@ -534,31 +604,44 @@ function renderRestaurants() {
   const all = RESTAURANTS[activeCity] || [];
   const items = kosherOnly ? all.filter(r => r.kosher) : all;
 
-  document.getElementById("restaurant-count").textContent = `${items.length} מסעדות`;
+  document.getElementById("restaurant-count").textContent = `${items.length} ${t("restCount")}`;
 
   if (items.length === 0) {
-    list.innerHTML = `<p class="empty">אין מסעדות כשרות ברשימה לעיר זו 🙁</p>`;
+    list.innerHTML = `<p class="empty">${t("emptyKosher")}</p>`;
     return;
   }
 
-  const cityLabel = (CITIES.find(c => c.id === activeCity) || {}).label || "";
+  const city = CITIES.find(c => c.id === activeCity) || {};
+  // לחיפוש במפות: עברית לעיר בישראל, אנגלית לעיר בחו״ל
+  const qCity = city.abroad ? (CITY_EN[city.id] || "") : (city.label || "");
 
   items.forEach(r => {
-    const query = encodeURIComponent(`${r.name} ${cityLabel}`);
-    const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${query}`;
-    const wazeUrl = `https://waze.com/ul?q=${query}&navigate=yes`;
+    const dest = encodeURIComponent(`${r.name}, ${qCity}`);
+    let mapsUrl, wazeUrl;
+    if (city.abroad) {
+      // בחו״ל: גוגל מפות מתווה מסלול משדה התעופה; Waze מנווט ליעד (מהמיקום הנוכחי — שדה התעופה)
+      const origin = encodeURIComponent(city.airport || qCity);
+      mapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${dest}`;
+      wazeUrl = `https://waze.com/ul?q=${dest}&navigate=yes`;
+    } else {
+      const q = encodeURIComponent(`${r.name} ${qCity}`);
+      mapsUrl = `https://www.google.com/maps/search/?api=1&query=${q}`;
+      wazeUrl = `https://waze.com/ul?q=${q}&navigate=yes`;
+    }
+    const f = restFields(activeCity, r);
     const card = document.createElement("div");
     card.className = "restaurant-card";
     card.innerHTML = `
       <div class="rest-top">
         <h3>${r.name}</h3>
-        ${r.kosher ? `<span class="kosher-badge">כשר ✡️</span>` : ""}
+        ${r.kosher ? `<span class="kosher-badge">${t("kosherBadge")}</span>` : ""}
       </div>
-      <span class="rest-cuisine">🍽️ ${r.cuisine}</span>
-      <p class="rest-desc">${r.desc}</p>
+      <span class="rest-cuisine">🍽️ ${f.cuisine}</span>
+      <p class="rest-desc">${f.desc}</p>
+      ${city.abroad ? `<p class="rest-airport">${t("fromAirport", city.airport)}</p>` : ""}
       <div class="rest-links">
-        <a class="map-link waze" href="${wazeUrl}" target="_blank" rel="noopener">🚗 Waze</a>
-        <a class="map-link gmaps" href="${mapsUrl}" target="_blank" rel="noopener">📍 גוגל מפות</a>
+        <a class="map-link waze" href="${wazeUrl}" target="_blank" rel="noopener">${t("waze")}</a>
+        <a class="map-link gmaps" href="${mapsUrl}" target="_blank" rel="noopener">${t("gmaps")}</a>
       </div>`;
     list.appendChild(card);
   });
@@ -568,12 +651,9 @@ function renderRestaurants() {
    אתחול
    ======================================================== */
 document.addEventListener("DOMContentLoaded", () => {
-  buildCategoryFilters();
-  renderRecipes();
-  buildLevels();
-  buildCitySelect();
-  renderSavedCourse();
+  applyLang();   // בונה את כל התוכן בשפה הנוכחית + מכוון כיווניות
 
+  document.getElementById("lang-toggle").addEventListener("click", toggleLang);
   document.getElementById("quiz-back").addEventListener("click", goBack);
 
   document.getElementById("search").addEventListener("input", e => {
