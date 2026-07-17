@@ -237,7 +237,7 @@ function closeRecipe() {
 /* ========================================================
    קורסים / חידון
    ======================================================== */
-const course = { level: null, current: 0, history: [], scores: { practice: 0, technique: 0, creative: 0, speed: 0 } };
+const course = { level: null, current: 0, history: [], scores: { practice: 0, technique: 0, creative: 0, speed: 0, world: 0, healthy: 0 } };
 
 function buildLevels() {
   const wrap = document.getElementById("levels");
@@ -257,7 +257,7 @@ function selectLevel(id) {
   course.level = id;
   course.current = 0;
   course.history = [];
-  course.scores = { practice: 0, technique: 0, creative: 0, speed: 0 };
+  course.scores = { practice: 0, technique: 0, creative: 0, speed: 0, world: 0, healthy: 0 };
   document.getElementById("course-intro").classList.add("hidden");
   document.getElementById("course-quiz").classList.remove("hidden");
   renderQuestion();
@@ -309,7 +309,9 @@ const DIM_LABELS = {
   practice:  { emoji: "🌱", label: "יסודות" },
   technique: { emoji: "🔬", label: "טכניקה" },
   creative:  { emoji: "🎨", label: "יצירתיות" },
-  speed:     { emoji: "⚡", label: "מהירות" }
+  speed:     { emoji: "⚡", label: "מהירות" },
+  world:     { emoji: "🌍", label: "מטבחי העולם" },
+  healthy:   { emoji: "🥗", label: "בריא" }
 };
 
 /* התקדמות בקורס — נשמרת בדפדפן לפי מפתח התוכנית */
@@ -375,6 +377,7 @@ function showResult() {
     </div>`).join("");
 
   const outcomesHtml = plan.outcomes.map(o => `<li>${o}</li>`).join("");
+  const toolsHtml = (plan.tools || []).map(t => `<span class="tool-chip">🔧 ${t}</span>`).join("");
   const runnerPlan = PLANS[runnerUp];
 
   document.getElementById("course-quiz").classList.add("hidden");
@@ -390,6 +393,7 @@ function showResult() {
       <p class="result-level">${lv.emoji} רמה: ${lv.title}</p>
       <h2>${plan.title}</h2>
       <p class="result-tagline">${plan.tagline}</p>
+      ${plan.meta ? `<p class="result-meta">📋 ${plan.meta}</p>` : ""}
 
       <div class="profile-box">
         <h4 class="profile-title">🧭 הפרופיל שלך</h4>
@@ -403,6 +407,8 @@ function showResult() {
 
       <h4>🏁 בסוף התוכנית תוכלו…</h4>
       <ul class="outcomes">${outcomesHtml}</ul>
+
+      ${toolsHtml ? `<h4>🧰 ציוד שתצטרכו</h4><div class="tools">${toolsHtml}</div>` : ""}
 
       <h4>📅 תוכנית 4 שבועות</h4>
       <div class="course-progress">
