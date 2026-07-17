@@ -20,7 +20,11 @@ const CITIES = [
   { id: "netanya",    label: "נתניה",       emoji: "🌇" },
   { id: "tiberias",   label: "טבריה",       emoji: "🎣" },
   { id: "akko",       label: "עכו",         emoji: "⚓" },
-  { id: "nazareth",   label: "נצרת",        emoji: "⛪" }
+  { id: "nazareth",   label: "נצרת",        emoji: "⛪" },
+  { id: "ashdod",     label: "אשדוד",       emoji: "🚢" },
+  { id: "ashkelon",   label: "אשקלון",      emoji: "🐚" },
+  { id: "rehovot",    label: "רחובות",      emoji: "🔬" },
+  { id: "modiin",     label: "מודיעין",     emoji: "🏛️" }
 ];
 
 const RESTAURANTS = {
@@ -142,6 +146,33 @@ const RESTAURANTS = {
     { name: "לוקנדה", cuisine: "ערבי-גלילי / איטלקי", kosher: false, desc: "שילוב מטבח ערבי-גלילי ואיטלקי, במלון רמדה אוליבייה." },
     { name: "תשרין", cuisine: "פיוז'ן ערבי-ביסטרו", kosher: false, desc: "פיוז'ן בין מטבח ערבי מסורתי לביסטרו עדכני, בבניין אבן מהמאה ה-19." },
     { name: "חומוסיית עבדאללה שרביני", cuisine: "חומוס / פלאפל", kosher: false, desc: "מוסד מפורסם — חומוס אוורירי, פלאפל פריך ושווארמה." }
+  ],
+  "ashdod": [
+    { name: "פסקדו", cuisine: "דגים", kosher: true, desc: "מהמסעדות הכשרות הטובות בארץ — נבחרה ל-50 הטובות במזרח התיכון וצפון אפריקה (2022)." },
+    { name: "פארינו", cuisine: "פיצה נפוליטנית", kosher: false, desc: "אחת הפיצריות הנפוליטניות הטובות בארץ." },
+    { name: "נמסטה", cuisine: "הודי", kosher: false, desc: "מקום מושלם לארוחה הודית ייחודית ומהנה." },
+    { name: "עלמא", cuisine: "בר אוכל ישראלי", kosher: false, desc: "בר אוכל צעיר ורענן עם מנות פיוז'ן וטעמים אותנטיים." },
+    { name: "ערמונים", cuisine: "קונספט / יוקרה", kosher: false, desc: "מסעדת קונספט על גדות האגם בריזורט דרים איילנד, אווירה יוקרתית וטבע." }
+  ],
+  "ashkelon": [
+    { name: "סקובר בר", cuisine: "דגים / חלבי", kosher: false, desc: "על רציף המרינה — דגים, פסטות, פיצות, סלטים וארוחות בוקר." },
+    { name: "ארצ'י", cuisine: "פאב-מסעדה", kosher: false, desc: "בחוף דלילה מול הים — מנות מהמטבח האירופאי-אמריקאי המודרני." },
+    { name: "הניצחון של חני", cuisine: "רומני ביתי", kosher: false, desc: "מסעדה רומנית ביתית עם שורשים עמוקים באשקלון." },
+    { name: "אריסטו", cuisine: "בית קפה", kosher: false, desc: "בית קפה צעיר ותוסס המתמחה בקפה חזק ועיצוב ייחודי." },
+    { name: "סטיקיית איסטנבול", cuisine: "בשרים", kosher: true, desc: "מסעדת בשרים כשרה משנת 1962, גריל גחלים אמיתי." }
+  ],
+  "rehovot": [
+    { name: "פבריקה", cuisine: "פיצה נפוליטנית", kosher: false, desc: "אחת הפיצריות הנפוליטניות הטובות בארץ." },
+    { name: "מו ומו", cuisine: "בשרים", kosher: false, desc: "מוסד הבשרים המיתולוגי של רחובות." },
+    { name: "כרמים", cuisine: "שף ים תיכוני", kosher: false, desc: "מסעדת farm to table של השף סהר רפאל, חיבור לאדמה המקומית." },
+    { name: "נינה ביאנכה", cuisine: "שף ים תיכוני", kosher: false, desc: "מסעדת שף ים תיכונית ותיקה, השף ירין עמירה." },
+    { name: "קפה סזאר", cuisine: "מסעדה-קפה", kosher: true, desc: "כשר, במשכן חדש מרהיב עם אווירה של הערים הגדולות." },
+    { name: "ג'וג'ו", cuisine: "אתיופי", kosher: false, desc: "מסעדה אתיופית ותיקה ברחובות." }
+  ],
+  "modiin": [
+    { name: "קונמיגו", cuisine: "מסעדת שף", kosher: false, desc: "מסעדת שף של השף עידו אלקיים, מגוון מנות ואירוח." },
+    { name: "גריל 443", cuisine: "בשרים", kosher: false, desc: "בשרים על גריל פחמים, מוגשים עם לאפות חמות וסלטים." },
+    { name: "מכביס", cuisine: "אוכל ביתי", kosher: false, desc: "מוניטין של 30 שנה — אוכל טרי, שירות מעולה ובישול ביתי." }
   ]
 };
 
