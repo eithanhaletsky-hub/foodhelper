@@ -13,7 +13,14 @@ const CITIES = [
   { id: "petah-tikva",label: "פתח תקווה",   emoji: "🌳" },
   { id: "rishon",     label: "ראשון לציון", emoji: "🏖️" },
   { id: "holon",      label: "חולון",       emoji: "🎨" },
-  { id: "bat-yam",    label: "בת ים",       emoji: "🌊" }
+  { id: "bat-yam",    label: "בת ים",       emoji: "🌊" },
+  { id: "haifa",      label: "חיפה",        emoji: "🌲" },
+  { id: "eilat",      label: "אילת",        emoji: "🐠" },
+  { id: "beer-sheva", label: "באר שבע",     emoji: "🏜️" },
+  { id: "netanya",    label: "נתניה",       emoji: "🌇" },
+  { id: "tiberias",   label: "טבריה",       emoji: "🎣" },
+  { id: "akko",       label: "עכו",         emoji: "⚓" },
+  { id: "nazareth",   label: "נצרת",        emoji: "⛪" }
 ];
 
 const RESTAURANTS = {
@@ -87,6 +94,54 @@ const RESTAURANTS = {
   "bat-yam": [
     { name: "הפטריקס ביץ", cuisine: "בר על הים", kosher: false, desc: "מסעדת בר על הים עם מנות עשירות ומגוונות ובר אלכוהול." },
     { name: "גורילה", cuisine: "בר-קפה", kosher: false, desc: "בר-קפה מול נוף הים בטיילת בת ים." }
+  ],
+  "haifa": [
+    { name: "פטוש", cuisine: "ערבי / ים תיכוני", kosher: false, desc: "מסעדה במבנה עתיק לשימור, אוכל וגם אמנות." },
+    { name: "רולא", cuisine: "ערבי גלילי", kosher: false, desc: "מטבח ערבי — שישברק, חומוס משובח וקציצות." },
+    { name: "רפאלו", cuisine: "איטלקי ים תיכוני", kosher: false, desc: "תפריט איטלקי-ים תיכוני עם טוויסט ישראלי." },
+    { name: "פאפיאנו", cuisine: "איטלקי", kosher: false, desc: "מסעדה איטלקית עם קריצה ים תיכונית, פיצות ופסטות." },
+    { name: "וניה ביסטרו", cuisine: "ביסטרו", kosher: false, desc: "מסורת חיפאית מול בישול מודרני — קרפצ'יו, פסטה ארטישוק." },
+    { name: "ליבריה", cuisine: "פאב ומבשלה", kosher: false, desc: "מסעדה, פאב ומבשלת בירה בנמל חיפה — בירות מקוריות." },
+    { name: "דולפין", cuisine: "ים תיכוני / יווני", kosher: false, desc: "בשרים, דגים ופירות ים בסגנון בלקני-יווני." }
+  ],
+  "eilat": [
+    { name: "המפלט האחרון", cuisine: "דגים", kosher: false, desc: "מסעדת דגים אילתית מפורסמת וותיקה." },
+    { name: "לה סרדין", cuisine: "דגים", kosher: false, desc: "מוקד משיכה לחובבי דגים ומאכלי ים." },
+    { name: "איל פנטולינו", cuisine: "איטלקי / פסטה בר", kosher: false, desc: "פסטה-בר עם אווירה שלווה ומאכלים מופלאים." },
+    { name: "קפה אופטימי", cuisine: "איטלקי / ישראלי", kosher: false, desc: "פיצות, פסטות, דגים וארוחות בוקר — גם טבעוני." },
+    { name: "פאפי", cuisine: "בשרים ארגנטינאי", kosher: false, desc: "חוויית בשרים ארגנטינאית עם גריל גחלים ועשן." },
+    { name: "המחבוא של אדי", cuisine: "בינלאומי-צרפתי", kosher: false, desc: "מסעדה ותיקה מ-1979, סגנון בישול בינלאומי-צרפתי." },
+    { name: "לוויתן", cuisine: "המבורגרים", kosher: false, desc: "המבורגרים של השף ליאור רפאל — מהטובים בארץ." }
+  ],
+  "beer-sheva": [
+    { name: "קבב אמונה", cuisine: "בשרים", kosher: false, desc: "שיפודיה משפחתית משנות ה-60, מורשת קבבים." },
+    { name: "קמפאי סטריט ווק", cuisine: "אסייתי", kosher: true, desc: "מטבח פאן-אסייתי בגרסה כשרה." },
+    { name: "שושנה", cuisine: "אוכל ביתי", kosher: true, desc: "אוכל ביתי ישראלי-מרוקאי כשר וגם מנות טבעוניות." }
+  ],
+  "netanya": [
+    { name: "משה שגב", cuisine: "בשרים / שף", kosher: false, desc: "חיבור בין מטבח שף חוויתי למסורת." },
+    { name: "אל גאוצ'ו", cuisine: "בשרים", kosher: true, desc: "בשרי איכות מדרום אמריקה, נוף פנורמי לים, כשר." },
+    { name: "מסעדת היקב", cuisine: "ים תיכוני", kosher: false, desc: "בטיילת נתניה — אוכל מעולה, נוף מרהיב ומבחר משקאות." },
+    { name: "לאגר אנד אייל", cuisine: "בר בירות", kosher: false, desc: "בר בירות לונדוני עם עשרות בירות מהחבית ובבקבוק." },
+    { name: "מרפי'ס", cuisine: "פאב אירי", kosher: false, desc: "פאב אירי עם אווירה וריהוט עץ אותנטי." }
+  ],
+  "tiberias": [
+    { name: "לגונה", cuisine: "דגים ובשרים", kosher: false, desc: "דגים ובשרים על האש במדרחוב טבריה." },
+    { name: "טיביס", cuisine: "בשרים", kosher: false, desc: "מנות בשרים מוקפדות בהנהלת השף חיים טיבי." },
+    { name: "סנט אורבן", cuisine: "בר יין", kosher: false, desc: "בר יין במרתף עתיק עם מרפסת המשקיפה לכנרת." },
+    { name: "סין צ'אן", cuisine: "אסייתי", kosher: true, desc: "מסעדה אסייתית כשרה בטבריה." }
+  ],
+  "akko": [
+    { name: "אורי בורי", cuisine: "דגים", kosher: false, desc: "נחשבת למסעדה הטובה בעכו — דגים ומאכלי ים מטריפים." },
+    { name: "אבו כריסטו", cuisine: "דגים", kosher: false, desc: "מוסד קולינרי ותיק בעכו העתיקה, נוסד ב-1948." },
+    { name: "רותס (ROOTS)", cuisine: "לבנטיני", kosher: true, desc: "מטבח לבנטיני עדכני וכשר של השף דראל בן נבט, בעיר העתיקה." },
+    { name: "חומוס סעיד", cuisine: "חומוס", kosher: false, desc: "חומוס טרי ועשיר עם שמן זית ולימון, בעיר העתיקה." }
+  ],
+  "nazareth": [
+    { name: "דיאנא", cuisine: "ערבי", kosher: false, desc: "מהוותיקות בנצרת — קבב טלה מפורסם על מקל קינמון, השף דוחול ספדי." },
+    { name: "לוקנדה", cuisine: "ערבי-גלילי / איטלקי", kosher: false, desc: "שילוב מטבח ערבי-גלילי ואיטלקי, במלון רמדה אוליבייה." },
+    { name: "תשרין", cuisine: "פיוז'ן ערבי-ביסטרו", kosher: false, desc: "פיוז'ן בין מטבח ערבי מסורתי לביסטרו עדכני, בבניין אבן מהמאה ה-19." },
+    { name: "חומוסיית עבדאללה שרביני", cuisine: "חומוס / פלאפל", kosher: false, desc: "מוסד מפורסם — חומוס אוורירי, פלאפל פריך ושווארמה." }
   ]
 };
 
