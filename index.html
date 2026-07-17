@@ -12,7 +12,10 @@
     <div class="header-inner">
       <div class="header-top">
         <div class="logo">🍳 מטבח·לאב <small data-i18n="logoSub">מאות מתכונים וקורסי אפייה מותאמים אישית</small></div>
-        <button id="lang-toggle" class="lang-toggle">🌐 English</button>
+        <div class="header-controls">
+          <div id="auth-area"></div>
+          <button id="lang-toggle" class="lang-toggle">🌐 English</button>
+        </div>
       </div>
       <nav>
         <button class="nav-btn active" data-view="recipes" data-i18n="navRecipes">📖 מתכונים</button>
@@ -88,7 +91,13 @@
     <div class="modal-inner" id="modal-content"></div>
   </div>
 
+  <!-- מודאל כללי: התחברות / חשבון / תשלום -->
+  <div id="app-modal" class="modal">
+    <div class="modal-inner" id="app-modal-content"></div>
+  </div>
+
   <script src="i18n.js"></script>
+  <script src="auth.js"></script>
   <script src="data.js"></script>
   <script src="recipes.js"></script>
   <script src="restaurants.js"></script>

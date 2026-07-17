@@ -33,6 +33,7 @@ function applyLang() {
   if (lt) lt.textContent = isEn() ? "🌐 עברית" : "🌐 English";
 
   // בנייה מחדש של תוכן דינמי בשפה הנוכחית
+  renderAuthArea();
   buildCategoryFilters();
   renderRecipes();
   buildLevels();
@@ -204,12 +205,15 @@ function renderRecipes() {
   filtered.forEach(r => {
     const cat = CATEGORIES.find(c => c.id === r.category);
     const fav = isFavorite(r.id);
+    const prem = isPremiumRecipe(r.id);
+    const locked = prem && !hasRecipeAccess(r.id);
     const card = document.createElement("div");
-    card.className = "recipe-card";
+    card.className = "recipe-card" + (locked ? " locked" : "");
     card.onclick = () => openRecipe(r.id);
     card.innerHTML = `
       <div class="recipe-emoji" style="${headerStyle(r)}">
         <span class="dish">${recipeEmoji(r)}</span>
+        ${locked ? `<span class="lock-overlay">🔒</span>` : ""}
         <button class="fav-btn ${fav ? "on" : ""}" title="${t("addFav")}" data-id="${r.id}">${fav ? "❤️" : "🤍"}</button>
       </div>
       <div class="recipe-body">
@@ -219,7 +223,10 @@ function renderRecipes() {
           <span class="tag">⏱️ ${r.time} ${t("min")}</span>
           <span class="tag">👥 ${r.servings}</span>
         </div>
-        <span class="recipe-cat">${cat ? catLabel(cat) : ""}</span>
+        <div class="recipe-foot">
+          <span class="recipe-cat">${cat ? catLabel(cat) : ""}</span>
+          ${prem ? `<span class="premium-badge">⭐ ${t("premiumTag")}</span>` : ""}
+        </div>
       </div>`;
     const favBtn = card.querySelector(".fav-btn");
     favBtn.onclick = (e) => {
@@ -236,6 +243,28 @@ function openRecipe(id) {
   if (!r) return;
   const cat = CATEGORIES.find(c => c.id === r.category);
   const modal = document.getElementById("recipe-modal");
+  currentRecipeId = id;
+
+  // מתכון מיוחד נעול → מסך תשלום
+  if (isPremiumRecipe(id) && !hasRecipeAccess(id)) {
+    document.getElementById("modal-content").innerHTML = `
+      <button class="modal-close" onclick="closeRecipe()">✕</button>
+      <div class="modal-header">
+        <div class="modal-hero locked-hero" style="${headerStyle(r)}"><span class="dish dish-lg">🔒</span></div>
+        <h2>${recipeName(r)}</h2>
+        <p class="paywall-badge">${t("lockedRecipeTitle")}</p>
+      </div>
+      <div class="paywall">
+        <p class="paywall-text">${t("lockedRecipeText")}</p>
+        <button class="btn-primary" id="mc-unlock">${t("unlockAllBtn")}</button>
+        ${Auth.isLoggedIn() ? "" : `<p class="paywall-login">${t("loginToBuy")}</p>`}
+        <p class="demo-note">${t("demoChargeNote")}</p>
+      </div>`;
+    document.getElementById("mc-unlock").onclick = buyPremiumFlow;
+    modal.classList.add("open");
+    return;
+  }
+
   document.getElementById("modal-content").innerHTML = `
     <button class="modal-close" onclick="closeRecipe()">✕</button>
     <div class="modal-header">
@@ -435,6 +464,44 @@ function showResult() {
   const runnerPlan = planText(runnerUp);
   const runnerEmoji = PLANS[runnerUp].emoji;
 
+  const locked = !Membership.hasCourse(best);
+
+  const detailHtml = locked ? `
+      <div class="paywall course-paywall">
+        <p class="paywall-badge">${t("lockedCourseTitle")}</p>
+        <p class="paywall-text">${t("lockedCourseText")}</p>
+        <div class="paywall-actions">
+          <button class="btn-primary" id="cr-buy">${t("buyCourseBtn")}</button>
+          <button class="btn-secondary" id="cr-premium">${t("unlockAllBtn")}</button>
+        </div>
+        ${Auth.isLoggedIn() ? "" : `<p class="paywall-login">${t("loginToBuy")}</p>`}
+        <p class="demo-note">${t("demoChargeNote")}</p>
+      </div>
+      <button class="btn-secondary" onclick="restartCourse()">${t("restart")}</button>
+    ` : `
+      <h4>${t("outcomesTitle")}</h4>
+      <ul class="outcomes">${outcomesHtml}</ul>
+
+      ${toolsHtml ? `<h4>${t("toolsTitle")}</h4><div class="tools">${toolsHtml}</div>` : ""}
+
+      <h4>${t("weeksTitle")}</h4>
+      <div class="course-progress">
+        <div class="course-progress-track"><div id="course-progress-fill"></div></div>
+        <span id="course-progress-text"></span>
+      </div>
+      <div id="course-complete" class="complete-banner hidden">${t("complete")}</div>
+      <div class="weeks-grid">${weeksHtml}</div>
+
+      <h4>${t("conceptsTitle")}</h4>
+      <div class="concepts">${conceptsHtml}</div>
+
+      <h4>${t("tipsTitle")}</h4>
+      <ul class="plan-tips">${tipsHtml}</ul>
+
+      <p class="result-next">➡️ ${plan.next}</p>
+      <button class="btn-primary" onclick="restartCourse()">${t("restart")}</button>
+    `;
+
   document.getElementById("course-quiz").classList.add("hidden");
   const res = document.getElementById("course-result");
   res.classList.remove("hidden");
@@ -460,40 +527,25 @@ function showResult() {
 
       <p class="result-intro">${plan.intro}</p>
 
-      <h4>${t("outcomesTitle")}</h4>
-      <ul class="outcomes">${outcomesHtml}</ul>
-
-      ${toolsHtml ? `<h4>${t("toolsTitle")}</h4><div class="tools">${toolsHtml}</div>` : ""}
-
-      <h4>${t("weeksTitle")}</h4>
-      <div class="course-progress">
-        <div class="course-progress-track"><div id="course-progress-fill"></div></div>
-        <span id="course-progress-text"></span>
-      </div>
-      <div id="course-complete" class="complete-banner hidden">${t("complete")}</div>
-      <div class="weeks-grid">${weeksHtml}</div>
-
-      <h4>${t("conceptsTitle")}</h4>
-      <div class="concepts">${conceptsHtml}</div>
-
-      <h4>${t("tipsTitle")}</h4>
-      <ul class="plan-tips">${tipsHtml}</ul>
-
-      <p class="result-next">➡️ ${plan.next}</p>
-      <button class="btn-primary" onclick="restartCourse()">${t("restart")}</button>
+      ${detailHtml}
     </div>`;
 
-  // חיווט צ'קבוקסים של התקדמות
-  res.querySelectorAll(".week-check input").forEach(cb => {
-    cb.addEventListener("change", () => {
-      const i = parseInt(cb.dataset.week, 10);
-      setWeekDone(planKey, i, cb.checked);
-      cb.closest(".week-card").classList.toggle("done", cb.checked);
-      updateCourseProgress(planKey);
+  if (!locked) {
+    // חיווט צ'קבוקסים של התקדמות
+    res.querySelectorAll(".week-check input").forEach(cb => {
+      cb.addEventListener("change", () => {
+        const i = parseInt(cb.dataset.week, 10);
+        setWeekDone(planKey, i, cb.checked);
+        cb.closest(".week-card").classList.toggle("done", cb.checked);
+        updateCourseProgress(planKey);
+      });
     });
-  });
+    updateCourseProgress(planKey);
+  } else {
+    document.getElementById("cr-buy").onclick = () => buyCourseFlow(best);
+    document.getElementById("cr-premium").onclick = buyPremiumFlow;
+  }
 
-  updateCourseProgress(planKey);
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
@@ -648,12 +700,150 @@ function renderRestaurants() {
 }
 
 /* ========================================================
+   חשבונות / מנויים — ממשק (הדגמה)
+   ======================================================== */
+let pendingAction = null;   // פעולה שתופעל אחרי התחברות
+let currentRecipeId = null; // מתכון פתוח כרגע (לרענון אחרי רכישה)
+const ERR_KEY = { missing: "errMissing", email: "errEmail", short: "errShort", exists: "errExists", bad: "errBad" };
+
+function openAppModal(html) {
+  document.getElementById("app-modal-content").innerHTML = html;
+  document.getElementById("app-modal").classList.add("open");
+}
+function closeAppModal() { document.getElementById("app-modal").classList.remove("open"); }
+
+function toast(msg) {
+  let el = document.getElementById("toast");
+  if (!el) { el = document.createElement("div"); el.id = "toast"; document.body.appendChild(el); }
+  el.textContent = msg;
+  el.classList.add("show");
+  clearTimeout(toast._t);
+  toast._t = setTimeout(() => el.classList.remove("show"), 2600);
+}
+
+function renderAuthArea() {
+  const wrap = document.getElementById("auth-area");
+  const u = Auth.currentUser();
+  if (!u) {
+    wrap.innerHTML = `<button class="auth-btn" id="btn-signin">👤 ${t("signIn")}</button>`;
+    document.getElementById("btn-signin").onclick = () => openAuthModal("login");
+  } else {
+    wrap.innerHTML = `<button class="auth-btn" id="btn-account">${Membership.hasPremium() ? "⭐ " : "👤 "}${t("greeting", u.name)}</button>`;
+    document.getElementById("btn-account").onclick = openAccountModal;
+  }
+}
+
+function requireLogin(action) {
+  if (Auth.isLoggedIn()) action();
+  else { pendingAction = action; openAuthModal("login"); }
+}
+
+function openAuthModal(mode) {
+  const isReg = mode === "register";
+  openAppModal(`
+    <button class="modal-close" onclick="closeAppModal()">✕</button>
+    <div class="auth-box">
+      <h2>${isReg ? t("authRegisterTitle") : t("authLoginTitle")}</h2>
+      <div class="auth-fields">
+        ${isReg ? `<input id="au-name" class="auth-input" placeholder="${t("fName")}">` : ""}
+        <input id="au-email" class="auth-input" type="email" placeholder="${t("fEmail")}">
+        <input id="au-pass" class="auth-input" type="password" placeholder="${t("fPass")}">
+      </div>
+      <p class="auth-demo-note">${t("demoPassNote")}</p>
+      <p class="auth-error hidden" id="au-error"></p>
+      <button class="btn-primary" id="au-submit">${isReg ? t("doRegister") : t("doLogin")}</button>
+      <button class="auth-switch" id="au-switch">${isReg ? t("toLogin") : t("toRegister")}</button>
+    </div>`);
+  document.getElementById("au-switch").onclick = () => openAuthModal(isReg ? "login" : "register");
+  document.getElementById("au-submit").onclick = () => {
+    const email = document.getElementById("au-email").value;
+    const pass = document.getElementById("au-pass").value;
+    const res = isReg
+      ? Auth.register(document.getElementById("au-name").value, email, pass)
+      : Auth.login(email, pass);
+    if (!res.ok) {
+      const e = document.getElementById("au-error");
+      e.textContent = t(ERR_KEY[res.error] || "errBad");
+      e.classList.remove("hidden");
+      return;
+    }
+    closeAppModal();
+    renderAuthArea();
+    renderRecipes();
+    const a = pendingAction; pendingAction = null;
+    if (a) a();
+  };
+}
+
+function pricingHtml() {
+  return `<div class="pricing">
+    <div class="tier"><h5>${t("tierFreeName")}</h5><p class="tier-price">₪0</p><p class="tier-desc">${t("tierFreeDesc")}</p></div>
+    <div class="tier"><h5>${t("tierCourseName")}</h5><p class="tier-price">₪1<span>${t("perMonth")}</span></p><p class="tier-desc">${t("tierCourseDesc")}</p></div>
+    <div class="tier tier-hl"><h5>${t("tierPremiumName")} ⭐</h5><p class="tier-price">₪2<span>${t("perMonth")}</span></p><p class="tier-desc">${t("tierPremiumDesc")}</p></div>
+  </div>`;
+}
+
+function openAccountModal() {
+  const u = Auth.currentUser();
+  if (!u) { openAuthModal("login"); return; }
+  const premium = Membership.hasPremium();
+  const courseList = (u.courses && u.courses.length)
+    ? u.courses.map(k => `<li>${PLANS[k].emoji} ${planText(k).title}</li>`).join("")
+    : `<li class="muted">${t("noCoursesYet")}</li>`;
+  openAppModal(`
+    <button class="modal-close" onclick="closeAppModal()">✕</button>
+    <div class="account-box">
+      <h2>${t("accountTitle")}</h2>
+      <p class="account-name">${u.name} · ${u.email}</p>
+      <p class="account-status">${t("statusLabel")}: <span class="${premium ? "badge-premium" : "badge-free"}">${premium ? t("statusPremium") : t("statusFree")}</span></p>
+      ${premium
+        ? `<p class="premium-active">${t("premiumActiveMsg")}</p>
+           <button class="auth-switch" id="ac-cancel">${t("cancelPremiumBtn")}</button>`
+        : `<h4>${t("yourCoursesLabel")}</h4><ul class="account-courses">${courseList}</ul>
+           <button class="btn-primary" id="ac-premium">${t("buyPremiumBtn")}</button>
+           <p class="demo-note">${t("demoChargeNote")}</p>`}
+      <hr class="account-sep">
+      <h4>${t("pricingTitle")}</h4>
+      ${pricingHtml()}
+      <button class="auth-switch" id="ac-logout">${t("logoutBtn")}</button>
+    </div>`);
+  const pr = document.getElementById("ac-premium");
+  if (pr) pr.onclick = () => { Membership.buyPremium(); toast(t("purchasedOk")); openAccountModal(); renderAuthArea(); renderRecipes(); };
+  const cc = document.getElementById("ac-cancel");
+  if (cc) cc.onclick = () => { Membership.cancelPremium(); openAccountModal(); renderAuthArea(); renderRecipes(); };
+  document.getElementById("ac-logout").onclick = () => { Auth.logout(); closeAppModal(); renderAuthArea(); renderRecipes(); };
+}
+
+function buyPremiumFlow() {
+  requireLogin(() => {
+    Membership.buyPremium();
+    toast(t("purchasedOk"));
+    renderAuthArea();
+    renderRecipes();
+    closeAppModal();
+    if (currentRecipeId && document.getElementById("recipe-modal").classList.contains("open")) openRecipe(currentRecipeId);
+    if (!document.getElementById("course-result").classList.contains("hidden")) showResult();
+  });
+}
+function buyCourseFlow(planKey) {
+  requireLogin(() => {
+    Membership.buyCourse(planKey);
+    toast(t("purchasedOk"));
+    renderAuthArea();
+    showResult();
+  });
+}
+
+/* ========================================================
    אתחול
    ======================================================== */
 document.addEventListener("DOMContentLoaded", () => {
   applyLang();   // בונה את כל התוכן בשפה הנוכחית + מכוון כיווניות
 
   document.getElementById("lang-toggle").addEventListener("click", toggleLang);
+  document.getElementById("app-modal").addEventListener("click", e => {
+    if (e.target.id === "app-modal") closeAppModal();
+  });
   document.getElementById("quiz-back").addEventListener("click", goBack);
 
   document.getElementById("search").addEventListener("input", e => {
@@ -672,6 +862,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.addEventListener("keydown", e => {
-    if (e.key === "Escape") closeRecipe();
+    if (e.key === "Escape") { closeRecipe(); closeAppModal(); }
   });
 });
