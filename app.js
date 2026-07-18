@@ -339,7 +339,7 @@ function closeRecipe() {
 /* ========================================================
    קורסים / חידון
    ======================================================== */
-const course = { level: null, current: 0, history: [], scores: { practice: 0, technique: 0, creative: 0, speed: 0, world: 0, healthy: 0 } };
+const course = { level: null, current: 0, history: [], scores: { practice: 0, technique: 0, creative: 0, speed: 0, world: 0, healthy: 0, desserts: 0, bread: 0, hosting: 0 } };
 
 function buildLevels() {
   const wrap = document.getElementById("levels");
@@ -361,7 +361,7 @@ function selectLevel(id) {
   course.level = id;
   course.current = 0;
   course.history = [];
-  course.scores = { practice: 0, technique: 0, creative: 0, speed: 0, world: 0, healthy: 0 };
+  course.scores = { practice: 0, technique: 0, creative: 0, speed: 0, world: 0, healthy: 0, desserts: 0, bread: 0, hosting: 0 };
   document.getElementById("course-intro").classList.add("hidden");
   document.getElementById("course-quiz").classList.remove("hidden");
   renderQuestion();
@@ -437,7 +437,10 @@ const WEEK_ICONS = {
   creative:  ["palette", "layers", "plate", "star"],
   speed:     ["clock", "wok", "sun", "box"],
   world:     ["pizza", "wok", "spice", "globe"],
-  healthy:   ["bowl", "fish", "sun", "box"]
+  healthy:   ["bowl", "fish", "sun", "box"],
+  desserts:  ["layers", "dough", "egg", "star"],
+  bread:     ["dough", "flame", "bread", "scale"],
+  hosting:   ["plate", "box", "wok", "layers"]
 };
 function weekIcon(planKey, i) {
   const name = (WEEK_ICONS[planKey] || [])[i] || "plate";
@@ -455,7 +458,10 @@ const DIM_LABELS = {
   creative:  { emoji: "🎨", label: "יצירתיות" },
   speed:     { emoji: "⚡", label: "מהירות" },
   world:     { emoji: "🌍", label: "מטבחי העולם" },
-  healthy:   { emoji: "🥗", label: "בריא" }
+  healthy:   { emoji: "🥗", label: "בריא" },
+  desserts:  { emoji: "🧁", label: "קינוחים" },
+  bread:     { emoji: "🍞", label: "לחמים" },
+  hosting:   { emoji: "🎉", label: "אירוח" }
 };
 
 /* התקדמות בקורס — נשמרת בדפדפן לפי מפתח התוכנית */

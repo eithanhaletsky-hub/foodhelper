@@ -256,20 +256,25 @@ const CAT_EN = {
 const LEVEL_EN = {
   beginner:  { title: "Beginner",   desc: "Barely stepped into the kitchen — want to learn from scratch." },
   hobbyist:  { title: "Hobbyist",   desc: "Bake now and then and know the basics." },
+  homecook:  { title: "Home Cook",  desc: "Cook for the household most days and want to vary and improve." },
   advanced:  { title: "Advanced",   desc: "Comfortable with most recipes and want to sharpen up." },
   patissier: { title: "Pâtissier",  desc: "Master complex techniques and nail the results." },
+  prochef:   { title: "Pro Chef",   desc: "Work (or worked) in a professional kitchen, looking for depth." },
   chef:      { title: "Pastry Chef", desc: "Michelin level — chasing challenge and excellence." }
 };
 const LEVELNOTE_EN = {
   beginner:  "As a beginner, start with the recipes marked 'Easy', and don't skip weeks — each builds on the last.",
   hobbyist:  "As a hobbyist, feel free to skip what you already master — but try each exercise at least once.",
+  homecook:  "As a home cook, fold one new recipe per week into your regular menu instead of adding extra load — that's how improvement sticks without disrupting your routine.",
   advanced:  "As an advanced baker, challenge yourself: pick the harder versions and try a full week without peeking at the recipe twice.",
   patissier: "As a pâtissier, focus on precision — weigh everything in grams, measure temperatures, and log every small change.",
+  prochef:   "As a pro chef, go straight for the gap: pick the week you know least, cook it without a recipe, then teach it to someone else.",
   chef:      "At pastry-chef level, treat each week as a challenge: add a personal twist to every recipe, and teach someone else — teaching is mastery."
 };
 const DIM_EN = {
   practice: "Foundations", technique: "Technique", creative: "Creativity",
-  speed: "Speed", world: "World Cuisines", healthy: "Healthy"
+  speed: "Speed", world: "World Cuisines", healthy: "Healthy",
+  desserts: "Desserts", bread: "Breads", hosting: "Hosting"
 };
 
 /* ---------- שמות ערים ---------- */
@@ -649,7 +654,10 @@ const QUIZ_EN = [
   { q: "When do you most feel like cooking?", a: ["On a relaxed weekend, no time pressure", "When I want to learn something new in depth", "When I'm hosting and want to impress", "On a busy evening when I need food fast"] },
   { q: "Which culinary dream speaks to you most?", a: ["Cooking dishes from all over the world — Italy, Asia, the Middle East", "Eating healthy and balanced without giving up flavor", "Being the family's reliable baker", "Developing original signature dishes"] },
   { q: "What would you pick for the perfect dinner?", a: ["Pad Thai, curry or another ethnic dish", "A colorful bowl of vegetables, quinoa and protein", "A dish with precise, complex technique", "Something tasty that cooks in 20 minutes"] },
-  { q: "What matters most to you in a dish?", a: ["Authentic flavors from another country", "Nutritional value and healthy balance", "An impressive, designed look", "Simplicity and a sure success"] }
+  { q: "What matters most to you in a dish?", a: ["Authentic flavors from another country", "Nutritional value and healthy balance", "An impressive, designed look", "Simplicity and a sure success"] },
+  { q: "What do you most feel like making right now?", a: ["An impressive dessert", "Warm bread from the oven", "A meal for guests", "Something quick just for me"] },
+  { q: "What satisfies you most in the kitchen?", a: ["The moment the mousse comes out perfect", "The smell of bread baking at home", "Watching guests enjoy the food", "Discovering a new flavor from around the world"] },
+  { q: "Which challenge would you sign up for?", a: ["Nailing perfect macarons", "Growing a sourdough starter and baking with it", "Hosting 10 people for a full meal", "A whole week of healthy eating"] }
 ];
 
 /* ---------- תוכניות הקורס באנגלית ---------- */
@@ -786,6 +794,72 @@ const PLANS_EN = {
     ],
     tips: ["Drink plenty of water — thirst sometimes feels like hunger.", "Healthy isn't 'fat-free' — good fats (olive oil, avocado, nuts) matter.", "Cook ahead so you don't cave to delivery on a busy night.", "Color on the plate = variety of nutrients. Aim for a colorful plate."],
     next: "Want more variety? Combine with the 'World Journey' plan for healthy cooking from around the world."
+  },
+  desserts: {
+    title: "The Art of Desserts",
+    tagline: "Mousses, tarts and meringues that look like they came from a pastry shop.",
+    intro: "If your favourite part of the meal is the end — this plan is for you. We'll learn the four pillars of the dessert world: stable creams and mousses, sweet pastry and tarts, meringue and macarons, and finally assembly and presentation. These techniques repeat in almost every dessert, and once they're in your hands you'll be able to open nearly any dessert recipe and succeed.",
+    meta: "4 weeks · about 3 hours/week · difficulty: Medium",
+    tools: ["Mixer or electric whisk", "Piping bags and tips", "Kitchen thermometer", "Tart tin"],
+    weeks: [
+      { title: "Week 1 — Creams & Mousses", goal: "Make a stable, airy mousse that doesn't collapse.", skill: "Stabilizing mousse and folding", explain: "A good mousse balances air and stability. We'll learn to whip cream to 'soft peaks' (and no further), to fold gently so the air stays in, and when you need gelatin versus when the chocolate itself is enough to set it.", mistake: "Folding vigorously or over-whipping the cream — the mousse loses air or turns grainy.", practice: "Classic Chocolate Mousse, Lemon Mousse" },
+      { title: "Week 2 — Sweet Pastry & Tarts", goal: "Bake a crisp tart base that doesn't go soggy.", skill: "Sweet shortcrust and blind baking", explain: "Sweet pastry (pâte sucrée) is more fragile than regular dough because of the sugar. We'll learn to work with cold butter, to chill the dough before baking so it doesn't shrink, and to blind bake with weights for a base that stays crisp even under a filling.", mistake: "Skipping the chill before baking — the dough shrinks in the tin and the tart walls slump.", practice: "Lemon Tart, Apple Crumble" },
+      { title: "Week 3 — Meringue & Macarons", goal: "Master whipping egg whites and the macaronage.", skill: "Meringue and macaronage", explain: "Meringue is the base for pavlova, for mousses and for macarons. We'll learn why the bowl must be completely free of fat, how to tell 'soft peak' from 'stiff peak', and what macaronage is — the precise folding that decides whether your macaron comes out smooth with a 'foot' or cracked.", mistake: "A drop of yolk or fat in the egg-white bowl — the meringue simply won't hold.", practice: "Macarons, Pavlova" },
+      { title: "Week 4 — Your Signature Dessert", goal: "Assemble and serve a restaurant-level dessert.", skill: "Assembly, piping and plating", explain: "Now we bring it all together: filling with cream, precise piping, and layered assembly. We'll also learn the golden rule of desserts — assemble close to serving so the crisp stays crisp and the cold stays cold.", mistake: "Assembling hours ahead — the base goes soggy from the cream and the dessert loses its texture.", practice: "Profiteroles, Tiramisu" }
+    ],
+    outcomes: ["Make a stable, airy mousse", "Bake a tart with a crisp base", "Master meringue and macarons", "Assemble and serve an impressive dessert"],
+    challenges: ["Make the same mousse once with gelatin and once without, and compare how they hold.", "Bake the tart base once with weights and once without — see the difference.", "Turn out macarons with an even 'foot' — photograph and compare two batches.", "Assemble a dessert in a clear glass so every layer is visible from outside."],
+    concepts: [
+      { term: "Meringue", explain: "Egg whites whipped with sugar. The base for pavlova, macarons and some mousses — and extremely sensitive to fat." },
+      { term: "Ganache", explain: "Chocolate and cream in a set ratio. More cream = a sauce; more chocolate = a firm filling." },
+      { term: "Blind baking", explain: "Baking the tart base on its own, with weights, before the filling — so it stays crisp." }
+    ],
+    tips: ["Room-temperature eggs whip better.", "Weigh in grams — in desserts a small deviation changes the result.", "Chill between stages; most desserts reward patience.", "Taste the cream before assembling — afterwards you can't fix it."],
+    next: "Want to bake bread too? Move on to 'The World of Breads'."
+  },
+  bread: {
+    title: "The World of Breads",
+    tagline: "From a simple white loaf all the way to sourdough and croissants.",
+    intro: "Few things are as satisfying as pulling a hot loaf you baked out of the oven. This plan takes you from the most basic bread to the two summits of baking: sourdough and croissants. We'll learn to read dough with your hands — when it's ready, when it has risen enough, and why the same recipe behaves differently in summer and in winter.",
+    meta: "4 weeks · about 3–4 hours/week · difficulty: Medium-High",
+    tools: ["Kitchen scale", "Dough scraper", "Cast-iron pot or baking tray", "Tea towel or proofing basket"],
+    weeks: [
+      { title: "Week 1 — Your First Loaf", goal: "Knead, proof and bake a basic loaf.", skill: "Kneading, proofing and reading the dough", explain: "We start from the fundamentals: the water-to-flour ratio (hydration), kneading until the dough is smooth and elastic, and the windowpane test — stretching a piece of dough until it's translucent without tearing. We'll also learn to spot a proper proof with a finger poke.", mistake: "Rushing the proof — under-proofed dough gives a dense, heavy loaf.", practice: "Homemade White Bread, Homemade Pita" },
+      { title: "Week 2 — Flatbreads", goal: "Bake at high heat and get puff and bubbles.", skill: "High-heat baking", explain: "Flatbreads are the fastest route to success and confidence. The secret is very high heat — the oven or pan must be scorching so the steam catches the dough and blows it into a pocket. We'll also learn why you shouldn't roll them too thin.", mistake: "Putting them into a lukewarm oven — without high heat the pita won't puff into a pocket.", practice: "Focaccia, Laffa (Iraqi Pita), Za'atar Manakish" },
+      { title: "Week 3 — Enriched Doughs", goal: "Work with dough containing butter, eggs and sugar.", skill: "Enriched dough and braiding", explain: "Once you add fat and sugar, dough becomes rich and soft — but also rises more slowly, because fat slows both the gluten and the yeast. We'll learn to add butter gradually, to be patient with the proof, and to braid a beautiful challah.", mistake: "Adding all the butter at the start — the dough never develops gluten and stays sticky and slack.", practice: "Braided Challah, Brioche, Soft Dinner Rolls" },
+      { title: "Week 4 — Sourdough & Croissants", goal: "Take on the two summits of baking.", skill: "Sourdough and lamination", explain: "Sourdough is a live culture of wild yeast — slow, but it gives flavour and crust that commercial yeast can't. A croissant is lamination: layers of dough and butter created by repeated folds. Both demand patience and cold — literally.", mistake: "Working with warm butter in croissants — it absorbs into the dough and the layers disappear.", practice: "Sourdough Bread, Croissants" }
+    ],
+    outcomes: ["Knead and proof dough with confidence", "Bake flatbreads that puff up", "Make soft challah and brioche", "Take on sourdough and croissants"],
+    challenges: ["Bake the same loaf twice and compare: a one-hour proof versus an overnight proof in the fridge.", "Turn out a pita that puffs into a full pocket — no holes.", "Braid a challah with six strands instead of three.", "Grow a sourdough starter from scratch over a week and document it daily."],
+    concepts: [
+      { term: "Hydration", explain: "The percentage of water relative to flour. Wetter dough = airier bread with bigger holes, but harder to handle." },
+      { term: "Windowpane test", explain: "Stretch a piece of dough — if it stretches to a translucent sheet without tearing, the gluten is developed enough." },
+      { term: "Lamination", explain: "Repeated folding of dough around cold butter, creating hundreds of thin layers — the secret of the croissant." }
+    ],
+    tips: ["Weigh your flour — cups lie and change the hydration.", "Dough likes warmth; in a cold kitchen everything takes longer.", "Don't add flour just because the dough is sticky — give it time instead.", "A crisp crust loves steam: throw a little water into the bottom of the oven at the start of baking."],
+    next: "Want to impress guests? Try the 'Hosting & Parties' plan."
+  },
+  hosting: {
+    title: "Hosting & Parties",
+    tagline: "Host without the stress — a menu, timing and serving that actually work.",
+    intro: "Hosting isn't just cooking well — it's cooking smart. Most of the stress doesn't come from the recipes but from the timing: everything ready together, and you still calm when the guests walk in. This plan teaches you to build a sensible menu, to prep as much as possible in advance, and to serve in a way that looks great without extra effort.",
+    meta: "4 weeks · about 2–3 hours/week · difficulty: Medium",
+    tools: ["Large baking trays", "Nice serving dishes", "Storage containers", "A timer (or your phone)"],
+    weeks: [
+      { title: "Week 1 — Building a Menu", goal: "Put together a balanced menu that doesn't break you.", skill: "Menu planning and balance", explain: "A good menu is balanced on three axes: textures, heaviness and workload. The most important rule — only one challenging dish, everything else simple and familiar. We'll also learn to scale quantities by number of guests.", mistake: "Choosing three new, complex dishes for the same evening — a guaranteed route to stress.", practice: "Caprese Salad, Focaccia" },
+      { title: "Week 2 — Prepping Ahead", goal: "Know what to make the day before and what at the last minute.", skill: "Splitting make-ahead from last-minute", explain: "Every dish has a 'window' — how long it stays good. We'll learn to sort them: sauces, soups and stews improve the next day; salads, fish and fried food are made à la minute. We'll build a reverse schedule that starts from serving time and works backwards.", mistake: "Leaving all the work to the day of — even if you finish, you'll arrive exhausted.", practice: "Lasagna Bolognese, Pumpkin Soup" },
+      { title: "Week 3 — Dishes for a Shared Table", goal: "Serve large dishes everyone shares.", skill: "Family-style serving and centrepieces", explain: "One big centrepiece is always easier than individual plates — less work, more impact. We'll learn to pick dishes that look good in the tray, that still taste great lukewarm, and that are easy to scale to the number of guests.", mistake: "Serving carefully plated individual portions to 10 guests — you'll spend the whole evening assembling.", practice: "Whole Roast Chicken, Couscous with Vegetables" },
+      { title: "Week 4 — Dessert & the Finish", goal: "Close the meal strongly and without stress.", skill: "Make-ahead dessert and final timing", explain: "Dessert is what guests remember — and it should be one that's completely ready in advance. We'll learn to choose desserts that wait well in the fridge, and to plan the last half hour so you're sitting with your guests instead of disappearing into the kitchen.", mistake: "Choosing a dessert that has to be assembled à la minute — you'll miss the end of the meal.", practice: "Tiramisu, Pavlova" }
+    ],
+    outcomes: ["Build a balanced hosting menu", "Prep ahead and arrive relaxed", "Serve impressive centrepiece dishes", "Finish with a dessert made in advance"],
+    challenges: ["Write a menu for four guests in which only one dish is new to you.", "Build a reverse schedule from serving time backwards, and stick to it.", "Make one centrepiece dish that feeds 8 people.", "Host an evening where the entire dessert was made the day before."],
+    concepts: [
+      { term: "Reverse schedule", explain: "Start from serving time and work backwards: what needs to come out of the oven when, and what to prepare the day before." },
+      { term: "Dishes that wait well", explain: "Stews, soups and lasagnes improve while waiting; salads and fried food don't. Plan accordingly." },
+      { term: "Quantities per guest", explain: "A rough yardstick: 150–200 g of main course per person, and always one extra 'insurance' portion." }
+    ],
+    tips: ["Write your shopping list and schedule down — not in your head.", "Clean as you go; a clean kitchen at the start = a calm evening.", "Ask about allergies and preferences in advance.", "Always plan one dish that can be made entirely the day before."],
+    next: "Want to upgrade the dessert you serve? Move on to 'The Art of Desserts'."
   }
 };
 

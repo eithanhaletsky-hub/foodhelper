@@ -127,18 +127,22 @@ L.fr = {
   level: {
     beginner:  { title: "Débutant",       desc: "À peine entré dans la cuisine — je veux apprendre depuis le début." },
     hobbyist:  { title: "Amateur",         desc: "Je cuisine de temps en temps et connais les bases." },
+    homecook:  { title: "Cuisinier maison", desc: "Je cuisine pour la maison presque tous les jours et veux varier et progresser." },
     advanced:  { title: "Avancé",          desc: "À l'aise avec la plupart des recettes, je veux progresser." },
     patissier: { title: "Pâtissier",       desc: "Je maîtrise les techniques complexes et soigne les résultats." },
+    prochef:   { title: "Chef pro",        desc: "Je travaille (ou j'ai travaillé) en cuisine professionnelle, je cherche de la profondeur." },
     chef:      { title: "Chef pâtissier",  desc: "Niveau étoilé — en quête de défi et d'excellence." }
   },
   levelNote: {
     beginner:  "En tant que débutant, commencez par les recettes marquées « Facile » et ne sautez pas de semaines — chacune s'appuie sur la précédente.",
     hobbyist:  "En tant qu'amateur, sautez ce que vous maîtrisez déjà — mais essayez chaque exercice au moins une fois.",
+    homecook:  "En tant que cuisinier maison, intégrez une nouvelle recette par semaine à votre menu habituel au lieu d'ajouter de la charge — c'est ainsi que le progrès s'installe sans bousculer la routine.",
     advanced:  "En tant qu'avancé, mettez-vous au défi : choisissez les versions difficiles et essayez une semaine entière sans regarder la recette deux fois.",
     patissier: "En tant que pâtissier, visez la précision — pesez tout en grammes, mesurez les températures et notez chaque petit changement.",
+    prochef:   "En tant que chef pro, visez directement la lacune : choisissez la semaine que vous connaissez le moins, réalisez-la sans recette, puis enseignez-la à quelqu'un.",
     chef:      "Au niveau chef pâtissier, prenez chaque semaine comme un défi : ajoutez votre touche personnelle à chaque recette et enseignez à quelqu'un — enseigner, c'est maîtriser."
   },
-  dim: { practice: "Fondamentaux", technique: "Technique", creative: "Créativité", speed: "Rapidité", world: "Cuisines du monde", healthy: "Sain" },
+  dim: { practice: "Fondamentaux", technique: "Technique", creative: "Créativité", speed: "Rapidité", world: "Cuisines du monde", healthy: "Sain", desserts: "Desserts", bread: "Pains", hosting: "Réception" },
   city: {
     "tel-aviv": "Tel Aviv-Jaffa", jerusalem: "Jérusalem", "ramat-gan": "Ramat Gan", givatayim: "Guivatayim",
     herzliya: "Herzliya", "petah-tikva": "Petah Tikva", rishon: "Rishon LeZion", holon: "Holon", "bat-yam": "Bat Yam",
@@ -159,7 +163,10 @@ L.fr = {
     { q: "Quand avez-vous le plus envie de cuisiner ?", a: ["Un week-end tranquille, sans pression", "Quand je veux apprendre quelque chose en profondeur", "Quand je reçois et veux impressionner", "Un soir chargé où il faut manger vite"] },
     { q: "Quel rêve culinaire vous parle le plus ?", a: ["Cuisiner des plats du monde entier — Italie, Asie, Moyen-Orient", "Manger sain et équilibré sans renoncer au goût", "Être le pâtissier attitré de la famille", "Développer des plats signature originaux"] },
     { q: "Que choisiriez-vous pour un dîner parfait ?", a: ["Pad thaï, curry ou un autre plat ethnique", "Un bol coloré de légumes, quinoa et protéines", "Un plat à la technique précise et complexe", "Quelque chose de bon prêt en 20 minutes"] },
-    { q: "Qu'est-ce qui compte le plus dans un plat ?", a: ["Des saveurs authentiques d'un autre pays", "La valeur nutritive et l'équilibre", "Un look impressionnant et soigné", "La simplicité et la réussite assurée"] }
+    { q: "Qu'est-ce qui compte le plus dans un plat ?", a: ["Des saveurs authentiques d'un autre pays", "La valeur nutritive et l'équilibre", "Un look impressionnant et soigné", "La simplicité et la réussite assurée"] },
+    { q: "Qu'avez-vous le plus envie de préparer maintenant ?", a: ["Un dessert impressionnant", "Du pain chaud sorti du four", "Un repas pour des invités", "Quelque chose de rapide rien que pour moi"] },
+    { q: "Qu'est-ce qui vous comble le plus en cuisine ?", a: ["Le moment où la mousse est parfaite", "L'odeur du pain qui cuit à la maison", "Voir les invités se régaler", "Découvrir une nouvelle saveur du monde"] },
+    { q: "À quel défi vous inscririez-vous ?", a: ["Réussir des macarons parfaits", "Créer un levain et cuire avec", "Recevoir 10 personnes pour un repas complet", "Une semaine entière de cuisine saine"] }
   ],
   recipe: {
     "dessert-mousse-chocolate": "Mousse au chocolat classique", "dessert-panna-cotta": "Panna cotta à la vanille",
@@ -378,6 +385,72 @@ L.fr.plans = {
     ],
     tips: ["Buvez beaucoup d'eau — la soif se confond parfois avec la faim.", "Sain n'est pas « sans gras » — les bonnes graisses (huile d'olive, avocat, noix) comptent.", "Cuisinez à l'avance pour ne pas céder à la livraison un soir chargé.", "De la couleur dans l'assiette = variété de nutriments. Visez une assiette colorée."],
     next: "Envie de plus de variété ? Combinez avec le plan « Voyage du monde » pour une cuisine saine du monde entier."
+  },
+  desserts: {
+    title: "L'art des desserts",
+    tagline: "Mousses, tartes et meringues dignes d'une pâtisserie.",
+    intro: "Si votre moment préféré du repas, c'est la fin — ce plan est pour vous. Nous verrons les quatre piliers du dessert : crèmes et mousses stables, pâte sucrée et tartes, meringue et macarons, puis montage et présentation. Ces techniques reviennent dans presque tous les desserts, et une fois acquises, vous pourrez ouvrir n'importe quelle recette de dessert et réussir.",
+    meta: "4 semaines · env. 3 h/semaine · niveau : moyen",
+    tools: ["Robot ou fouet électrique", "Poches et douilles", "Thermomètre de cuisine", "Moule à tarte"],
+    weeks: [
+      { title: "Semaine 1 — Crèmes et mousses", goal: "Réaliser une mousse stable et aérienne qui ne retombe pas.", skill: "Stabiliser une mousse et incorporer", explain: "Une bonne mousse équilibre air et tenue. On apprend à monter la crème en « bec d'oiseau » (et pas plus), à incorporer délicatement pour garder l'air, et quand la gélatine est nécessaire par rapport au chocolat qui suffit parfois à figer.", mistake: "Incorporer brutalement ou trop monter la crème — la mousse perd son air ou devient granuleuse.", practice: "Mousse au chocolat classique, Mousse au citron" },
+      { title: "Semaine 2 — Pâte sucrée et tartes", goal: "Cuire un fond de tarte croustillant qui ne détrempe pas.", skill: "Pâte sucrée et cuisson à blanc", explain: "La pâte sucrée est plus fragile que la pâte ordinaire à cause du sucre. On apprend à travailler au beurre froid, à faire reposer la pâte au frais pour qu'elle ne rétracte pas, et à cuire à blanc avec des poids pour un fond qui reste croustillant même garni.", mistake: "Sauter le repos au frais — la pâte rétracte dans le moule et les bords s'affaissent.", practice: "Tarte au citron, Crumble aux pommes" },
+      { title: "Semaine 3 — Meringue et macarons", goal: "Maîtriser le montage des blancs et le macaronage.", skill: "Meringue et macaronage", explain: "La meringue est la base de la pavlova, de certaines mousses et des macarons. On apprend pourquoi le bol doit être parfaitement dégraissé, comment distinguer « bec souple » et « bec ferme », et ce qu'est le macaronage — ce pliage précis qui décide si le macaron sort lisse avec une « collerette » ou craquelé.", mistake: "Une goutte de jaune ou de gras dans les blancs — la meringue ne montera tout simplement pas.", practice: "Macarons, Pavlova" },
+      { title: "Semaine 4 — Votre dessert signature", goal: "Monter et dresser un dessert de niveau restaurant.", skill: "Montage, pochage et dressage", explain: "On réunit tout : garnissage à la crème, pochage précis et montage en couches. On apprend aussi la règle d'or des desserts — monter au plus près du service pour que le croustillant reste croustillant et le froid reste froid.", mistake: "Monter des heures à l'avance — le fond se détrempe et le dessert perd sa texture.", practice: "Profiteroles, Tiramisu" }
+    ],
+    outcomes: ["Réaliser une mousse stable et aérienne", "Cuire une tarte au fond croustillant", "Maîtriser meringue et macarons", "Monter et dresser un dessert impressionnant"],
+    challenges: ["Faites la même mousse une fois avec gélatine, une fois sans, et comparez la tenue.", "Cuisez le fond de tarte une fois avec poids et une fois sans — observez la différence.", "Sortez des macarons à collerette régulière — photographiez et comparez deux fournées.", "Montez un dessert dans un verre transparent pour que chaque couche se voie."],
+    concepts: [
+      { term: "Meringue", explain: "Blancs montés avec du sucre. Base de la pavlova, des macarons et de certaines mousses — très sensible au gras." },
+      { term: "Ganache", explain: "Chocolat et crème dans un rapport donné. Plus de crème = une sauce ; plus de chocolat = une garniture ferme." },
+      { term: "Cuisson à blanc", explain: "Cuire le fond de tarte seul, avec des poids, avant la garniture — pour qu'il reste croustillant." }
+    ],
+    tips: ["Des œufs à température ambiante montent mieux.", "Pesez en grammes — en pâtisserie, un petit écart change le résultat.", "Réfrigérez entre les étapes ; la plupart des desserts récompensent la patience.", "Goûtez la crème avant le montage — après, impossible de corriger."],
+    next: "Envie de faire aussi du pain ? Passez au plan « Le monde des pains »."
+  },
+  bread: {
+    title: "Le monde des pains",
+    tagline: "Du simple pain blanc jusqu'au levain et aux croissants.",
+    intro: "Peu de choses sont aussi satisfaisantes que sortir du four un pain chaud que vous avez fait. Ce plan vous mène du pain le plus basique aux deux sommets de la boulangerie : le levain et le croissant. On apprend à lire la pâte avec les mains — quand elle est prête, quand elle a assez poussé, et pourquoi la même recette se comporte autrement en été et en hiver.",
+    meta: "4 semaines · env. 3–4 h/semaine · niveau : moyen-élevé",
+    tools: ["Balance de cuisine", "Corne à pâte", "Cocotte en fonte ou plaque", "Torchon ou banneton"],
+    weeks: [
+      { title: "Semaine 1 — Votre premier pain", goal: "Pétrir, faire pousser et cuire une miche de base.", skill: "Pétrissage, pousse et lecture de la pâte", explain: "On part des fondamentaux : le rapport eau/farine (hydratation), le pétrissage jusqu'à une pâte lisse et élastique, et le test de la fenêtre — étirer un morceau jusqu'à la transparence sans qu'il se déchire. On apprend aussi à repérer une bonne pousse avec le test du doigt.", mistake: "Précipiter la pousse — une pâte sous-poussée donne un pain dense et lourd.", practice: "Pain blanc maison, Pitas maison" },
+      { title: "Semaine 2 — Pains plats", goal: "Cuire à très haute température pour obtenir bulles et gonflant.", skill: "Cuisson à haute température", explain: "Les pains plats sont la voie la plus rapide vers la réussite et la confiance. Le secret, c'est une chaleur très forte — le four ou la poêle doivent être brûlants pour que la vapeur saisisse la pâte et la gonfle en poche. On verra aussi pourquoi il ne faut pas trop les abaisser.", mistake: "Enfourner dans un four tiède — sans forte chaleur, la pita ne gonflera pas en poche.", practice: "Focaccia, Laffa (pita irakienne), Manakish au zaatar" },
+      { title: "Semaine 3 — Pâtes enrichies", goal: "Travailler une pâte au beurre, aux œufs et au sucre.", skill: "Pâte enrichie et tressage", explain: "Dès qu'on ajoute matière grasse et sucre, la pâte devient riche et moelleuse — mais pousse aussi plus lentement, car le gras freine le gluten et la levure. On apprend à ajouter le beurre progressivement, à être patient sur la pousse, et à tresser une belle halla.", mistake: "Ajouter tout le beurre au début — la pâte ne développe jamais son gluten et reste collante et molle.", practice: "Halla tressée, Brioche, Petits pains moelleux" },
+      { title: "Semaine 4 — Levain et croissants", goal: "S'attaquer aux deux sommets de la boulangerie.", skill: "Levain et laminage (tourage)", explain: "Le levain est une culture vivante de levures sauvages — lent, mais il donne un goût et une croûte que la levure industrielle ne peut pas offrir. Le croissant, c'est le tourage : des couches de pâte et de beurre créées par des pliages répétés. Les deux exigent patience et froid — littéralement.", mistake: "Travailler avec du beurre trop chaud pour les croissants — il s'absorbe dans la pâte et les couches disparaissent.", practice: "Pain au levain, Croissants" }
+    ],
+    outcomes: ["Pétrir et faire pousser une pâte en confiance", "Cuire des pains plats qui gonflent", "Réussir halla et brioche moelleuses", "S'attaquer au levain et aux croissants"],
+    challenges: ["Cuisez la même miche deux fois et comparez : une pousse d'une heure contre une nuit au frigo.", "Sortez une pita qui gonfle en poche complète — sans trou.", "Tressez une halla à six brins au lieu de trois.", "Créez un levain de zéro sur une semaine et documentez-le chaque jour."],
+    concepts: [
+      { term: "Hydratation", explain: "Le pourcentage d'eau par rapport à la farine. Une pâte plus humide = un pain plus aéré à grosses alvéoles, mais plus difficile à manier." },
+      { term: "Test de la fenêtre", explain: "Étirez un morceau de pâte — s'il s'étire en voile translucide sans se déchirer, le gluten est suffisamment développé." },
+      { term: "Laminage (tourage)", explain: "Pliages répétés de la pâte autour d'un beurre froid, créant des centaines de fines couches — le secret du croissant." }
+    ],
+    tips: ["Pesez la farine — les verres mentent et changent l'hydratation.", "La pâte aime la chaleur ; dans une cuisine froide tout prend plus de temps.", "N'ajoutez pas de farine parce que la pâte colle — donnez-lui du temps à la place.", "Une croûte croustillante aime la vapeur : jetez un peu d'eau au fond du four en début de cuisson."],
+    next: "Envie d'impressionner vos invités ? Essayez le plan « Recevoir et fêter »."
+  },
+  hosting: {
+    title: "Recevoir et fêter",
+    tagline: "Recevoir sans stress — un menu, un timing et un service qui fonctionnent.",
+    intro: "Recevoir, ce n'est pas seulement bien cuisiner — c'est cuisiner malin. L'essentiel du stress ne vient pas des recettes mais du timing : tout prêt en même temps, et vous encore serein quand les invités arrivent. Ce plan vous apprend à bâtir un menu sensé, à préparer un maximum à l'avance et à servir de façon jolie sans effort superflu.",
+    meta: "4 semaines · env. 2–3 h/semaine · niveau : moyen",
+    tools: ["Grands plats à four", "Beaux plats de service", "Boîtes de conservation", "Un minuteur (ou votre téléphone)"],
+    weeks: [
+      { title: "Semaine 1 — Bâtir un menu", goal: "Composer un menu équilibré qui ne vous épuise pas.", skill: "Composition et équilibre du menu", explain: "Un bon menu s'équilibre sur trois axes : textures, lourdeur et charge de travail. La règle la plus importante — un seul plat exigeant, tout le reste simple et familier. On apprend aussi à calculer les quantités selon le nombre d'invités.", mistake: "Choisir trois plats nouveaux et complexes le même soir — la route assurée vers le stress.", practice: "Salade caprese, Focaccia" },
+      { title: "Semaine 2 — Préparer à l'avance", goal: "Savoir quoi faire la veille et quoi au dernier moment.", skill: "Répartir l'avance et le dernier moment", explain: "Chaque plat a sa « fenêtre » — le temps pendant lequel il reste bon. On apprend à trier : sauces, soupes et mijotés s'améliorent le lendemain ; salades, poissons et fritures se font à la minute. On bâtit un rétroplanning qui part de l'heure du service.", mistake: "Laisser tout le travail au jour même — même si vous finissez, vous serez épuisé.", practice: "Lasagnes bolognaises, Soupe de potiron" },
+      { title: "Semaine 3 — Plats à partager", goal: "Servir de grands plats que tout le monde partage.", skill: "Service familial et pièces maîtresses", explain: "Une grande pièce maîtresse est toujours plus simple que des assiettes individuelles — moins de travail, plus d'effet. On apprend à choisir des plats qui rendent bien dans le plat, qui restent bons même tièdes, et qui s'agrandissent facilement selon le nombre d'invités.", mistake: "Servir des assiettes individuelles soignées à 10 invités — vous passerez la soirée à dresser.", practice: "Poulet rôti entier, Couscous aux légumes" },
+      { title: "Semaine 4 — Le dessert et la fin", goal: "Terminer le repas en beauté et sans stress.", skill: "Dessert préparé à l'avance et timing final", explain: "Le dessert est ce dont les invités se souviennent — et il vaut mieux qu'il soit entièrement prêt d'avance. On apprend à choisir des desserts qui attendent bien au frais, et à planifier la dernière demi-heure pour rester à table au lieu de disparaître en cuisine.", mistake: "Choisir un dessert à monter à la minute — vous raterez la fin du repas.", practice: "Tiramisu, Pavlova" }
+    ],
+    outcomes: ["Bâtir un menu de réception équilibré", "Préparer à l'avance et arriver détendu", "Servir de belles pièces maîtresses", "Terminer par un dessert préparé d'avance"],
+    challenges: ["Écrivez un menu pour quatre invités où un seul plat vous est nouveau.", "Bâtissez un rétroplanning depuis l'heure du service et tenez-vous-y.", "Réalisez une pièce maîtresse qui nourrit 8 personnes.", "Recevez un soir où tout le dessert a été fait la veille."],
+    concepts: [
+      { term: "Rétroplanning", explain: "On part de l'heure du service et on remonte : ce qui doit sortir du four à quel moment, et ce qu'on prépare la veille." },
+      { term: "Plats qui attendent bien", explain: "Mijotés, soupes et lasagnes s'améliorent en attendant ; salades et fritures non. Planifiez en conséquence." },
+      { term: "Quantités par invité", explain: "Repère grossier : 150–200 g de plat principal par personne, et toujours une portion « assurance » en plus." }
+    ],
+    tips: ["Écrivez liste de courses et planning — pas dans votre tête.", "Nettoyez au fur et à mesure ; une cuisine propre au départ = une soirée sereine.", "Renseignez-vous à l'avance sur les allergies et les préférences.", "Prévoyez toujours un plat entièrement réalisable la veille."],
+    next: "Envie d'améliorer le dessert que vous servez ? Passez au plan « L'art des desserts »."
   }
 };
 

@@ -127,18 +127,22 @@ L.es = {
   level: {
     beginner:  { title: "Principiante",   desc: "Apenas he entrado en la cocina — quiero aprender desde cero." },
     hobbyist:  { title: "Aficionado",     desc: "Cocino de vez en cuando y conozco lo básico." },
+    homecook:  { title: "Cocinero de casa", desc: "Cocino para casa casi a diario y quiero variar y mejorar." },
     advanced:  { title: "Avanzado",       desc: "Cómodo con la mayoría de recetas y quiero mejorar." },
     patissier: { title: "Pastelero",      desc: "Domino técnicas complejas y cuido los resultados." },
+    prochef:   { title: "Chef profesional", desc: "Trabajo (o trabajé) en cocina profesional y busco profundidad." },
     chef:      { title: "Chef pastelero", desc: "Nivel Michelin — busco reto y excelencia." }
   },
   levelNote: {
     beginner:  "Como principiante, empieza por las recetas marcadas «Fácil» y no te saltes semanas — cada una se apoya en la anterior.",
     hobbyist:  "Como aficionado, sáltate lo que ya dominas — pero prueba cada ejercicio al menos una vez.",
+    homecook:  "Como cocinero de casa, integra una receta nueva por semana en tu menú habitual en vez de añadir carga — así el progreso se asienta sin romper la rutina.",
     advanced:  "Como avanzado, ponte a prueba: elige las versiones difíciles e intenta una semana entera sin mirar la receta dos veces.",
     patissier: "Como pastelero, busca la precisión — pesa todo en gramos, mide temperaturas y anota cada pequeño cambio.",
+    prochef:   "Como chef profesional, ve directo a la carencia: elige la semana que menos dominas, cocínala sin receta y luego enséñasela a alguien.",
     chef:      "A nivel de chef pastelero, toma cada semana como un reto: añade tu toque personal a cada receta y enseña a alguien — enseñar es dominar."
   },
-  dim: { practice: "Fundamentos", technique: "Técnica", creative: "Creatividad", speed: "Rapidez", world: "Cocinas del mundo", healthy: "Saludable" },
+  dim: { practice: "Fundamentos", technique: "Técnica", creative: "Creatividad", speed: "Rapidez", world: "Cocinas del mundo", healthy: "Saludable", desserts: "Postres", bread: "Panes", hosting: "Anfitrión" },
   city: {
     "tel-aviv": "Tel Aviv-Yafo", jerusalem: "Jerusalén", "ramat-gan": "Ramat Gan", givatayim: "Guivatáyim",
     herzliya: "Herzliya", "petah-tikva": "Petaj Tikva", rishon: "Rishon LeZion", holon: "Holón", "bat-yam": "Bat Yam",
@@ -159,7 +163,10 @@ L.es = {
     { q: "¿Cuándo te apetece más cocinar?", a: ["Un fin de semana tranquilo, sin prisas", "Cuando quiero aprender algo a fondo", "Cuando recibo invitados y quiero impresionar", "Una noche ocupada cuando hay que comer rápido"] },
     { q: "¿Qué sueño culinario te llama más?", a: ["Cocinar platos de todo el mundo — Italia, Asia, Oriente Medio", "Comer sano y equilibrado sin renunciar al sabor", "Ser el repostero oficial de la familia", "Crear platos con firma propia"] },
     { q: "¿Qué elegirías para una cena perfecta?", a: ["Pad thai, curry u otro plato étnico", "Un bol colorido de verduras, quinoa y proteína", "Un plato con técnica precisa y compleja", "Algo rico listo en 20 minutos"] },
-    { q: "¿Qué es lo más importante en un plato?", a: ["Sabores auténticos de otro país", "El valor nutricional y el equilibrio", "Un aspecto impresionante y cuidado", "La sencillez y el éxito asegurado"] }
+    { q: "¿Qué es lo más importante en un plato?", a: ["Sabores auténticos de otro país", "El valor nutricional y el equilibrio", "Un aspecto impresionante y cuidado", "La sencillez y el éxito asegurado"] },
+    { q: "¿Qué te apetece más preparar ahora mismo?", a: ["Un postre impresionante", "Pan caliente recién horneado", "Una comida para invitados", "Algo rápido solo para mí"] },
+    { q: "¿Qué es lo que más te llena en la cocina?", a: ["El momento en que la mousse sale perfecta", "El olor a pan horneándose en casa", "Ver a los invitados disfrutar de la comida", "Descubrir un sabor nuevo del mundo"] },
+    { q: "¿A qué reto te apuntarías?", a: ["Clavar unos macarons perfectos", "Criar una masa madre y hornear con ella", "Recibir a 10 personas para una comida completa", "Una semana entera de comida sana"] }
   ],
   recipe: {
     "dessert-mousse-chocolate": "Mousse de chocolate clásica", "dessert-panna-cotta": "Panna cotta de vainilla",
@@ -378,6 +385,72 @@ L.es.plans = {
     ],
     tips: ["Bebe mucha agua — la sed a veces se confunde con el hambre.", "Sano no es « sin grasa »: las grasas buenas (aceite de oliva, aguacate, frutos secos) importan.", "Cocina por adelantado para no caer en el domicilio una noche ajetreada.", "Color en el plato = variedad de nutrientes. Busca un plato colorido."],
     next: "¿Quieres más variedad? Combínalo con el plan « Viaje por el mundo » para una cocina sana de todo el mundo."
+  },
+  desserts: {
+    title: "El arte de los postres",
+    tagline: "Mousses, tartas y merengues dignos de una pastelería.",
+    intro: "Si tu parte favorita de la comida es el final, este plan es para ti. Veremos los cuatro pilares del mundo del postre: cremas y mousses estables, masa dulce y tartas, merengue y macarons, y por último montaje y presentación. Estas técnicas se repiten en casi todos los postres, y una vez que las tengas en las manos podrás abrir casi cualquier receta de postre y triunfar.",
+    meta: "4 semanas · aprox. 3 h/semana · nivel: medio",
+    tools: ["Batidora o varillas eléctricas", "Mangas y boquillas", "Termómetro de cocina", "Molde de tarta"],
+    weeks: [
+      { title: "Semana 1 — Cremas y mousses", goal: "Hacer una mousse estable y aireada que no se baje.", skill: "Estabilizar la mousse e integrar", explain: "Una buena mousse equilibra aire y firmeza. Aprenderemos a montar la nata a « picos suaves » (y no más), a integrar con suavidad para que el aire se quede, y cuándo hace falta gelatina frente a cuándo el propio chocolate basta para cuajarla.", mistake: "Integrar con fuerza o sobrebatir la nata — la mousse pierde aire o se vuelve granulosa.", practice: "Mousse de chocolate clásica, Mousse de limón" },
+      { title: "Semana 2 — Masa dulce y tartas", goal: "Hornear una base de tarta crujiente que no se humedezca.", skill: "Masa quebrada dulce y horneado en blanco", explain: "La masa dulce (pâte sucrée) es más frágil que la normal por el azúcar. Aprenderemos a trabajar con mantequilla fría, a enfriar la masa antes de hornear para que no encoja, y a hornear en blanco con pesos para una base que siga crujiente incluso con relleno.", mistake: "Saltarse el enfriado antes de hornear — la masa encoge en el molde y las paredes de la tarta se caen.", practice: "Tarta de limón, Crumble de manzana" },
+      { title: "Semana 3 — Merengue y macarons", goal: "Dominar el montado de claras y el macaronage.", skill: "Merengue y macaronage", explain: "El merengue es la base de la pavlova, de algunas mousses y de los macarons. Veremos por qué el bol debe estar totalmente libre de grasa, cómo distinguir « pico suave » de « pico firme », y qué es el macaronage — ese plegado preciso que decide si el macaron sale liso con « pie » o agrietado.", mistake: "Una gota de yema o grasa en las claras — el merengue simplemente no montará.", practice: "Macarons, Pavlova" },
+      { title: "Semana 4 — Tu postre con firma", goal: "Montar y servir un postre de nivel restaurante.", skill: "Montaje, escudillado y emplatado", explain: "Ahora lo unimos todo: relleno con crema, escudillado preciso y montaje por capas. Aprenderemos también la regla de oro de los postres — montar cerca del servicio para que lo crujiente siga crujiente y lo frío siga frío.", mistake: "Montar con horas de antelación — la base se humedece con la crema y el postre pierde textura.", practice: "Profiteroles, Tiramisú" }
+    ],
+    outcomes: ["Hacer una mousse estable y aireada", "Hornear una tarta con base crujiente", "Dominar merengue y macarons", "Montar y servir un postre impresionante"],
+    challenges: ["Haz la misma mousse una vez con gelatina y otra sin, y compara cómo aguantan.", "Hornea la base de tarta una vez con pesos y otra sin — mira la diferencia.", "Saca macarons con un « pie » uniforme — fotografía y compara dos tandas.", "Monta un postre en un vaso transparente para que se vea cada capa desde fuera."],
+    concepts: [
+      { term: "Merengue", explain: "Claras montadas con azúcar. Base de la pavlova, los macarons y algunas mousses — y muy sensible a la grasa." },
+      { term: "Ganache", explain: "Chocolate y nata en una proporción fija. Más nata = una salsa; más chocolate = un relleno firme." },
+      { term: "Horneado en blanco", explain: "Hornear la base de la tarta sola, con pesos, antes del relleno — para que quede crujiente." }
+    ],
+    tips: ["Los huevos a temperatura ambiente montan mejor.", "Pesa en gramos — en postres una pequeña desviación cambia el resultado.", "Enfría entre etapas; casi todos los postres premian la paciencia.", "Prueba la crema antes de montar — después ya no se puede corregir."],
+    next: "¿Quieres hornear pan también? Pasa al plan « El mundo de los panes »."
+  },
+  bread: {
+    title: "El mundo de los panes",
+    tagline: "Desde un pan blanco sencillo hasta la masa madre y los croissants.",
+    intro: "Pocas cosas satisfacen tanto como sacar del horno un pan caliente hecho por ti. Este plan te lleva desde el pan más básico hasta las dos cumbres de la panadería: la masa madre y el croissant. Aprenderemos a leer la masa con las manos — cuándo está lista, cuándo ha fermentado lo suficiente y por qué la misma receta se comporta distinto en verano y en invierno.",
+    meta: "4 semanas · aprox. 3–4 h/semana · nivel: medio-alto",
+    tools: ["Báscula de cocina", "Rasqueta de masa", "Olla de hierro fundido o bandeja", "Paño o banneton"],
+    weeks: [
+      { title: "Semana 1 — Tu primer pan", goal: "Amasar, fermentar y hornear una hogaza básica.", skill: "Amasado, fermentación y lectura de la masa", explain: "Empezamos por lo esencial: la proporción de agua y harina (hidratación), el amasado hasta que la masa esté lisa y elástica, y la prueba de la membrana — estirar un trozo hasta que se vea translúcido sin romperse. También aprenderemos a detectar una buena fermentación con el test del dedo.", mistake: "Acelerar la fermentación — una masa poco fermentada da un pan denso y pesado.", practice: "Pan blanco casero, Pan de pita casero" },
+      { title: "Semana 2 — Panes planos", goal: "Hornear a alta temperatura y lograr burbujas y subida.", skill: "Horneado a alta temperatura", explain: "Los panes planos son el camino más rápido al éxito y a la confianza. El secreto es un calor muy fuerte — el horno o la sartén deben estar ardiendo para que el vapor atrape la masa y la infle formando un bolsillo. Veremos también por qué no conviene estirarlos demasiado finos.", mistake: "Meterlos en un horno tibio — sin calor fuerte la pita no se inflará en bolsillo.", practice: "Focaccia, Laffa (pan iraquí), Manakish de zaatar" },
+      { title: "Semana 3 — Masas enriquecidas", goal: "Trabajar masa con mantequilla, huevos y azúcar.", skill: "Masa enriquecida y trenzado", explain: "Al añadir grasa y azúcar, la masa se vuelve rica y tierna — pero también fermenta más despacio, porque la grasa frena tanto el gluten como la levadura. Aprenderemos a añadir la mantequilla poco a poco, a tener paciencia con la fermentación y a trenzar una jalá bonita.", mistake: "Añadir toda la mantequilla al principio — la masa nunca desarrolla gluten y queda pegajosa y floja.", practice: "Jalá trenzada, Brioche, Panecillos blandos" },
+      { title: "Semana 4 — Masa madre y croissants", goal: "Enfrentarte a las dos cumbres de la panadería.", skill: "Masa madre y laminado", explain: "La masa madre es un cultivo vivo de levaduras salvajes: lenta, pero da un sabor y una corteza que la levadura industrial no consigue. El croissant es laminado: capas de masa y mantequilla creadas con pliegues repetidos. Ambos exigen paciencia y frío — literalmente.", mistake: "Trabajar con mantequilla templada en los croissants — se absorbe en la masa y las capas desaparecen.", practice: "Pan de masa madre, Croissants" }
+    ],
+    outcomes: ["Amasar y fermentar con confianza", "Hornear panes planos que se inflan", "Hacer jalá y brioche tiernos", "Enfrentarte a la masa madre y los croissants"],
+    challenges: ["Hornea la misma hogaza dos veces y compara: una hora de fermentación frente a toda la noche en la nevera.", "Consigue una pita que se infle en un bolsillo completo — sin agujeros.", "Trenza una jalá de seis cabos en vez de tres.", "Cría una masa madre desde cero durante una semana y documéntala cada día."],
+    concepts: [
+      { term: "Hidratación", explain: "El porcentaje de agua respecto a la harina. Una masa más húmeda = un pan más aireado con alveolos grandes, pero más difícil de manejar." },
+      { term: "Prueba de la membrana", explain: "Estira un trozo de masa — si se estira en una lámina translúcida sin romperse, el gluten está suficientemente desarrollado." },
+      { term: "Laminado", explain: "Pliegues repetidos de masa alrededor de mantequilla fría, creando cientos de capas finas — el secreto del croissant." }
+    ],
+    tips: ["Pesa la harina — los vasos engañan y cambian la hidratación.", "La masa quiere calor; en una cocina fría todo tarda más.", "No añadas harina solo porque la masa esté pegajosa — dale tiempo en su lugar.", "Una corteza crujiente quiere vapor: echa un poco de agua al fondo del horno al empezar."],
+    next: "¿Quieres impresionar a los invitados? Prueba el plan « Recibir y celebrar »."
+  },
+  hosting: {
+    title: "Recibir y celebrar",
+    tagline: "Recibir sin estrés — un menú, unos tiempos y un servicio que funcionan.",
+    intro: "Recibir no es solo cocinar bien — es cocinar con cabeza. La mayor parte del estrés no viene de las recetas sino de los tiempos: que todo esté listo a la vez y que tú sigas tranquilo cuando entran los invitados. Este plan te enseña a construir un menú sensato, a adelantar todo lo posible y a servir de forma vistosa sin esfuerzo de más.",
+    meta: "4 semanas · aprox. 2–3 h/semana · nivel: medio",
+    tools: ["Bandejas de horno grandes", "Fuentes de servir bonitas", "Recipientes de conservación", "Un temporizador (o el móvil)"],
+    weeks: [
+      { title: "Semana 1 — Construir el menú", goal: "Componer un menú equilibrado que no te hunda.", skill: "Planificación y equilibrio del menú", explain: "Un buen menú se equilibra en tres ejes: texturas, pesadez y carga de trabajo. La regla más importante — solo un plato exigente, todo lo demás sencillo y conocido. Aprenderemos también a calcular cantidades según el número de invitados.", mistake: "Elegir tres platos nuevos y complejos para la misma noche — el camino seguro al estrés.", practice: "Ensalada caprese, Focaccia" },
+      { title: "Semana 2 — Adelantar trabajo", goal: "Saber qué hacer la víspera y qué en el último momento.", skill: "Separar lo adelantable de lo del momento", explain: "Cada plato tiene su « ventana »: cuánto aguanta bien. Aprenderemos a clasificar: salsas, sopas y guisos mejoran al día siguiente; ensaladas, pescados y fritos se hacen al momento. Construiremos un calendario inverso que arranca en la hora de servir y va hacia atrás.", mistake: "Dejar todo el trabajo para el día del evento — aunque llegues, llegarás agotado.", practice: "Lasaña boloñesa, Sopa de calabaza" },
+      { title: "Semana 3 — Platos para compartir", goal: "Servir platos grandes que todos comparten.", skill: "Servicio familiar y platos centrales", explain: "Un gran plato central siempre es más fácil que raciones individuales — menos trabajo, más efecto. Aprenderemos a elegir platos que lucen bien en la fuente, que siguen ricos incluso templados y que se amplían fácilmente según el número de invitados.", mistake: "Servir raciones individuales muy emplatadas a 10 invitados — pasarás toda la noche montando.", practice: "Pollo asado entero, Cuscús con verduras" },
+      { title: "Semana 4 — El postre y el cierre", goal: "Cerrar la comida fuerte y sin estrés.", skill: "Postre adelantado y tiempos finales", explain: "El postre es lo que los invitados recordarán — y conviene que esté totalmente listo de antemano. Aprenderemos a elegir postres que esperan bien en la nevera y a planificar la última media hora para estar sentado con los invitados en vez de desaparecer en la cocina.", mistake: "Elegir un postre que hay que montar al momento — te perderás el final de la comida.", practice: "Tiramisú, Pavlova" }
+    ],
+    outcomes: ["Construir un menú de anfitrión equilibrado", "Adelantar trabajo y llegar relajado", "Servir platos centrales impresionantes", "Cerrar con un postre hecho de antemano"],
+    challenges: ["Escribe un menú para cuatro invitados en el que solo un plato sea nuevo para ti.", "Construye un calendario inverso desde la hora de servir y cúmplelo.", "Haz un plato central que dé de comer a 8 personas.", "Organiza una noche en la que todo el postre se hizo el día anterior."],
+    concepts: [
+      { term: "Calendario inverso", explain: "Se parte de la hora de servir y se va hacia atrás: qué debe salir del horno y cuándo, y qué preparar la víspera." },
+      { term: "Platos que esperan bien", explain: "Guisos, sopas y lasañas mejoran esperando; ensaladas y fritos no. Planifica en consecuencia." },
+      { term: "Cantidades por invitado", explain: "Una referencia aproximada: 150–200 g de plato principal por persona, y siempre una ración « de seguro » extra." }
+    ],
+    tips: ["Escribe la lista de la compra y el horario — no los lleves en la cabeza.", "Limpia sobre la marcha; una cocina limpia al empezar = una noche tranquila.", "Pregunta por alergias y preferencias con antelación.", "Planifica siempre un plato que pueda hacerse entero la víspera."],
+    next: "¿Quieres mejorar el postre que sirves? Pasa al plan « El arte de los postres »."
   }
 };
 
