@@ -51,8 +51,10 @@ function applyLang() {
   renderAuthArea();
   buildCategoryFilters();
   renderRecipes();
+  renderRecipesNote();
   buildLevels();
   renderSavedCourse();
+  renderPricingInfo();
   buildCitySelect();
   if (activeCity) {
     const btn = Array.from(document.querySelectorAll("#city-select .city-btn"))
@@ -252,6 +254,8 @@ function renderRecipes() {
     };
     grid.appendChild(card);
   });
+
+  renderRecipesNote();   // ההערה משתנה לפי סטטוס המנוי
 }
 
 function openRecipe(id) {
@@ -273,6 +277,7 @@ function openRecipe(id) {
       <div class="paywall">
         <p class="paywall-text">${t("lockedRecipeText")}</p>
         <button class="btn-primary" id="mc-unlock">${t("unlockAllBtn")}</button>
+        <p class="pay-note">${t("unlockAllNote")}</p>
         ${Auth.isLoggedIn() ? "" : `<p class="paywall-login">${t("loginToBuy")}</p>`}
         <p class="demo-note">${t("demoChargeNote")}</p>
       </div>`;
@@ -403,6 +408,47 @@ function goBack() {
   renderQuestion();
 }
 
+/* ---------- איורי SVG לשבועות הקורס (עצמאיים, ללא קבצים חיצוניים) ---------- */
+const SVG = (p) => `<svg class="week-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${p}</svg>`;
+const ICONS = {
+  scale:   SVG('<path d="M12 3v3"/><path d="M5 6h14"/><path d="M7 6 4 13a3 3 0 0 0 6 0Z"/><path d="M17 6l-3 7a3 3 0 0 0 6 0Z"/><path d="M9 21h6"/><path d="M12 6v15"/>'),
+  egg:     SVG('<path d="M9 20c-2.8 0-4.5-2.2-4.5-5 0-4 2.6-9 4.5-9s4.5 5 4.5 9c0 2.8-1.7 5-4.5 5Z"/><path d="M16 4v7"/><path d="M14.5 11h3l-.6 4.5a.9.9 0 0 1-1.8 0Z"/>'),
+  dough:   SVG('<rect x="3" y="9" width="18" height="5" rx="2.5"/><path d="M3 11.5H1.5"/><path d="M21 11.5h1.5"/><path d="M6 18c3-1.5 9-1.5 12 0"/>'),
+  plate:   SVG('<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4.2"/><path d="M20 4 17 7"/>'),
+  bread:   SVG('<path d="M4 13c0-3.3 3.6-6 8-6s8 2.7 8 6v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><path d="M8.5 9.5 7 12"/><path d="M12 9.5 10.5 12"/><path d="M15.5 9.5 14 12"/>'),
+  choc:    SVG('<rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 12h16"/><path d="M12 4v16"/><path d="M8 8h.01"/><path d="M16 16h.01"/>'),
+  flame:   SVG('<path d="M12 21c3.3 0 6-2.4 6-5.5 0-4-3.5-5.5-3-9.5-2 1-3 2.5-3.5 4.5C10.6 9 10 8 9.5 6.5 7.5 8 6 11 6 15.5 6 18.6 8.7 21 12 21Z"/>'),
+  palette: SVG('<path d="M12 21a9 9 0 1 1 9-9c0 2-1.6 3-3 3h-1.5a1.8 1.8 0 0 0-1.3 3c.4.5.3 1.4-.7 1.8A9 9 0 0 1 12 21Z"/><circle cx="8" cy="11" r="1"/><circle cx="11" cy="7.5" r="1"/><circle cx="15.5" cy="9" r="1"/>'),
+  layers:  SVG('<path d="M6 4h12l-1 15a2 2 0 0 1-2 1.8H9A2 2 0 0 1 7 19Z"/><path d="M6.6 10h10.8"/><path d="M7 15h10"/>'),
+  star:    SVG('<path d="m12 3 2.6 5.6 6 .8-4.4 4.2 1.1 6L12 16.8 6.7 19.6l1.1-6L3.4 9.4l6-.8Z"/>'),
+  clock:   SVG('<circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2"/><path d="M9 2h6"/>'),
+  wok:     SVG('<path d="M3 10h15a3 3 0 0 1-3 8H9a6 6 0 0 1-6-6Z"/><path d="M18 10h3"/><path d="M8 6.5c0-1 1-1.2 1-2.2"/><path d="M12 6.5c0-1 1-1.2 1-2.2"/>'),
+  box:     SVG('<rect x="3" y="8" width="18" height="12" rx="2"/><path d="M3 12h18"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/>'),
+  pizza:   SVG('<path d="M12 3 21 20a22 22 0 0 1-18 0Z"/><circle cx="12" cy="12" r="1"/><circle cx="9.5" cy="16" r="1"/><circle cx="14.5" cy="16" r="1"/>'),
+  spice:   SVG('<path d="M9 8h6l1 11a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2Z"/><path d="M9.5 8V5.5a2.5 2.5 0 0 1 5 0V8"/><path d="M9 13h6"/>'),
+  globe:   SVG('<circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.5 3.8 5.6 3.8 9S14.5 18.5 12 21c-2.5-2.5-3.8-5.6-3.8-9S9.5 5.5 12 3Z"/>'),
+  bowl:    SVG('<path d="M3 11h18a9 9 0 0 1-18 0Z"/><path d="M8 8c0-1.5 1.5-2 2-3"/><path d="M13 8c0-1.5 1.5-2 2-3"/><path d="M6 21h12"/>'),
+  fish:    SVG('<path d="M3 12c3-4 7-6 11-6 3.5 0 5.6 2 6.5 3.4a2 2 0 0 1 0 5.2C19.6 16 17.5 18 14 18c-4 0-8-2-11-6Z"/><path d="M17 11.5h.01"/><path d="M8 8.5c1 2.5 1 4.5 0 7"/>'),
+  sun:     SVG('<circle cx="12" cy="12" r="4"/><path d="M12 3v2"/><path d="M12 19v2"/><path d="M3 12h2"/><path d="M19 12h2"/><path d="m5.6 5.6 1.4 1.4"/><path d="m17 17 1.4 1.4"/><path d="M18.4 5.6 17 7"/><path d="m7 17-1.4 1.4"/>')
+};
+const WEEK_ICONS = {
+  practice:  ["scale", "egg", "dough", "plate"],
+  technique: ["bread", "choc", "dough", "flame"],
+  creative:  ["palette", "layers", "plate", "star"],
+  speed:     ["clock", "wok", "sun", "box"],
+  world:     ["pizza", "wok", "spice", "globe"],
+  healthy:   ["bowl", "fish", "sun", "box"]
+};
+function weekIcon(planKey, i) {
+  const name = (WEEK_ICONS[planKey] || [])[i] || "plate";
+  return ICONS[name] || ICONS.plate;
+}
+/* קישור לחיפוש סרטוני טכניקה ביוטיוב, בשפת המשתמש */
+function videoUrl(skillText) {
+  return "https://www.youtube.com/results?search_query=" +
+    encodeURIComponent(skillText + " " + t("videoQuery"));
+}
+
 const DIM_LABELS = {
   practice:  { emoji: "🌱", label: "יסודות" },
   technique: { emoji: "🔬", label: "טכניקה" },
@@ -459,13 +505,19 @@ function showResult() {
           <input type="checkbox" data-week="${i}" ${prog[i] ? "checked" : ""}> ${t("done")}
         </label>
       </div>
-      <h5>${stripWeek(w.title)}</h5>
-      <p class="week-goal">${t("goal")} ${w.goal}</p>
+      <div class="week-top">
+        <span class="week-icon">${weekIcon(planKey, i)}</span>
+        <div>
+          <h5>${stripWeek(w.title)}</h5>
+          <p class="week-goal">${t("goal")} ${w.goal}</p>
+        </div>
+      </div>
       <span class="week-skill">${t("skill")} ${w.skill}</span>
       <p class="week-explain">${w.explain}</p>
       <p class="week-mistake">${t("mistake")} ${w.mistake}</p>
       <p class="week-practice">${t("practice")} <span>${w.practice}</span></p>
       <p class="week-challenge">${t("challenge")} ${plan.challenges[i]}</p>
+      <a class="week-video" href="${videoUrl(w.skill)}" target="_blank" rel="noopener">${t("watchVideos")}</a>
     </div>`).join("");
 
   const conceptsHtml = plan.concepts.map(c => `
@@ -487,8 +539,14 @@ function showResult() {
         <p class="paywall-badge">${t("lockedCourseTitle")}</p>
         <p class="paywall-text">${t("lockedCourseText")}</p>
         <div class="paywall-actions">
-          <button class="btn-primary" id="cr-buy">${t("buyCourseBtn")}</button>
-          <button class="btn-secondary" id="cr-premium">${t("unlockAllBtn")}</button>
+          <div class="pay-option">
+            <button class="btn-primary" id="cr-buy">${t("buyCourseBtn")}</button>
+            <span class="pay-note">${t("buyCourseNote")}</span>
+          </div>
+          <div class="pay-option">
+            <button class="btn-secondary" id="cr-premium">${t("unlockAllBtn")}</button>
+            <span class="pay-note">${t("unlockAllNote")}</span>
+          </div>
         </div>
         ${Auth.isLoggedIn() ? "" : `<p class="paywall-login">${t("loginToBuy")}</p>`}
         <p class="demo-note">${t("demoChargeNote")}</p>
@@ -747,6 +805,7 @@ function renderAuthArea() {
     wrap.innerHTML = `<button class="auth-btn" id="btn-account">${Membership.hasPremium() ? "⭐ " : "👤 "}${t("greeting", u.name)}</button>`;
     document.getElementById("btn-account").onclick = openAccountModal;
   }
+  renderPricingInfo();   // ההסבר משתנה לפי סטטוס המנוי
 }
 
 function requireLogin(action) {
@@ -797,6 +856,27 @@ function pricingHtml() {
     <div class="tier"><h5>${t("tierCourseName")}</h5><p class="tier-price">₪1<span>${t("perMonth")}</span></p><p class="tier-desc">${t("tierCourseDesc")}</p></div>
     <div class="tier tier-hl"><h5>${t("tierPremiumName")} ⭐</h5><p class="tier-price">₪2<span>${t("perMonth")}</span></p><p class="tier-desc">${t("tierPremiumDesc")}</p></div>
   </div>`;
+}
+
+/* הסבר התשלום — מוצג מראש בעמוד הקורסים */
+function renderPricingInfo() {
+  const box = document.getElementById("pricing-info");
+  if (!box) return;
+  if (Membership.hasPremium()) { box.innerHTML = ""; return; }
+  box.innerHTML = `
+    <div class="how-box">
+      <h4 class="how-title">${t("howItWorks")}</h4>
+      <p class="how-text">${t("howItWorksText")}</p>
+      ${pricingHtml()}
+      <p class="demo-note">${t("demoChargeNote")}</p>
+    </div>`;
+}
+
+/* הערה על מתכונים מיוחדים — מוצגת בעמוד המתכונים */
+function renderRecipesNote() {
+  const box = document.getElementById("recipes-note");
+  if (!box) return;
+  box.innerHTML = Membership.hasPremium() ? "" : `<p class="recipes-note">${t("premiumRecipesNote")}</p>`;
 }
 
 function openAccountModal() {

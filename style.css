@@ -829,6 +829,61 @@ footer { text-align: center; color: var(--muted); padding: 28px; font-size: .85r
 }
 .btn-secondary:hover { background: var(--soft); }
 
+/* How-payment-works box + notes */
+.how-box {
+  background: var(--soft);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 24px;
+  text-align: start;
+}
+.how-title { color: var(--primary-d); margin-bottom: 10px; font-size: 1.1rem; }
+.how-text { color: var(--text); line-height: 1.75; margin-bottom: 16px; }
+.how-box .pricing { margin-bottom: 6px; }
+.how-box .tier { background: var(--surface); }
+
+.recipes-note {
+  background: var(--amber-bg);
+  color: var(--text);
+  border-radius: var(--radius-sm);
+  padding: 12px 15px;
+  margin-bottom: 14px;
+  font-size: .9rem;
+  line-height: 1.6;
+}
+.pay-option { display: flex; flex-direction: column; align-items: stretch; gap: 4px; }
+.pay-note { font-size: .82rem; color: var(--muted); text-align: center; }
+
+/* Week illustration + video link */
+.week-top { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 10px; }
+.week-icon {
+  flex: 0 0 auto;
+  width: 52px; height: 52px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 14px;
+  background: var(--soft);
+  color: var(--primary);
+}
+.week-svg { width: 28px; height: 28px; }
+.week-card.done .week-icon { background: var(--surface); color: var(--green); }
+.week-top h5 { margin-bottom: 6px; }
+.week-top .week-goal { margin-bottom: 0; }
+.week-video {
+  display: inline-block;
+  margin-top: 12px;
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: 999px;
+  padding: 7px 16px;
+  font-size: .85rem;
+  font-weight: 700;
+  color: var(--primary-d);
+  text-decoration: none;
+  transition: .2s;
+}
+.week-video:hover { border-color: var(--primary); background: var(--soft); }
+
 /* Toast */
 #toast {
   position: fixed;
