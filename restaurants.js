@@ -347,5 +347,262 @@ const RESTAURANTS = {
   ]
 };
 
+/* ---- מידע מורחב לכל מסעדה: מנת דגל + רמת מחיר ----
+   מפתח: "cityId|name". price: ₪ (זול) / ₪₪ (בינוני) / ₪₪₪ (יקר) */
+const REST_EXTRA = {
+  "tel-aviv|R48": { dish: "תפריט טעימות מתחלף", price: "₪₪₪" },
+  "tel-aviv|ASA Izakaya": { dish: "סשימי ומנות דגים", price: "₪₪₪" },
+  "tel-aviv|מלגו ומלבר": { dish: "פירות ים טריים", price: "₪₪₪" },
+  "tel-aviv|פסאדור": { dish: "מבחר נתחים במחיר קבוע", price: "₪₪₪" },
+  "tel-aviv|GDB": { dish: "המבורגר בקר מיושן", price: "₪₪" },
+  "tel-aviv|מון (Moon) סושי בר": { dish: "רולים מיוחדים", price: "₪₪" },
+  "tel-aviv|צ'יינה קלאס": { dish: "סושי ונודלס", price: "₪₪" },
+  "tel-aviv|יוליה": { dish: "דג היום מהנמל", price: "₪₪₪" },
+  "tel-aviv|פיצה לילה": { dish: "פיצה מרגריטה", price: "₪₪" },
+  "tel-aviv|ניניו": { dish: "מנות דגים חלביות", price: "₪₪₪" },
+  "tel-aviv|קפה AT8": { dish: "ארוחת בוקר", price: "₪₪" },
+
+  "jerusalem|הדקה ה-90": { dish: "מנות שף ישראליות", price: "₪₪₪" },
+  "jerusalem|1868": { dish: "תפריט טעימות", price: "₪₪₪" },
+  "jerusalem|צ'אקרה": { dish: "מנות שף מתחלפות", price: "₪₪" },
+  "jerusalem|אדום": { dish: "אנטריקוט ויין", price: "₪₪₪" },
+  "jerusalem|גבריאל": { dish: "מנות שף עונתיות", price: "₪₪₪" },
+  "jerusalem|עזורא": { dish: "מרק קובה וסופריטו", price: "₪₪" },
+  "jerusalem|מורדוך": { dish: "מרק קובה", price: "₪₪" },
+  "jerusalem|אריכה": { dish: "סביח בפיתה", price: "₪" },
+  "jerusalem|חומוס ארבעס": { dish: "חומוס עם גרגרים", price: "₪" },
+  "jerusalem|ג'וזף רימון": { dish: "נתחים על הגריל", price: "₪₪₪" },
+  "jerusalem|DAVID 16": { dish: "סטייק אנטריקוט", price: "₪₪₪" },
+
+  "ramat-gan|שיפודי סמי ובניו": { dish: "מבחר שיפודים", price: "₪₪" },
+  "ramat-gan|קפה MAE": { dish: "מנות מרכז אמריקה", price: "₪₪" },
+  "ramat-gan|בלקסטון": { dish: "ביסטרו צרפתי", price: "₪₪₪" },
+  "ramat-gan|הארנב הלבן": { dish: "נתחי בקר על הגריל", price: "₪₪₪" },
+  "ramat-gan|ריבר": { dish: "מנות אסייתיות", price: "₪₪" },
+
+  "givatayim|חומוס גבעתיים": { dish: "חומוס פטריות", price: "₪" },
+  "givatayim|טורי": { dish: "מנות אסייתיות ויין", price: "₪₪" },
+
+  "herzliya|דרבי בר דגים": { dish: "דג טרי מהמרינה", price: "₪₪₪" },
+  "herzliya|לולה מרטין": { dish: "דגים ופירות ים", price: "₪₪₪" },
+  "herzliya|בני הדייג": { dish: "דג צרוב וסלטים", price: "₪₪₪" },
+  "herzliya|לה ואקה לוקה": { dish: "נתחי בשר", price: "₪₪₪" },
+  "herzliya|לחם בשר": { dish: "אנטריקוט", price: "₪₪₪" },
+  "herzliya|נאמוס": { dish: "טפניאקי וסושי", price: "₪₪₪" },
+
+  "petah-tikva|השיפוד והמנגל": { dish: "שיפודים בוכריים", price: "₪₪" },
+  "petah-tikva|שיפודי ציפורה": { dish: "נתחים משובחים", price: "₪₪" },
+  "petah-tikva|ג'ויה": { dish: "פסטה טרייה", price: "₪₪" },
+  "petah-tikva|מריונלה": { dish: "פיצה ופסטה", price: "₪₪" },
+  "petah-tikva|פטריקס": { dish: "המבורגר ובירה", price: "₪₪" },
+  "petah-tikva|ג'ירף": { dish: "פאד תאי", price: "₪₪" },
+
+  "rishon|סטלה ביץ'": { dish: "דגים מול הים", price: "₪₪" },
+  "rishon|אמילי גריל בר": { dish: "נתחים על הגריל", price: "₪₪" },
+  "rishon|טיטי מרטין בר": { dish: "קוקטיילים ומנות בר", price: "₪₪" },
+  "rishon|פטריקס": { dish: "המבורגר ובירה", price: "₪₪" },
+  "rishon|לחם בשר": { dish: "בשר מיושן ולחם טאבון", price: "₪₪₪" },
+  "rishon|סוהו": { dish: "מנות בית ותיקות", price: "₪₪" },
+  "rishon|סלון יווני": { dish: "מזטים יווניים", price: "₪₪" },
+
+  "holon|בובו": { dish: "פסטה טרייה", price: "₪₪" },
+  "holon|דונה (DONNA)": { dish: "פסטה ופיצה", price: "₪₪" },
+  "holon|קפה ללוש בראסרי": { dish: "ארוחת בוקר", price: "₪₪" },
+
+  "bat-yam|הפטריקס ביץ": { dish: "מנות בר מול הים", price: "₪₪" },
+  "bat-yam|גורילה": { dish: "קפה וכריכים", price: "₪" },
+
+  "haifa|פטוש": { dish: "מזטים ערביים", price: "₪₪" },
+  "haifa|רולא": { dish: "שישברק וחומוס", price: "₪" },
+  "haifa|רפאלו": { dish: "פסטה ים תיכונית", price: "₪₪" },
+  "haifa|פאפיאנו": { dish: "פיצה נפוליטנית", price: "₪₪" },
+  "haifa|וניה ביסטרו": { dish: "פסטה ארטישוק", price: "₪₪" },
+  "haifa|ליבריה": { dish: "בירה מהמבשלה", price: "₪₪" },
+  "haifa|דולפין": { dish: "דגים ופירות ים", price: "₪₪" },
+
+  "eilat|המפלט האחרון": { dish: "דג ים סוף", price: "₪₪" },
+  "eilat|לה סרדין": { dish: "פירות ים", price: "₪₪₪" },
+  "eilat|איל פנטולינו": { dish: "פסטה טרייה", price: "₪₪" },
+  "eilat|קפה אופטימי": { dish: "פיצה וארוחת בוקר", price: "₪₪" },
+  "eilat|פאפי": { dish: "אסאדו על הגחלים", price: "₪₪₪" },
+  "eilat|המחבוא של אדי": { dish: "מנות שף צרפתיות", price: "₪₪₪" },
+  "eilat|לוויתן": { dish: "המבורגר של השף", price: "₪₪" },
+
+  "beer-sheva|קבב אמונה": { dish: "קבב על האש", price: "₪" },
+  "beer-sheva|קמפאי סטריט ווק": { dish: "נודלס אסייתיים", price: "₪₪" },
+  "beer-sheva|שושנה": { dish: "תבשילים מרוקאיים", price: "₪" },
+
+  "netanya|משה שגב": { dish: "נתחי שף", price: "₪₪₪" },
+  "netanya|אל גאוצ'ו": { dish: "אסאדו ארגנטינאי", price: "₪₪₪" },
+  "netanya|מסעדת היקב": { dish: "מנות מול הים", price: "₪₪" },
+  "netanya|לאגר אנד אייל": { dish: "בירות מהחבית", price: "₪₪" },
+  "netanya|מרפי'ס": { dish: "פיש אנד צ'יפס", price: "₪₪" },
+
+  "tiberias|לגונה": { dish: "דג מהכנרת", price: "₪₪" },
+  "tiberias|טיביס": { dish: "נתחים על האש", price: "₪₪" },
+  "tiberias|סנט אורבן": { dish: "יין ומנות שף", price: "₪₪" },
+  "tiberias|סין צ'אן": { dish: "מוקפצים אסייתיים", price: "₪₪" },
+
+  "akko|אורי בורי": { dish: "תפריט דגים של השף", price: "₪₪₪" },
+  "akko|אבו כריסטו": { dish: "דג טרי וסלטים", price: "₪₪" },
+  "akko|רותס (ROOTS)": { dish: "מנות לבנטיניות", price: "₪₪₪" },
+  "akko|חומוס סעיד": { dish: "חומוס עם שמן זית", price: "₪" },
+
+  "nazareth|דיאנא": { dish: "קבב טלה על קינמון", price: "₪₪" },
+  "nazareth|לוקנדה": { dish: "מנות גליליות", price: "₪₪" },
+  "nazareth|תשרין": { dish: "מזטים ופיוז'ן", price: "₪₪" },
+  "nazareth|חומוסיית עבדאללה שרביני": { dish: "חומוס ופלאפל", price: "₪" },
+
+  "ashdod|פסקדו": { dish: "דג טרי של השף", price: "₪₪₪" },
+  "ashdod|פארינו": { dish: "פיצה נפוליטנית", price: "₪₪" },
+  "ashdod|נמסטה": { dish: "קארי הודי", price: "₪₪" },
+  "ashdod|עלמא": { dish: "מנות פיוז'ן", price: "₪₪" },
+  "ashdod|ערמונים": { dish: "תפריט שף על האגם", price: "₪₪₪" },
+
+  "ashkelon|סקובר בר": { dish: "דגים במרינה", price: "₪₪" },
+  "ashkelon|ארצ'י": { dish: "מנות בר מול הים", price: "₪₪" },
+  "ashkelon|הניצחון של חני": { dish: "תבשילים רומניים", price: "₪" },
+  "ashkelon|אריסטו": { dish: "קפה ומאפים", price: "₪" },
+  "ashkelon|סטיקיית איסטנבול": { dish: "סטייק על הגחלים", price: "₪₪" },
+
+  "rehovot|פבריקה": { dish: "פיצה נפוליטנית", price: "₪₪" },
+  "rehovot|מו ומו": { dish: "נתחי בשר", price: "₪₪₪" },
+  "rehovot|כרמים": { dish: "מנות מהחווה", price: "₪₪₪" },
+  "rehovot|נינה ביאנכה": { dish: "מנות שף ים תיכוניות", price: "₪₪₪" },
+  "rehovot|קפה סזאר": { dish: "ארוחת בוקר", price: "₪₪" },
+  "rehovot|ג'וג'ו": { dish: "אינג'רה ותבשילים", price: "₪" },
+
+  "modiin|קונמיגו": { dish: "מנות שף מתחלפות", price: "₪₪₪" },
+  "modiin|גריל 443": { dish: "נתחים על הפחמים", price: "₪₪" },
+  "modiin|מכביס": { dish: "אוכל ביתי", price: "₪₪" },
+
+  "kfar-saba|סטקיית סבינו": { dish: "16 סלטי בית ובשר", price: "₪₪" },
+  "kfar-saba|פיאנו פיאנו": { dish: "פיצה בתנור עצים", price: "₪₪" },
+  "kfar-saba|קפה המדרחוב": { dish: "ארוחת בוקר", price: "₪₪" },
+  "kfar-saba|לחם ארז": { dish: "לחם מחמצת וכריכים", price: "₪₪" },
+  "kfar-saba|Temple Bar": { dish: "בירות ומנות פאב", price: "₪₪" },
+
+  "raanana|חנדל'ה": { dish: "צלעות טלה", price: "₪₪₪" },
+  "raanana|בוטגה איטליה": { dish: "פסטה טרייה", price: "₪₪" },
+  "raanana|לה טרטוריה": { dish: "פסטה חלבית", price: "₪₪" },
+  "raanana|באקארו גריל בר": { dish: "נתחים על הגריל", price: "₪₪" },
+
+  "zichron|אדמה": { dish: "מנות שף עונתיות", price: "₪₪₪" },
+  "zichron|סומאק": { dish: "מזטים גליליים", price: "₪₪" },
+  "zichron|מנואלה": { dish: "פסטה ופיצה", price: "₪₪" },
+  "zichron|צ'אנג מאי": { dish: "מוקפצים סיניים", price: "₪₪" },
+  "zichron|בתיה ונחמן": { dish: "בריסקט מעושן", price: "₪₪₪" },
+  "zichron|יקב תשבי": { dish: "טעימות יין ומאפים", price: "₪₪" },
+
+  "hadera|בני הדייג — כפר הים": { dish: "דג טרי ו-14 סלטים", price: "₪₪" },
+  "hadera|בריסקט": { dish: "בריסקט מעושן", price: "₪₪" },
+  "hadera|יפן יפן": { dish: "סושי טרי", price: "₪₪" },
+  "hadera|שואו קפה": { dish: "קפה וארוחת בוקר", price: "₪₪" },
+  "hadera|אופרה": { dish: "מרק תימני וג'חנון", price: "₪" },
+
+  "karmiel|ראי יקב ומסעדה": { dish: "מנות בלקניות ויין", price: "₪₪" },
+  "karmiel|בית גני": { dish: "מנות צמחוניות ודגים", price: "₪₪" },
+  "karmiel|פאט ויני": { dish: "פסטה ופיצה", price: "₪₪" },
+  "karmiel|מג'דלה": { dish: "מזטים ומנות ערביות", price: "₪₪" },
+  "karmiel|אל-רוביאן": { dish: "דגים ופירות ים", price: "₪₪" },
+
+  "paris|Le Train Bleu": { dish: "בקר בורגיניון", price: "₪₪₪" },
+  "paris|Café de Flore": { dish: "קרוק מסייה וקפה", price: "₪₪" },
+  "paris|L'As du Fallafel": { dish: "פלאפל מיוחד בפיתה", price: "₪" },
+  "paris|Tour d'Argent": { dish: "ברווז בדם", price: "₪₪₪" },
+  "paris|Le Fouquet's": { dish: "קלאסיקות צרפתיות", price: "₪₪₪" },
+
+  "london|Rules": { dish: "פאי ציד בריטי", price: "₪₪₪" },
+  "london|Dishoom": { dish: "בלק דאל וביקון נאן", price: "₪₪" },
+  "london|Sketch": { dish: "תפריט טעימות", price: "₪₪₪" },
+  "london|The Wolseley": { dish: "ארוחת בוקר אנגלית", price: "₪₪₪" },
+  "london|St John": { dish: "מוח עצם ופטרוזיליה", price: "₪₪₪" },
+
+  "rome|Roscioli": { dish: "קאצ'ו א פפה", price: "₪₪₪" },
+  "rome|Alfredo alla Scrofa": { dish: "פטוצ'יני אלפרדו", price: "₪₪" },
+  "rome|La Campana": { dish: "קרבונרה", price: "₪₪" },
+  "rome|Flavio al Velavevodetto": { dish: "אמטריצ'אנה", price: "₪₪" },
+  "rome|Aroma": { dish: "תפריט טעימות עם נוף", price: "₪₪₪" },
+
+  "dubai|Orfali Bros Bistro": { dish: "מנות פיוז'ן של האחים", price: "₪₪₪" },
+  "dubai|Al Muntaha": { dish: "תפריט טעימות צרפתי", price: "₪₪₪" },
+  "dubai|Ravi's": { dish: "קארי ונאן", price: "₪" },
+  "dubai|Ossiano": { dish: "פירות ים מול האקווריום", price: "₪₪₪" },
+  "dubai|Atmosphere": { dish: "ארוחה בקומה 122", price: "₪₪₪" },
+
+  "newyork|Katz's Delicatessen": { dish: "סנדוויץ' פסטרמי", price: "₪₪" },
+  "newyork|Peter Luger": { dish: "פורטרהאוס לשניים", price: "₪₪₪" },
+  "newyork|Russ & Daughters": { dish: "בייגל עם לוקס", price: "₪₪" },
+  "newyork|Minetta Tavern": { dish: "בלק לייבל ברגר", price: "₪₪₪" },
+  "newyork|Sylvia's": { dish: "עוף מטוגן דרומי", price: "₪₪" },
+
+  "barcelona|Pinotxo Bar": { dish: "חומוס עם צ'ורסו (גרבנזוס)", price: "₪₪" },
+  "barcelona|Botafumeiro": { dish: "פירות ים גליציאניים", price: "₪₪₪" },
+  "barcelona|La Plata": { dish: "סרדינים מטוגנים", price: "₪" },
+  "barcelona|Can Paixano": { dish: "כריך בוטיפרה וקאווה", price: "₪" },
+  "barcelona|Can Solé": { dish: "פאייה ופידואה", price: "₪₪₪" },
+
+  "tokyo|Sukiyabashi Jiro": { dish: "אומקסה סושי", price: "₪₪₪" },
+  "tokyo|Sushi Saito": { dish: "אומקסה אדומאה", price: "₪₪₪" },
+  "tokyo|Narisawa": { dish: "לחם היער", price: "₪₪₪" },
+  "tokyo|Kanda": { dish: "קאיסקי עונתי", price: "₪₪₪" },
+  "tokyo|Tsujihan": { dish: "קייסן דון", price: "₪₪" },
+
+  "istanbul|Karaköy Lokantası": { dish: "מזטים טורקיים", price: "₪₪" },
+  "istanbul|Pandeli": { dish: "חציל בתנור", price: "₪₪" },
+  "istanbul|Mikla": { dish: "תפריט אנטולי מודרני", price: "₪₪₪" },
+  "istanbul|Balıkçı Sabahattin": { dish: "דג ים טרי", price: "₪₪₪" },
+  "istanbul|Karaköy Güllüoğlu": { dish: "בקלווה פיסטוק", price: "₪" },
+
+  "bangkok|Jay Fai": { dish: "חביתת סרטנים", price: "₪₪₪" },
+  "bangkok|Sorn": { dish: "תפריט טעימות דרומי", price: "₪₪₪" },
+  "bangkok|Thipsamai": { dish: "פאד תאי בעטיפת ביצה", price: "₪" },
+  "bangkok|Wattana Panich": { dish: "מרק בקר בן 40 שנה", price: "₪" },
+  "bangkok|Le Du": { dish: "תפריט טעימות תאילנדי", price: "₪₪₪" },
+
+  "singapore|Tian Tian Hainanese Chicken Rice": { dish: "אורז עוף היינאני", price: "₪" },
+  "singapore|Hawker Chan": { dish: "עוף סויה עם אורז", price: "₪" },
+  "singapore|Maxwell Food Centre": { dish: "מגוון דוכני הוקרים", price: "₪" },
+  "singapore|Newton Food Centre": { dish: "סרטן צ'ילי וסאטיי", price: "₪₪" },
+  "singapore|Lau Pa Sat": { dish: "סאטיי על הגריל", price: "₪" },
+
+  "lisbon|Cervejaria Ramiro": { dish: "שרימפס בשום וכריך פרגו", price: "₪₪₪" },
+  "lisbon|Pastéis de Belém": { dish: "פסטל דה נאטה", price: "₪" },
+  "lisbon|Gambrinus": { dish: "מנות פורטוגזיות קלאסיות", price: "₪₪₪" },
+  "lisbon|Taberna Sal Grosso": { dish: "מנות טברנה מתחלפות", price: "₪₪" },
+  "lisbon|Galeto": { dish: "כריכים וסטייק", price: "₪₪" },
+
+  "berlin|Tim Raue": { dish: "ברווז פקין", price: "₪₪₪" },
+  "berlin|Konnopke's Imbiss": { dish: "קארי וורסט", price: "₪" },
+  "berlin|Mustafa's Gemüse Kebap": { dish: "קבב עוף וירקות", price: "₪" },
+  "berlin|Nobelhart & Schmutzig": { dish: "תפריט מקומי בלבד", price: "₪₪₪" },
+  "berlin|Schwarzes Café": { dish: "ארוחת בוקר 24 שעות", price: "₪₪" },
+
+  "amsterdam|De Kas": { dish: "ירקות מהחממה", price: "₪₪₪" },
+  "amsterdam|Vleminckx": { dish: "צ'יפס עם רוטב", price: "₪" },
+  "amsterdam|Café de Reiger": { dish: "עוגת תפוחים הולנדית", price: "₪₪" },
+  "amsterdam|Brouwerij 't IJ": { dish: "בירה מהמבשלה", price: "₪₪" },
+  "amsterdam|Yamazato": { dish: "קאיסקי יפני", price: "₪₪₪" },
+
+  "mexicocity|Pujol": { dish: "מולה מדרה", price: "₪₪₪" },
+  "mexicocity|Contramar": { dish: "פסקדו א לה טאליה", price: "₪₪₪" },
+  "mexicocity|Quintonil": { dish: "תפריט טעימות מקסיקני", price: "₪₪₪" },
+  "mexicocity|El Califa de León": { dish: "טאקו גאונרה", price: "₪" },
+  "mexicocity|Churrería El Moro": { dish: "צ'ורוס עם שוקולד חם", price: "₪" },
+
+  "copenhagen|Noma": { dish: "תפריט עונתי נורדי", price: "₪₪₪" },
+  "copenhagen|Geranium": { dish: "תפריט טעימות מישלן", price: "₪₪₪" },
+  "copenhagen|Alchemist": { dish: "40 מנות בחוויה", price: "₪₪₪" },
+  "copenhagen|Hart Bageri": { dish: "מאפה קרדמום", price: "₪" },
+  "copenhagen|Kadeau": { dish: "תפריט נורדי יצירתי", price: "₪₪₪" },
+
+  "marrakech|Nomad": { dish: "מנות מרוקאיות מודרניות", price: "₪₪" },
+  "marrakech|Dar Yacout": { dish: "פסטייה וטאג'ין", price: "₪₪₪" },
+  "marrakech|Le Jardin": { dish: "טאג'ין בגן", price: "₪₪" },
+  "marrakech|Café des Épices": { dish: "כריכים ותה נענע", price: "₪" },
+  "marrakech|Grand Café de la Poste": { dish: "בראסרי צרפתית", price: "₪₪₪" }
+};
+
 window.CITIES = CITIES;
 window.RESTAURANTS = RESTAURANTS;
+window.REST_EXTRA = REST_EXTRA;

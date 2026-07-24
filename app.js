@@ -33,9 +33,12 @@ function levelInfo(lv)  { return lang === "he" ? { title: lv.title, desc: lv.des
 function planText(key)  { return lang === "he" ? PLANS[key] : (Lget("plans", key) || PLANS_EN[key]); }
 function quizData(i)    { return lang === "he" ? { q: QUESTIONS[i].q, a: QUESTIONS[i].answers.map(x => x.text) } : (Lget("quiz", i) || QUIZ_EN[i]); }
 function restFields(cityId, r) {
-  if (lang === "he") return { cuisine: r.cuisine, desc: r.desc };
-  const e = Lget("rest", cityId + "|" + r.name);
-  return { cuisine: e ? e.c : r.cuisine, desc: e ? e.d : r.desc };
+  const key = cityId + "|" + r.name;
+  const extra = (window.REST_EXTRA && REST_EXTRA[key]) || {};
+  const dish = lang === "he" ? extra.dish : (Lget("restDish", key) || extra.dish);
+  if (lang === "he") return { cuisine: r.cuisine, desc: r.desc, dish, price: extra.price };
+  const e = Lget("rest", key);
+  return { cuisine: e ? e.c : r.cuisine, desc: e ? e.d : r.desc, dish, price: extra.price };
 }
 
 function applyLang() {
@@ -339,7 +342,7 @@ function closeRecipe() {
 /* ========================================================
    קורסים / חידון
    ======================================================== */
-const course = { level: null, current: 0, history: [], scores: { practice: 0, technique: 0, creative: 0, speed: 0, world: 0, healthy: 0, desserts: 0, bread: 0, hosting: 0 } };
+const course = { level: null, current: 0, history: [], scores: { practice: 0, technique: 0, creative: 0, speed: 0, world: 0, healthy: 0, desserts: 0, bread: 0, hosting: 0, grill: 0, veg: 0, budget: 0 } };
 
 function buildLevels() {
   const wrap = document.getElementById("levels");
@@ -361,7 +364,7 @@ function selectLevel(id) {
   course.level = id;
   course.current = 0;
   course.history = [];
-  course.scores = { practice: 0, technique: 0, creative: 0, speed: 0, world: 0, healthy: 0, desserts: 0, bread: 0, hosting: 0 };
+  course.scores = { practice: 0, technique: 0, creative: 0, speed: 0, world: 0, healthy: 0, desserts: 0, bread: 0, hosting: 0, grill: 0, veg: 0, budget: 0 };
   document.getElementById("course-intro").classList.add("hidden");
   document.getElementById("course-quiz").classList.remove("hidden");
   renderQuestion();
@@ -440,7 +443,10 @@ const WEEK_ICONS = {
   healthy:   ["bowl", "fish", "sun", "box"],
   desserts:  ["layers", "dough", "egg", "star"],
   bread:     ["dough", "flame", "bread", "scale"],
-  hosting:   ["plate", "box", "wok", "layers"]
+  hosting:   ["plate", "box", "wok", "layers"],
+  grill:     ["flame", "fish", "sun", "plate"],
+  veg:       ["bowl", "spice", "wok", "plate"],
+  budget:    ["box", "bowl", "clock", "scale"]
 };
 function weekIcon(planKey, i) {
   const name = (WEEK_ICONS[planKey] || [])[i] || "plate";
@@ -461,7 +467,10 @@ const DIM_LABELS = {
   healthy:   { emoji: "🥗", label: "בריא" },
   desserts:  { emoji: "🧁", label: "קינוחים" },
   bread:     { emoji: "🍞", label: "לחמים" },
-  hosting:   { emoji: "🎉", label: "אירוח" }
+  hosting:   { emoji: "🎉", label: "אירוח" },
+  grill:     { emoji: "🔥", label: "על האש" },
+  veg:       { emoji: "🥦", label: "צמחוני" },
+  budget:    { emoji: "💰", label: "חסכוני" }
 };
 
 /* התקדמות בקורס — נשמרת בדפדפן לפי מפתח התוכנית */
@@ -768,8 +777,12 @@ function renderRestaurants() {
         <h3>${r.name}</h3>
         ${r.kosher ? `<span class="kosher-badge">${t("kosherBadge")}</span>` : ""}
       </div>
-      <span class="rest-cuisine">🍽️ ${f.cuisine}</span>
+      <div class="rest-meta">
+        <span class="rest-cuisine">🍽️ ${f.cuisine}</span>
+        ${f.price ? `<span class="rest-price" title="${t("priceLabel")}">${f.price}</span>` : ""}
+      </div>
       <p class="rest-desc">${f.desc}</p>
+      ${f.dish ? `<p class="rest-dish"><span>${t("signatureDish")}</span> ${f.dish}</p>` : ""}
       ${city.abroad ? `<p class="rest-airport">${t("fromAirport", city.airport)}</p>` : ""}
       <div class="rest-links">
         <a class="map-link waze" href="${wazeUrl}" target="_blank" rel="noopener">${t("waze")}</a>
